@@ -1,26 +1,31 @@
 using UnityEngine;
 
-
 [CreateAssetMenu]
 public class PlayerStats : ScriptableObject
 {
+    [Header("Health")]
+    public float maxHealth = 1200f;
+    public float physicalDefence = 500f;
+    public float energyDefence = 350f;
+
+    [Header("Speed")]
     public float horizontalSpeed = 5f;
     public float verticalSpeed = 5f;
-    public float maxHealth = 100f;
-    public float armor = 100f;
 
+    [Header("Heating")]
+    public float maxHeatTolerance = 100f;
+    public float defaultHeat = 25f;
+    public float coolingEfficiency = 2f;
+    public float overHeatcoolingEfficiency = 3f;
 
-    /* other stats / ideas
-    energyGeneration
-    maxEnergy
-    cooling
-    maxHeatTolerance
-    */
+    [Header("Weight")]
+    public float maxWeight = 10000f;
 
-    #if UNITY_EDITOR
-    private void OnValidate()
-    {
-        // if (moveSpeed < 0) Debug.LogWarning("Movement speed is set to 0, the player can not move", this);
-    }
-    #endif
+    [Header("Energy")]
+    public float energyOutput = 1000;
+    public float maxEnergy = 100f;
+    public float energyRecharge = 2f;
+
+    [Header("Cost")]
+    public float repairCost = 10000f;
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701625b54d7a24a428fbc2a67edb75fe, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  horizontalSpeed: 10
-  verticalSpeed: 8
+  horizontalSpeed: 8
+  verticalSpeed: 5
   maxHealth: 100
   armor: 100

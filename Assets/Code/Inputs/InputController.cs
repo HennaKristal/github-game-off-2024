@@ -17,7 +17,7 @@ public class InputController : MonoBehaviour
     public bool fire3Hold { get; private set; }
     public bool fire4Hold { get; private set; }
     public bool fire5Hold { get; private set; }
-
+    public bool reloadHold { get; private set; }
 
     private PlayerInputActions PlayerInputActions
     {
@@ -32,22 +32,19 @@ public class InputController : MonoBehaviour
         }
     }
 
-
     private void OnEnable()
     {
         PlayerInputActions.Enable();
     }
-
 
     private void OnDisable()
     {
         PlayerInputActions.Disable();
     }
 
-
+    // Process inputs for this frame
     private void Update()
     {
-        // Process inputs for this frame
         Move = PlayerInputActions.Gameplay.Move.ReadValue<Vector2>();
         ScreenshotPressed = PlayerInputActions.Gameplay.Screenshot.WasPressedThisFrame();
         EscapePressed = PlayerInputActions.Gameplay.Escape.WasPressedThisFrame();
@@ -63,5 +60,7 @@ public class InputController : MonoBehaviour
         fire3Hold = PlayerInputActions.Gameplay.Fire3.IsPressed();
         fire4Hold = PlayerInputActions.Gameplay.Fire4.IsPressed();
         fire5Hold = PlayerInputActions.Gameplay.Fire5.IsPressed();
+
+        reloadHold = PlayerInputActions.Gameplay.Reload.IsPressed();
     }
 }

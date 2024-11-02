@@ -1,11 +1,9 @@
 using UnityEngine;
 
-
 public class EnemyWeakSpot : MonoBehaviour
 {
     [SerializeField] private float weakSpotDamageMultiplier = 2;
     private EnemyHealth enemyHealth;
-
 
     private void Start()
     {
@@ -16,7 +14,6 @@ public class EnemyWeakSpot : MonoBehaviour
             Debug.LogError("EnemyWeakSpot requires an EnemyHealth component on the parent GameObject.");
         }
     }
-
 
     public void TakeDamage(int damage)
     {

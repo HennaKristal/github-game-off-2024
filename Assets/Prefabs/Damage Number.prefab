@@ -50,8 +50,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3863301ddc45345b887913049c9eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 0.8
-  fadeDuration: 1
+  normalDuration: 0.5
+  normalFontSize: 0.15
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalMoveDistance: 0.5
+  criticalDuration: 0.75
+  criticalFontSize: 0.25
+  criticalColor: {r: 1, g: 1, b: 0, a: 1}
+  criticalMoveDistance: 0.75
+  weakSpotDuration: 0.75
+  weakSpotFontSize: 0.25
+  weakSpotColor: {r: 1, g: 0, b: 0, a: 1}
+  weakSpotMoveDistance: 0.75
+  weakSpotCriticalDuration: 1
+  weakSpotCriticalFontSize: 0.3
+  weakSpotCriticalColor: {r: 1, g: 0, b: 0, a: 1}
+  weakSpotCriticalMoveDistance: 1
 --- !u!222 &8857948602643192922
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ public class UniversalRuleTile : RuleTile
 {
     private const int DefaultEmptyState = 2;
 
-
     // Overrides the default neighbor matching behavior to smoothly blend all tiles together
     public override bool RuleMatch(int neighbor, TileBase tile)
     {
