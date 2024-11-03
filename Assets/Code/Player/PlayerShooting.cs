@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public enum WeaponType
 {
     MainWeapon,
-    SideWeapon1,
-    SideWeapon2,
-    SideWeapon3,
-    SideWeapon4
+    LeftSideInner,
+    RightSideInner,
+    LeftSideOuter,
+    RightSideOuter
 }
 
 public class PlayerShooting : MonoBehaviour
@@ -25,7 +25,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private TextMeshProUGUI magazineText;
     [SerializeField] private TextMeshProUGUI totalRoundsText;
     [SerializeField] private TextMeshProUGUI separator;
-    [SerializeField] private Slider reloadBar; // Reload bar slider
+    [SerializeField] private Slider reloadBar;
 
     private float nextFireTime = 0f;
     private int currentMagazine;
@@ -72,6 +72,7 @@ public class PlayerShooting : MonoBehaviour
                 else
                 {
                     magazineText.text = "0";
+                    weaponNameText.color = Color.red;
                 }
             }
         }
@@ -83,11 +84,11 @@ public class PlayerShooting : MonoBehaviour
         {
             return weaponType switch
             {
-                WeaponType.MainWeapon => inputController.fire1Hold,
-                WeaponType.SideWeapon1 => inputController.fire2Hold,
-                WeaponType.SideWeapon2 => inputController.fire3Hold,
-                WeaponType.SideWeapon3 => inputController.fire4Hold,
-                WeaponType.SideWeapon4 => inputController.fire5Hold,
+                WeaponType.MainWeapon => inputController.MainWeaponHold,
+                WeaponType.LeftSideInner => inputController.LeftSideInnerWeaponHold,
+                WeaponType.RightSideInner => inputController.RightSideInnerWeaponHold,
+                WeaponType.LeftSideOuter => inputController.LeftSideOuterWeaponHold,
+                WeaponType.RightSideOuter => inputController.RightSideOuterWeaponHold,
                 _ => false,
             };
         }
@@ -95,11 +96,11 @@ public class PlayerShooting : MonoBehaviour
         {
             return weaponType switch
             {
-                WeaponType.MainWeapon => inputController.fire1Pressed,
-                WeaponType.SideWeapon1 => inputController.fire2Pressed,
-                WeaponType.SideWeapon2 => inputController.fire3Pressed,
-                WeaponType.SideWeapon3 => inputController.fire4Pressed,
-                WeaponType.SideWeapon4 => inputController.fire5Pressed,
+                WeaponType.MainWeapon => inputController.MainWeaponHold,
+                WeaponType.LeftSideInner => inputController.LeftSideInnerWeaponHold,
+                WeaponType.RightSideInner => inputController.RightSideInnerWeaponHold,
+                WeaponType.LeftSideOuter => inputController.LeftSideOuterWeaponHold,
+                WeaponType.RightSideOuter => inputController.RightSideOuterWeaponHold,
                 _ => false,
             };
         }

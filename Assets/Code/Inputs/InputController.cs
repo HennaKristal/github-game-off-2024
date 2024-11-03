@@ -7,17 +7,19 @@ public class InputController : MonoBehaviour
     public Vector2 Move { get; private set; }
     public bool EscapePressed { get; private set; }
     public bool ScreenshotPressed { get; private set; }
-    public bool fire1Pressed { get; private set; }
-    public bool fire2Pressed { get; private set; }
-    public bool fire3Pressed { get; private set; }
-    public bool fire4Pressed { get; private set; }
-    public bool fire5Pressed { get; private set; }
-    public bool fire1Hold { get; private set; }
-    public bool fire2Hold { get; private set; }
-    public bool fire3Hold { get; private set; }
-    public bool fire4Hold { get; private set; }
-    public bool fire5Hold { get; private set; }
+    public bool MainWeaponPressed { get; private set; }
+    public bool LeftSideInnerWeaponPressed { get; private set; }
+    public bool RightSideInnerWeaponPressed { get; private set; }
+    public bool LeftSideOuterWeaponPressed { get; private set; }
+    public bool RightSideOuterWeaponPressed { get; private set; }
+    public bool MainWeaponHold { get; private set; }
+    public bool LeftSideInnerWeaponHold { get; private set; }
+    public bool RightSideInnerWeaponHold { get; private set; }
+    public bool LeftSideOuterWeaponHold { get; private set; }
+    public bool RightSideOuterWeaponHold { get; private set; }
     public bool reloadHold { get; private set; }
+    public bool healPressed { get; private set; }
+    public bool dodgePressed { get; private set; }
 
     private PlayerInputActions PlayerInputActions
     {
@@ -49,18 +51,20 @@ public class InputController : MonoBehaviour
         ScreenshotPressed = PlayerInputActions.Gameplay.Screenshot.WasPressedThisFrame();
         EscapePressed = PlayerInputActions.Gameplay.Escape.WasPressedThisFrame();
 
-        fire1Pressed = PlayerInputActions.Gameplay.Fire1.WasPressedThisFrame();
-        fire2Pressed = PlayerInputActions.Gameplay.Fire2.WasPressedThisFrame();
-        fire3Pressed = PlayerInputActions.Gameplay.Fire3.WasPressedThisFrame();
-        fire4Pressed = PlayerInputActions.Gameplay.Fire4.WasPressedThisFrame();
-        fire5Pressed = PlayerInputActions.Gameplay.Fire5.WasPressedThisFrame();
+        MainWeaponPressed = PlayerInputActions.Gameplay.FireMainWeapon.WasPressedThisFrame();
+        LeftSideInnerWeaponPressed = PlayerInputActions.Gameplay.FireLeftSideInnerWeapon.WasPressedThisFrame();
+        RightSideInnerWeaponPressed = PlayerInputActions.Gameplay.FireRightSideInnerWeapon.WasPressedThisFrame();
+        LeftSideOuterWeaponPressed = PlayerInputActions.Gameplay.FireLeftSideOuterWeapon.WasPressedThisFrame();
+        RightSideOuterWeaponPressed = PlayerInputActions.Gameplay.FireRightSideOuterWeapon.WasPressedThisFrame();
 
-        fire1Hold = PlayerInputActions.Gameplay.Fire1.IsPressed();
-        fire2Hold = PlayerInputActions.Gameplay.Fire2.IsPressed();
-        fire3Hold = PlayerInputActions.Gameplay.Fire3.IsPressed();
-        fire4Hold = PlayerInputActions.Gameplay.Fire4.IsPressed();
-        fire5Hold = PlayerInputActions.Gameplay.Fire5.IsPressed();
+        MainWeaponHold = PlayerInputActions.Gameplay.FireMainWeapon.IsPressed();
+        LeftSideInnerWeaponHold = PlayerInputActions.Gameplay.FireLeftSideInnerWeapon.IsPressed();
+        RightSideInnerWeaponHold = PlayerInputActions.Gameplay.FireRightSideInnerWeapon.IsPressed();
+        LeftSideOuterWeaponHold = PlayerInputActions.Gameplay.FireLeftSideOuterWeapon.IsPressed();
+        RightSideOuterWeaponHold = PlayerInputActions.Gameplay.FireRightSideOuterWeapon.IsPressed();
 
         reloadHold = PlayerInputActions.Gameplay.Reload.IsPressed();
+        healPressed = PlayerInputActions.Gameplay.Heal.WasPressedThisFrame();
+        dodgePressed = PlayerInputActions.Gameplay.Dodge.WasPressedThisFrame();
     }
 }

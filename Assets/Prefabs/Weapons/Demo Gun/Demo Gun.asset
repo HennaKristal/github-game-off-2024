@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa53584aa4332e049ac48d570a55a934, type: 3}
   m_Name: Demo Gun
   m_EditorClassIdentifier: 
+  ownedCount: 0
+  isEquipped: 0
+  isPurchasable: 0
+  purchasePrice: 25000
+  sellPrice: 10000
   projectilePrefab: {fileID: 4327707515120115634, guid: 2e743f7ea42874d41a5c18570a5e2fe9, type: 3}
   weaponName: Demo Rifle
   minDamage: 10
@@ -21,7 +26,7 @@ MonoBehaviour:
   fireRate: 0.15
   isAuto: 1
   projectileSpeed: 22
-  totalRounds: 250
+  totalRounds: 30
   magazineSize: 30
   reloadSpeed: 3
   EnegryCost: 0

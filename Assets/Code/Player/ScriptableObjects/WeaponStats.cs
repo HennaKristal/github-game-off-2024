@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class WeaponStats : ScriptableObject
 {
+    public int ownedCount = 0;
+    public bool isEquipped = false;
+    public bool isPurchasable = false;
+    public int purchasePrice = 25000;
+    public int sellPrice = 10000;
+
     [Header("Prefab")]
     public GameObject projectilePrefab;
     public string weaponName = "";

@@ -55,7 +55,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire1"",
+                    ""name"": ""FireMainWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""38b990ef-b7c7-43b4-bb97-320bbc67045b"",
                     ""expectedControlType"": """",
@@ -64,7 +64,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire2"",
+                    ""name"": ""FireLeftSideInnerWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""65e21990-3b2d-472e-8ee9-28ed635fb7ee"",
                     ""expectedControlType"": """",
@@ -73,7 +73,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire3"",
+                    ""name"": ""FireRightSideInnerWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""3dc27a48-ec4a-4b38-862b-523c13aa4c8a"",
                     ""expectedControlType"": """",
@@ -82,7 +82,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire4"",
+                    ""name"": ""FireLeftSideOuterWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""2f4bfab0-05b5-4352-bfa7-ab62eec153ab"",
                     ""expectedControlType"": """",
@@ -91,7 +91,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire5"",
+                    ""name"": ""FireRightSideOuterWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""cbeb8054-0c68-489c-abb1-bf323be6c704"",
                     ""expectedControlType"": """",
@@ -103,6 +103,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""45c850b6-f5cd-4588-8f4a-1c355f7c82fd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""61ddeed0-5169-4dc7-9e72-6f7327b1fad0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b83d0e7-b673-4d1c-a521-ba95de9bbe4c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -271,18 +289,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire1"",
+                    ""action"": ""FireMainWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3d10ea5-9ed7-4e70-ac31-57452e6af7be"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""id"": ""a33c1a94-8bc6-4375-ba4d-c283f09dc032"",
+                    ""path"": ""<Keyboard>/numpad0"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire1"",
+                    ""action"": ""FireMainWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -293,29 +311,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire1"",
+                    ""action"": ""FireMainWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7b12e001-8215-4353-9592-af5fad0a1155"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""id"": ""28c7685b-ae67-4f61-be96-f8c0b5f9fd9a"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""20d75754-9daa-4b73-a968-6cd96380e8af"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire2"",
+                    ""action"": ""FireLeftSideInnerWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,29 +333,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bd68b1fe-6da4-4c8c-93da-edcddd00b809"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire3"",
+                    ""action"": ""FireLeftSideInnerWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""d37cc372-76e5-491c-97f9-f76c443f75a6"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire3"",
+                    ""action"": ""FireRightSideInnerWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -359,29 +355,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""09c14695-533c-421e-a44e-8f756393b3af"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire4"",
+                    ""action"": ""FireRightSideInnerWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""402fb0f5-d033-4075-adc3-b9dfb6698e08"",
-                    ""path"": ""<Keyboard>/comma"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire4"",
+                    ""action"": ""FireLeftSideOuterWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -392,29 +377,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9beec577-279b-459c-bbcb-ebebb05d2ca7"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire5"",
+                    ""action"": ""FireLeftSideOuterWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""df9e3d61-1785-4b0a-a3f6-77582b351140"",
-                    ""path"": ""<Keyboard>/period"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire5"",
+                    ""action"": ""FireRightSideOuterWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -425,7 +399,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire5"",
+                    ""action"": ""FireRightSideOuterWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -448,6 +422,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8db35fb5-54dd-41bb-bed6-f9575b0a562c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba91c581-d1a8-43fc-964d-9d8b47ea1a78"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""468e8796-bd6e-43e9-9590-9b3ab5241aa5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7f38612-d561-44e2-bdfe-fd304cd027d1"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -522,12 +540,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Screenshot = m_Gameplay.FindAction("Screenshot", throwIfNotFound: true);
         m_Gameplay_Escape = m_Gameplay.FindAction("Escape", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Fire1 = m_Gameplay.FindAction("Fire1", throwIfNotFound: true);
-        m_Gameplay_Fire2 = m_Gameplay.FindAction("Fire2", throwIfNotFound: true);
-        m_Gameplay_Fire3 = m_Gameplay.FindAction("Fire3", throwIfNotFound: true);
-        m_Gameplay_Fire4 = m_Gameplay.FindAction("Fire4", throwIfNotFound: true);
-        m_Gameplay_Fire5 = m_Gameplay.FindAction("Fire5", throwIfNotFound: true);
+        m_Gameplay_FireMainWeapon = m_Gameplay.FindAction("FireMainWeapon", throwIfNotFound: true);
+        m_Gameplay_FireLeftSideInnerWeapon = m_Gameplay.FindAction("FireLeftSideInnerWeapon", throwIfNotFound: true);
+        m_Gameplay_FireRightSideInnerWeapon = m_Gameplay.FindAction("FireRightSideInnerWeapon", throwIfNotFound: true);
+        m_Gameplay_FireLeftSideOuterWeapon = m_Gameplay.FindAction("FireLeftSideOuterWeapon", throwIfNotFound: true);
+        m_Gameplay_FireRightSideOuterWeapon = m_Gameplay.FindAction("FireRightSideOuterWeapon", throwIfNotFound: true);
         m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
+        m_Gameplay_Dodge = m_Gameplay.FindAction("Dodge", throwIfNotFound: true);
+        m_Gameplay_Heal = m_Gameplay.FindAction("Heal", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -597,12 +617,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Screenshot;
     private readonly InputAction m_Gameplay_Escape;
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_Fire1;
-    private readonly InputAction m_Gameplay_Fire2;
-    private readonly InputAction m_Gameplay_Fire3;
-    private readonly InputAction m_Gameplay_Fire4;
-    private readonly InputAction m_Gameplay_Fire5;
+    private readonly InputAction m_Gameplay_FireMainWeapon;
+    private readonly InputAction m_Gameplay_FireLeftSideInnerWeapon;
+    private readonly InputAction m_Gameplay_FireRightSideInnerWeapon;
+    private readonly InputAction m_Gameplay_FireLeftSideOuterWeapon;
+    private readonly InputAction m_Gameplay_FireRightSideOuterWeapon;
     private readonly InputAction m_Gameplay_Reload;
+    private readonly InputAction m_Gameplay_Dodge;
+    private readonly InputAction m_Gameplay_Heal;
     public struct GameplayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -610,12 +632,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Screenshot => m_Wrapper.m_Gameplay_Screenshot;
         public InputAction @Escape => m_Wrapper.m_Gameplay_Escape;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @Fire1 => m_Wrapper.m_Gameplay_Fire1;
-        public InputAction @Fire2 => m_Wrapper.m_Gameplay_Fire2;
-        public InputAction @Fire3 => m_Wrapper.m_Gameplay_Fire3;
-        public InputAction @Fire4 => m_Wrapper.m_Gameplay_Fire4;
-        public InputAction @Fire5 => m_Wrapper.m_Gameplay_Fire5;
+        public InputAction @FireMainWeapon => m_Wrapper.m_Gameplay_FireMainWeapon;
+        public InputAction @FireLeftSideInnerWeapon => m_Wrapper.m_Gameplay_FireLeftSideInnerWeapon;
+        public InputAction @FireRightSideInnerWeapon => m_Wrapper.m_Gameplay_FireRightSideInnerWeapon;
+        public InputAction @FireLeftSideOuterWeapon => m_Wrapper.m_Gameplay_FireLeftSideOuterWeapon;
+        public InputAction @FireRightSideOuterWeapon => m_Wrapper.m_Gameplay_FireRightSideOuterWeapon;
         public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
+        public InputAction @Dodge => m_Wrapper.m_Gameplay_Dodge;
+        public InputAction @Heal => m_Wrapper.m_Gameplay_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -634,24 +658,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Fire1.started += instance.OnFire1;
-            @Fire1.performed += instance.OnFire1;
-            @Fire1.canceled += instance.OnFire1;
-            @Fire2.started += instance.OnFire2;
-            @Fire2.performed += instance.OnFire2;
-            @Fire2.canceled += instance.OnFire2;
-            @Fire3.started += instance.OnFire3;
-            @Fire3.performed += instance.OnFire3;
-            @Fire3.canceled += instance.OnFire3;
-            @Fire4.started += instance.OnFire4;
-            @Fire4.performed += instance.OnFire4;
-            @Fire4.canceled += instance.OnFire4;
-            @Fire5.started += instance.OnFire5;
-            @Fire5.performed += instance.OnFire5;
-            @Fire5.canceled += instance.OnFire5;
+            @FireMainWeapon.started += instance.OnFireMainWeapon;
+            @FireMainWeapon.performed += instance.OnFireMainWeapon;
+            @FireMainWeapon.canceled += instance.OnFireMainWeapon;
+            @FireLeftSideInnerWeapon.started += instance.OnFireLeftSideInnerWeapon;
+            @FireLeftSideInnerWeapon.performed += instance.OnFireLeftSideInnerWeapon;
+            @FireLeftSideInnerWeapon.canceled += instance.OnFireLeftSideInnerWeapon;
+            @FireRightSideInnerWeapon.started += instance.OnFireRightSideInnerWeapon;
+            @FireRightSideInnerWeapon.performed += instance.OnFireRightSideInnerWeapon;
+            @FireRightSideInnerWeapon.canceled += instance.OnFireRightSideInnerWeapon;
+            @FireLeftSideOuterWeapon.started += instance.OnFireLeftSideOuterWeapon;
+            @FireLeftSideOuterWeapon.performed += instance.OnFireLeftSideOuterWeapon;
+            @FireLeftSideOuterWeapon.canceled += instance.OnFireLeftSideOuterWeapon;
+            @FireRightSideOuterWeapon.started += instance.OnFireRightSideOuterWeapon;
+            @FireRightSideOuterWeapon.performed += instance.OnFireRightSideOuterWeapon;
+            @FireRightSideOuterWeapon.canceled += instance.OnFireRightSideOuterWeapon;
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @Dodge.started += instance.OnDodge;
+            @Dodge.performed += instance.OnDodge;
+            @Dodge.canceled += instance.OnDodge;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -665,24 +695,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Fire1.started -= instance.OnFire1;
-            @Fire1.performed -= instance.OnFire1;
-            @Fire1.canceled -= instance.OnFire1;
-            @Fire2.started -= instance.OnFire2;
-            @Fire2.performed -= instance.OnFire2;
-            @Fire2.canceled -= instance.OnFire2;
-            @Fire3.started -= instance.OnFire3;
-            @Fire3.performed -= instance.OnFire3;
-            @Fire3.canceled -= instance.OnFire3;
-            @Fire4.started -= instance.OnFire4;
-            @Fire4.performed -= instance.OnFire4;
-            @Fire4.canceled -= instance.OnFire4;
-            @Fire5.started -= instance.OnFire5;
-            @Fire5.performed -= instance.OnFire5;
-            @Fire5.canceled -= instance.OnFire5;
+            @FireMainWeapon.started -= instance.OnFireMainWeapon;
+            @FireMainWeapon.performed -= instance.OnFireMainWeapon;
+            @FireMainWeapon.canceled -= instance.OnFireMainWeapon;
+            @FireLeftSideInnerWeapon.started -= instance.OnFireLeftSideInnerWeapon;
+            @FireLeftSideInnerWeapon.performed -= instance.OnFireLeftSideInnerWeapon;
+            @FireLeftSideInnerWeapon.canceled -= instance.OnFireLeftSideInnerWeapon;
+            @FireRightSideInnerWeapon.started -= instance.OnFireRightSideInnerWeapon;
+            @FireRightSideInnerWeapon.performed -= instance.OnFireRightSideInnerWeapon;
+            @FireRightSideInnerWeapon.canceled -= instance.OnFireRightSideInnerWeapon;
+            @FireLeftSideOuterWeapon.started -= instance.OnFireLeftSideOuterWeapon;
+            @FireLeftSideOuterWeapon.performed -= instance.OnFireLeftSideOuterWeapon;
+            @FireLeftSideOuterWeapon.canceled -= instance.OnFireLeftSideOuterWeapon;
+            @FireRightSideOuterWeapon.started -= instance.OnFireRightSideOuterWeapon;
+            @FireRightSideOuterWeapon.performed -= instance.OnFireRightSideOuterWeapon;
+            @FireRightSideOuterWeapon.canceled -= instance.OnFireRightSideOuterWeapon;
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @Dodge.started -= instance.OnDodge;
+            @Dodge.performed -= instance.OnDodge;
+            @Dodge.canceled -= instance.OnDodge;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -750,11 +786,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnScreenshot(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnFire1(InputAction.CallbackContext context);
-        void OnFire2(InputAction.CallbackContext context);
-        void OnFire3(InputAction.CallbackContext context);
-        void OnFire4(InputAction.CallbackContext context);
-        void OnFire5(InputAction.CallbackContext context);
+        void OnFireMainWeapon(InputAction.CallbackContext context);
+        void OnFireLeftSideInnerWeapon(InputAction.CallbackContext context);
+        void OnFireRightSideInnerWeapon(InputAction.CallbackContext context);
+        void OnFireLeftSideOuterWeapon(InputAction.CallbackContext context);
+        void OnFireRightSideOuterWeapon(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }

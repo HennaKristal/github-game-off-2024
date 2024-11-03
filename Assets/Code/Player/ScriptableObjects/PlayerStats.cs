@@ -19,7 +19,8 @@ public class PlayerStats : ScriptableObject
     public float overHeatcoolingEfficiency = 3f;
 
     [Header("Weight")]
-    public float maxWeight = 10000f;
+    public float maxCarryWeight = 10000f;
+    public float maxLiftWeight = 15000f;
 
     [Header("Energy")]
     public float energyOutput = 1000;

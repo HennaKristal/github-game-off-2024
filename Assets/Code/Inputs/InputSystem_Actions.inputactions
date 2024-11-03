@@ -33,7 +33,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire1",
+                    "name": "FireMainWeapon",
                     "type": "Button",
                     "id": "38b990ef-b7c7-43b4-bb97-320bbc67045b",
                     "expectedControlType": "",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire2",
+                    "name": "FireLeftSideInnerWeapon",
                     "type": "Button",
                     "id": "65e21990-3b2d-472e-8ee9-28ed635fb7ee",
                     "expectedControlType": "",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire3",
+                    "name": "FireRightSideInnerWeapon",
                     "type": "Button",
                     "id": "3dc27a48-ec4a-4b38-862b-523c13aa4c8a",
                     "expectedControlType": "",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire4",
+                    "name": "FireLeftSideOuterWeapon",
                     "type": "Button",
                     "id": "2f4bfab0-05b5-4352-bfa7-ab62eec153ab",
                     "expectedControlType": "",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire5",
+                    "name": "FireRightSideOuterWeapon",
                     "type": "Button",
                     "id": "cbeb8054-0c68-489c-abb1-bf323be6c704",
                     "expectedControlType": "",
@@ -81,6 +81,24 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "45c850b6-f5cd-4588-8f4a-1c355f7c82fd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "61ddeed0-5169-4dc7-9e72-6f7327b1fad0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "3b83d0e7-b673-4d1c-a521-ba95de9bbe4c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -249,18 +267,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire1",
+                    "action": "FireMainWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d3d10ea5-9ed7-4e70-ac31-57452e6af7be",
-                    "path": "<Keyboard>/j",
+                    "id": "a33c1a94-8bc6-4375-ba4d-c283f09dc032",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire1",
+                    "action": "FireMainWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -271,29 +289,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire1",
+                    "action": "FireMainWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7b12e001-8215-4353-9592-af5fad0a1155",
-                    "path": "<Keyboard>/1",
+                    "id": "28c7685b-ae67-4f61-be96-f8c0b5f9fd9a",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "20d75754-9daa-4b73-a968-6cd96380e8af",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire2",
+                    "action": "FireLeftSideInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -304,29 +311,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bd68b1fe-6da4-4c8c-93da-edcddd00b809",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire3",
+                    "action": "FireLeftSideInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d37cc372-76e5-491c-97f9-f76c443f75a6",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire3",
+                    "action": "FireRightSideInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -337,29 +333,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "09c14695-533c-421e-a44e-8f756393b3af",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire4",
+                    "action": "FireRightSideInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "402fb0f5-d033-4075-adc3-b9dfb6698e08",
-                    "path": "<Keyboard>/comma",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire4",
+                    "action": "FireLeftSideOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -370,29 +355,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9beec577-279b-459c-bbcb-ebebb05d2ca7",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire5",
+                    "action": "FireLeftSideOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "df9e3d61-1785-4b0a-a3f6-77582b351140",
-                    "path": "<Keyboard>/period",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire5",
+                    "action": "FireRightSideOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -403,7 +377,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire5",
+                    "action": "FireRightSideOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -426,6 +400,50 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8db35fb5-54dd-41bb-bed6-f9575b0a562c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba91c581-d1a8-43fc-964d-9d8b47ea1a78",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "468e8796-bd6e-43e9-9590-9b3ab5241aa5",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7f38612-d561-44e2-bdfe-fd304cd027d1",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,5 +33,10 @@ public class GameManager : MonoBehaviour
     public void OpenLink(string url)
     {
         Application.OpenURL(url);
+    }
+
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
