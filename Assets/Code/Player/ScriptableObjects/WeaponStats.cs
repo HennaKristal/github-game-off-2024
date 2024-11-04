@@ -1,10 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create New weapon")]
 public class WeaponStats : ScriptableObject
 {
     public int ownedCount = 0;
-    public bool isEquipped = false;
+    public bool isEquippedMain = false;
+    public bool isEquippedInnerLeft = false;
+    public bool isEquippedInnerRight = false;
+    public bool isEquippedOuterLeft = false;
+    public bool isEquippedOuterRight = false;
     public bool isPurchasable = false;
     public int purchasePrice = 25000;
     public int sellPrice = 10000;

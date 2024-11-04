@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create New Engine Part")]
 public class EngineStats : ScriptableObject
 {
     public bool isOwned = false;

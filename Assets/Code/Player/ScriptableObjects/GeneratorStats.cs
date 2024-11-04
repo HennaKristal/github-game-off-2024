@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create New Generator Part")]
 public class GeneratorStats : ScriptableObject
 {
     public bool isOwned = false;

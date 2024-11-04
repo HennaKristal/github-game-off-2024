@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create New Plane Part")]
 public class PlaneStats : ScriptableObject
 {
     public bool isOwned = false;

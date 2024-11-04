@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create New Cooler Part")]
 public class CoolerStats : ScriptableObject
 {
     public bool isOwned = false;

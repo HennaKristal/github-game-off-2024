@@ -1,13 +1,180 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Garage : MonoBehaviour
 {
-    public List<EngineStats> engines; // List of all possible engines
-    public List<CoolerStats> coolers; // List of all possible coolers
-    public List<GeneratorStats> generators; // List of all possible generators
-    public List<PlaneStats> planes; // List of all possible planes
-    public List<WeaponStats> weapons; // List of all possible main weapons
+    [Header("References")]
+    [SerializeField] private GarageUI garageUI;
+
+    [Header("Parts")]
+    [SerializeField] private List<PlaneStats> planeParts;
+    [SerializeField] private List<EngineStats> engineParts;
+    [SerializeField] private List<GeneratorStats> generatorParts;
+    [SerializeField] private List<CoolerStats> coolerParts;
+    [SerializeField] private List<WeaponStats> weapons;
+
+    [Header("UI Elements")]
+    [SerializeField] private GameObject partSelectionWindow;
+    [SerializeField] private GameObject partUIPrefab;
+    [SerializeField] private TextMeshProUGUI partSelectionTitle;
+    [SerializeField] private GameObject partParentContainer;
+    [SerializeField] private Button exitPartSelectionButton;
+
+    [Header("Slot Images")]
+    [SerializeField] private Sprite normalSlotImage;
+    [SerializeField] private Sprite activeSlotImage;
+
+
+
+
+    private void ClosePartSelectionWindow()
+    {
+        partSelectionWindow.SetActive(false);
+
+        // Clear any existing UI elements in the container to avoid duplicates
+        foreach (Transform child in partParentContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+
+
+    public void DisplayPlaneParts()
+    {
+        partSelectionWindow.SetActive(true);
+        partSelectionTitle.text = "Plane Cores";
+
+        foreach (PlaneStats planePart in planeParts)
+        {
+            // Instantiate a new UI element for the part and get the UI components from the prefab
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            // Set the title text to the part's name
+            titleText.text = planePart.name;
+
+            // Set the price or equipped status
+            if (planePart.isEquipped)
+            {
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (planePart.isPurchasable)
+            {
+                priceText.text = $"${planePart.purchasePrice}";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void DisplayEngineParts()
+    {
+        partSelectionWindow.SetActive(true);
+        partSelectionTitle.text = "Engines";
+
+        foreach (EngineStats enginePart in engineParts)
+        {
+            // Instantiate a new UI element for the part and get the UI components from the prefab
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            // Set the title text to the part's name
+            titleText.text = enginePart.name;
+
+            // Set the price or equipped status
+            if (enginePart.isEquipped)
+            {
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (enginePart.isPurchasable)
+            {
+                priceText.text = $"${enginePart.purchasePrice}";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void DisplayGeneratorParts()
+    {
+        partSelectionWindow.SetActive(true);
+        partSelectionTitle.text = "Generators";
+
+        foreach (GeneratorStats generatorPart in generatorParts)
+        {
+            // Instantiate a new UI element for the part and get the UI components from the prefab
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            // Set the title text to the part's name
+            titleText.text = generatorPart.name;
+
+            // Set the price or equipped status
+            if (generatorPart.isEquipped)
+            {
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (generatorPart.isPurchasable)
+            {
+                priceText.text = $"${generatorPart.purchasePrice}";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void DisplayCoolerParts()
+    {
+        partSelectionWindow.SetActive(true);
+        partSelectionTitle.text = "Coolers";
+
+        foreach (CoolerStats coolerPart in coolerParts)
+        {
+            // Instantiate a new UI element for the part and get the UI components from the prefab
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            // Set the title text to the part's name
+            titleText.text = coolerPart.name;
+
+            // Set the price or equipped status
+            if (coolerPart.isEquipped)
+            {
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (coolerPart.isPurchasable)
+            {
+                priceText.text = $"${coolerPart.purchasePrice}";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+
 
     private void Start()
     {
@@ -30,15 +197,4 @@ public class Garage : MonoBehaviour
         // TODO: equip the new item
         // part.isEquipped = true;
     }
-
-    // Helper function to find a part by name in any category list
-    //private PlanePart FindPartByName(string name)
-    //{
-    //    foreach (var list in new List<List<PlanePart>> { engines, guns, cores })
-    //    {
-    //        PlanePart part = list.Find(p => p.partName == name);
-    //        if (part != null) return part;
-    //    }
-    //    return null;
-    //}
 }

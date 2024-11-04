@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class GarageUI : MonoBehaviour
@@ -8,17 +7,7 @@ public class GarageUI : MonoBehaviour
     [Header("References")]
     [SerializeField] private InputController inputController;
     [SerializeField] private GameManager gameManager;
-
-    [Header("Windows")]
-    [SerializeField] private GameObject planeCoreSelectionWindow;
-    [SerializeField] private GameObject engineSelectionWindow;
-    [SerializeField] private GameObject generatorSelectionWindow;
-    [SerializeField] private GameObject coolerSelectionWindow;
-    [SerializeField] private GameObject mainGunSelectionWindow;
-    [SerializeField] private GameObject leftInnerGunSelectionWindow;
-    [SerializeField] private GameObject rightInnerGunSelectionWindow;
-    [SerializeField] private GameObject leftOuterGunSelectionWindow;
-    [SerializeField] private GameObject rightOuterGunSelectionWindow;
+    [SerializeField] private Garage garage;
 
     [Header("UI Elements")]
     [SerializeField] private Image[] topRowSlots;
@@ -31,12 +20,13 @@ public class GarageUI : MonoBehaviour
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
+    private Image currentActiveSlotImage;
     private int currentIndex = 0;
     private int currentRow = 0;
-    private Image activeImage;
     private float inputCooldown = 0.2f;
     private float nextHorizontalInputTime = 0f;
     private float nextVerticalInputTime = 0f;
+    private bool ispartSelectionWindowOpened = false;
 
     private void Start()
     {
@@ -45,16 +35,14 @@ public class GarageUI : MonoBehaviour
 
     private void Update()
     {
-        HandleNavigation();
-
-        if (inputController.dodgePressed)
+        if (!ispartSelectionWindowOpened)
         {
-            SelectCurrentSlot();
-        }
+            HandleNavigation();
 
-        if (inputController.healPressed)
-        {
-            ClosePartSelectionUI();
+            if (inputController.dodgePressed)
+            {
+                SelectCurrentSlot();
+            }
         }
     }
 
@@ -67,16 +55,22 @@ public class GarageUI : MonoBehaviour
         if (inputController.Move.x > 0.1f && Time.time >= nextHorizontalInputTime)
         {
             if (currentRow == 0 && currentIndex < topRowSlots.Length - 1)
+            {
                 currentIndex++;
+            }
             else if (currentRow == 1 && currentIndex < middleRowSlots.Length - 1)
+            {
                 currentIndex++;
+            }
 
             nextHorizontalInputTime = Time.time + inputCooldown;
         }
         else if (inputController.Move.x < -0.1f && Time.time >= nextHorizontalInputTime)
         {
-            if (currentIndex > 0)
+            if (currentRow < 2 && currentIndex > 0)
+            {
                 currentIndex--;
+            }
 
             nextHorizontalInputTime = Time.time + inputCooldown;
         }
@@ -104,6 +98,7 @@ public class GarageUI : MonoBehaviour
                 currentRow = 4;
                 currentIndex = 0;
             }
+
             nextVerticalInputTime = Time.time + inputCooldown;
         }
         else if (inputController.Move.y > 0.1f && Time.time >= nextVerticalInputTime)
@@ -128,6 +123,7 @@ public class GarageUI : MonoBehaviour
                 currentRow = 0;
                 currentIndex = Mathf.Clamp(currentIndex, 0, topRowSlots.Length - 1);
             }
+
             nextVerticalInputTime = Time.time + inputCooldown;
         }
 
@@ -140,39 +136,38 @@ public class GarageUI : MonoBehaviour
     private void UpdateActiveSlot()
     {
         // Reset previous slot/button appearance
-        if (activeImage != null)
-            activeImage.sprite = normalSlotImage;
+        if (currentActiveSlotImage != null)
+        {
+            currentActiveSlotImage.sprite = normalSlotImage;
+        }
 
         ResetButtonColors();
 
         // Set new active slot/button based on row and index
         if (currentRow == 0)
         {
-            activeImage = topRowSlots[currentIndex];
-            activeImage.sprite = activeSlotImage;
+            currentActiveSlotImage = topRowSlots[currentIndex];
+            currentActiveSlotImage.sprite = activeSlotImage;
         }
         else if (currentRow == 1)
         {
-            activeImage = middleRowSlots[currentIndex];
-            activeImage.sprite = activeSlotImage;
+            currentActiveSlotImage = middleRowSlots[currentIndex];
+            currentActiveSlotImage.sprite = activeSlotImage;
         }
         else if (currentRow == 2)
         {
-            activeImage = null;
-            ResetButtonColors();
-            pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = Color.red;
+            currentActiveSlotImage = null;
+            pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
         }
         else if (currentRow == 3)
         {
-            activeImage = null;
-            ResetButtonColors();
-            nextMissionButton.GetComponent<TextMeshProUGUI>().color = Color.red;
+            currentActiveSlotImage = null;
+            nextMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
         }
         else if (currentRow == 4)
         {
-            activeImage = null;
-            ResetButtonColors();
-            exitGameButton.GetComponent<TextMeshProUGUI>().color = Color.red;
+            currentActiveSlotImage = null;
+            exitGameButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
         }
     }
 
@@ -185,15 +180,9 @@ public class GarageUI : MonoBehaviour
 
     private void SelectCurrentSlot()
     {
-        if (currentRow == 0)
+        if (currentRow == 0 || currentRow == 1)
         {
-            string slotName = topRowSlots[currentIndex].name;
-            OpenPartSelectionUI(slotName);
-        }
-        else if (currentRow == 1)
-        {
-            string slotName = middleRowSlots[currentIndex].name;
-            OpenPartSelectionUI(slotName);
+            OpenPartSelectionUI();
         }
         else if (currentRow == 2)
         {
@@ -209,37 +198,29 @@ public class GarageUI : MonoBehaviour
         }
     }
 
-    private void OpenPartSelectionUI(string windowToOpen)
+    private void OpenPartSelectionUI()
     {
-        windowToOpen = windowToOpen.ToLower();
-        ClosePartSelectionUI();
-
-        switch (windowToOpen)
+        if (currentRow == 0)
         {
-            case "plane core slot": planeCoreSelectionWindow.SetActive(true); break;
-            case "engine slot": engineSelectionWindow.SetActive(true); break;
-            case "generator slot": generatorSelectionWindow.SetActive(true); break;
-            case "cooler slot": coolerSelectionWindow.SetActive(true); break;
-            case "main gun slot": mainGunSelectionWindow.SetActive(true); break;
-            case "left inner side gun slot": leftInnerGunSelectionWindow.SetActive(true); break;
-            case "right inner side gun slot": rightInnerGunSelectionWindow.SetActive(true); break;
-            case "left outer side gun slot": leftOuterGunSelectionWindow.SetActive(true); break;
-            case "right outer side gun slot": rightOuterGunSelectionWindow.SetActive(true); break;
-            default: Debug.LogWarning("Unknown part selection window: " + windowToOpen); break;
+            switch (currentIndex)
+            {
+                case 0: garage.DisplayPlaneParts(); break;
+                case 1: garage.DisplayEngineParts(); break;
+                case 2: garage.DisplayGeneratorParts(); break;
+                case 3: garage.DisplayCoolerParts(); break;
+            }
         }
-    }
-
-    private void ClosePartSelectionUI()
-    {
-        planeCoreSelectionWindow.SetActive(false);
-        engineSelectionWindow.SetActive(false);
-        generatorSelectionWindow.SetActive(false);
-        coolerSelectionWindow.SetActive(false);
-        mainGunSelectionWindow.SetActive(false);
-        leftInnerGunSelectionWindow.SetActive(false);
-        rightInnerGunSelectionWindow.SetActive(false);
-        leftOuterGunSelectionWindow.SetActive(false);
-        rightOuterGunSelectionWindow.SetActive(false);
+        else if (currentRow == 1)
+        {
+            switch (currentIndex)
+            {
+                case 0: garage.DisplayPlaneParts(); break;
+                case 1: garage.DisplayPlaneParts(); break;
+                case 2: garage.DisplayPlaneParts(); break;
+                case 3: garage.DisplayPlaneParts(); break;
+                case 4: garage.DisplayPlaneParts(); break;
+            }
+        }
     }
 
     private void StartNextMission()
