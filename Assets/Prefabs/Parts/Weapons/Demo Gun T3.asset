@@ -30,8 +30,8 @@ MonoBehaviour:
   fireRate: 0.13
   isAuto: 1
   projectileSpeed: 25
-  totalRounds: 30
-  magazineSize: 150
+  totalRounds: 150
+  magazineSize: 30
   reloadSpeed: 3
   EnegryCost: 0
   heating: 0.35

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,195 +5,236 @@ using UnityEngine.UI;
 public class Garage : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GarageUI garageUI;
-
-    [Header("Parts")]
-    [SerializeField] private List<PlaneStats> planeParts;
-    [SerializeField] private List<EngineStats> engineParts;
-    [SerializeField] private List<GeneratorStats> generatorParts;
-    [SerializeField] private List<CoolerStats> coolerParts;
-    [SerializeField] private List<WeaponStats> weapons;
+    [SerializeField] private InputController inputController;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private PartSelection partSelection;
 
     [Header("UI Elements")]
-    [SerializeField] private GameObject partSelectionWindow;
-    [SerializeField] private GameObject partUIPrefab;
-    [SerializeField] private TextMeshProUGUI partSelectionTitle;
-    [SerializeField] private GameObject partParentContainer;
-    [SerializeField] private Button exitPartSelectionButton;
+    [SerializeField] private Image[] topRowSlots;
+    [SerializeField] private Image[] middleRowSlots;
+    [SerializeField] private Button pilotSkillsButton;
+    [SerializeField] private Button nextMissionButton;
+    [SerializeField] private Button exitGameButton;
 
     [Header("Slot Images")]
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
-
-
-
-    private void ClosePartSelectionWindow()
-    {
-        partSelectionWindow.SetActive(false);
-
-        // Clear any existing UI elements in the container to avoid duplicates
-        foreach (Transform child in partParentContainer.transform)
-        {
-            Destroy(child.gameObject);
-        }
-    }
-
-
-
-    public void DisplayPlaneParts()
-    {
-        partSelectionWindow.SetActive(true);
-        partSelectionTitle.text = "Plane Cores";
-
-        foreach (PlaneStats planePart in planeParts)
-        {
-            // Instantiate a new UI element for the part and get the UI components from the prefab
-            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
-
-            // Set the title text to the part's name
-            titleText.text = planePart.name;
-
-            // Set the price or equipped status
-            if (planePart.isEquipped)
-            {
-                priceText.text = "Equipped";
-                priceText.color = Color.green;
-            }
-            else if (planePart.isPurchasable)
-            {
-                priceText.text = $"${planePart.purchasePrice}";
-                priceText.color = Color.white;
-            }
-            else
-            {
-                priceText.text = "";
-            }
-        }
-    }
-
-    public void DisplayEngineParts()
-    {
-        partSelectionWindow.SetActive(true);
-        partSelectionTitle.text = "Engines";
-
-        foreach (EngineStats enginePart in engineParts)
-        {
-            // Instantiate a new UI element for the part and get the UI components from the prefab
-            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
-
-            // Set the title text to the part's name
-            titleText.text = enginePart.name;
-
-            // Set the price or equipped status
-            if (enginePart.isEquipped)
-            {
-                priceText.text = "Equipped";
-                priceText.color = Color.green;
-            }
-            else if (enginePart.isPurchasable)
-            {
-                priceText.text = $"${enginePart.purchasePrice}";
-                priceText.color = Color.white;
-            }
-            else
-            {
-                priceText.text = "";
-            }
-        }
-    }
-
-    public void DisplayGeneratorParts()
-    {
-        partSelectionWindow.SetActive(true);
-        partSelectionTitle.text = "Generators";
-
-        foreach (GeneratorStats generatorPart in generatorParts)
-        {
-            // Instantiate a new UI element for the part and get the UI components from the prefab
-            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
-
-            // Set the title text to the part's name
-            titleText.text = generatorPart.name;
-
-            // Set the price or equipped status
-            if (generatorPart.isEquipped)
-            {
-                priceText.text = "Equipped";
-                priceText.color = Color.green;
-            }
-            else if (generatorPart.isPurchasable)
-            {
-                priceText.text = $"${generatorPart.purchasePrice}";
-                priceText.color = Color.white;
-            }
-            else
-            {
-                priceText.text = "";
-            }
-        }
-    }
-
-    public void DisplayCoolerParts()
-    {
-        partSelectionWindow.SetActive(true);
-        partSelectionTitle.text = "Coolers";
-
-        foreach (CoolerStats coolerPart in coolerParts)
-        {
-            // Instantiate a new UI element for the part and get the UI components from the prefab
-            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
-
-            // Set the title text to the part's name
-            titleText.text = coolerPart.name;
-
-            // Set the price or equipped status
-            if (coolerPart.isEquipped)
-            {
-                priceText.text = "Equipped";
-                priceText.color = Color.green;
-            }
-            else if (coolerPart.isPurchasable)
-            {
-                priceText.text = $"${coolerPart.purchasePrice}";
-                priceText.color = Color.white;
-            }
-            else
-            {
-                priceText.text = "";
-            }
-        }
-    }
-
-
+    private Image currentActiveSlotImage;
+    private int currentIndex = 0;
+    private int currentRow = 0;
+    private float inputCooldown = 0.25f;
+    private float nextInputTime = 0f;
+    private float movementDeadZone = 0.4f;
+    public bool ispartSelectionWindowOpened = false;
 
     private void Start()
     {
-        // TODO: on start load prefab or serialized data about every single scriptable object part and load their values
-        // Also set this object to do not destory on load
+        UpdateActiveSlot();
     }
 
-    public void AddItem(string category, string name)
+    private void Update()
     {
-        // TODO find the correct part's scrptable object and set it's stats correctly
-        //part.isOwned = true;
-        //part.isPurchasable = true;
+        if (!ispartSelectionWindowOpened)
+        {
+            HandleNavigation();
+
+            if (inputController.dodgePressed)
+            {
+                SelectCurrentSlot();
+            }
+        }
     }
 
-    private void EquipPart(string category, string name)
+    private void HandleNavigation()
     {
-        // Get currently equipped item and unequip it or unequip just every item in this category
-        // currentpart.isequipped = false;
+        if (Mathf.Abs(inputController.Move.x) < movementDeadZone && Mathf.Abs(inputController.Move.y) < movementDeadZone)
+        {
+            nextInputTime = Time.time;
+        }
 
-        // TODO: equip the new item
-        // part.isEquipped = true;
+        if (Time.time < nextInputTime)
+        {
+            return;
+        }
+
+        int previousIndex = currentIndex;
+        int previousRow = currentRow;
+
+        if (inputController.Move.x > movementDeadZone)
+        {
+            if (currentRow == 0 && currentIndex < topRowSlots.Length - 1)
+            {
+                currentIndex++;
+            }
+            else if (currentRow == 1 && currentIndex < middleRowSlots.Length - 1)
+            {
+                currentIndex++;
+            }
+        }
+        else if (inputController.Move.x < -movementDeadZone)
+        {
+            if (currentRow < 2 && currentIndex > 0)
+            {
+                currentIndex--;
+            }
+        }
+        else if (inputController.Move.y < -movementDeadZone)
+        {
+            if (currentRow == 0)
+            {
+                currentRow = 1;
+                currentIndex = Mathf.Clamp(currentIndex, 0, middleRowSlots.Length - 1);
+            }
+            else if (currentRow == 1)
+            {
+                currentRow = 2;
+                currentIndex = 0;
+            }
+            else if (currentRow == 2)
+            {
+                currentRow = 3;
+                currentIndex = 0;
+            }
+            else if (currentRow == 3)
+            {
+                currentRow = 4;
+                currentIndex = 0;
+            }
+        }
+        else if (inputController.Move.y > movementDeadZone)
+        {
+            if (currentRow == 4)
+            {
+                currentRow = 3;
+                currentIndex = 0;
+            }
+            else if (currentRow == 3)
+            {
+                currentRow = 2;
+                currentIndex = 0;
+            }
+            else if (currentRow == 2)
+            {
+                currentRow = 1;
+                currentIndex = 2;
+            }
+            else if (currentRow == 1)
+            {
+                currentRow = 0;
+                currentIndex = Mathf.Clamp(currentIndex, 0, topRowSlots.Length - 1);
+            }
+        }
+
+        if (currentIndex != previousIndex || currentRow != previousRow)
+        {
+            nextInputTime = Time.time + inputCooldown;
+            UpdateActiveSlot();
+        }
+    }
+
+    private void UpdateActiveSlot()
+    {
+        // Reset previous slot/button appearance
+        if (currentActiveSlotImage != null)
+        {
+            currentActiveSlotImage.sprite = normalSlotImage;
+        }
+
+        ResetButtonColors();
+
+        // Set new active slot/button based on row and index
+        if (currentRow == 0)
+        {
+            currentActiveSlotImage = topRowSlots[currentIndex];
+            currentActiveSlotImage.sprite = activeSlotImage;
+        }
+        else if (currentRow == 1)
+        {
+            currentActiveSlotImage = middleRowSlots[currentIndex];
+            currentActiveSlotImage.sprite = activeSlotImage;
+        }
+        else if (currentRow == 2)
+        {
+            currentActiveSlotImage = null;
+            pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
+        }
+        else if (currentRow == 3)
+        {
+            currentActiveSlotImage = null;
+            nextMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
+        }
+        else if (currentRow == 4)
+        {
+            currentActiveSlotImage = null;
+            exitGameButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
+        }
+    }
+
+    private void ResetButtonColors()
+    {
+        pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+        nextMissionButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+        exitGameButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+    }
+
+    private void SelectCurrentSlot()
+    {
+        if (currentRow == 0 || currentRow == 1)
+        {
+            OpenPartSelectionUI();
+        }
+        else if (currentRow == 2)
+        {
+            OpenPilotSkills();
+        }
+        else if (currentRow == 3)
+        {
+            StartNextMission();
+        }
+        else if (currentRow == 4)
+        {
+            QuitGame();
+        }
+    }
+
+    private void OpenPartSelectionUI()
+    {
+        if (currentRow == 0)
+        {
+            switch (currentIndex)
+            {
+                case 0: partSelection.DisplayPlaneParts(); break;
+                case 1: partSelection.DisplayEngineParts(); break;
+                case 2: partSelection.DisplayGeneratorParts(); break;
+                case 3: partSelection.DisplayCoolerParts(); break;
+            }
+        }
+        else if (currentRow == 1)
+        {
+            switch (currentIndex)
+            {
+                case 0: partSelection.DisplayPlaneParts(); break;
+                case 1: partSelection.DisplayPlaneParts(); break;
+                case 2: partSelection.DisplayPlaneParts(); break;
+                case 3: partSelection.DisplayPlaneParts(); break;
+                case 4: partSelection.DisplayPlaneParts(); break;
+            }
+        }
+    }
+
+    private void StartNextMission()
+    {
+        gameManager.LoadSceneByName("Game");
+    }
+
+    private void OpenPilotSkills()
+    {
+        Debug.Log("Opening pilot skills...");
+    }
+
+    private void QuitGame()
+    {
+        gameManager.LoadSceneByName("Main Menu");
     }
 }

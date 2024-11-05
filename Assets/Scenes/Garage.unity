@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1382979819}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GarageUI, Assembly-CSharp
         m_MethodName: ClosePartSelectionUI
         m_Mode: 1
@@ -4453,7 +4453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1382979818}
   - component: {fileID: 1382979820}
-  - component: {fileID: 1382979819}
+  - component: {fileID: 1382979821}
   m_Layer: 0
   m_Name: Garage
   m_TagString: Untagged
@@ -4476,7 +4476,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1172276168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1382979819
+--- !u!114 &1382979820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4485,12 +4485,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1382979817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d957a0aba57d53f4d9e0b14191fec83f, type: 3}
+  m_Script: {fileID: 11500000, guid: f00afeeff70076449a0dec8215879d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputController: {fileID: 377772274}
   gameManager: {fileID: 758167092}
-  garage: {fileID: 1382979820}
+  partSelection: {fileID: 1382979821}
   topRowSlots:
   - {fileID: 163729830}
   - {fileID: 835678689}
@@ -4507,7 +4507,8 @@ MonoBehaviour:
   exitGameButton: {fileID: 1912316679}
   normalSlotImage: {fileID: 21300000, guid: e3fb041618bda9b45821ff39fb16976a, type: 3}
   activeSlotImage: {fileID: 21300000, guid: eebf7375ee1f1244984f807dc68a0da6, type: 3}
---- !u!114 &1382979820
+  ispartSelectionWindowOpened: 0
+--- !u!114 &1382979821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4516,10 +4517,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1382979817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00afeeff70076449a0dec8215879d29, type: 3}
+  m_Script: {fileID: 11500000, guid: 71196c827ff396d4f85066b66646984f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garageUI: {fileID: 1382979819}
+  garage: {fileID: 1382979820}
+  inputController: {fileID: 377772274}
   planeParts:
   - {fileID: 11400000, guid: 204db33230621df4cbfc3d50a2b1b6cf, type: 2}
   - {fileID: 11400000, guid: f8546be581af1f04ab225e0024a57fcc, type: 2}
@@ -4528,6 +4530,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6f7791941e90794db5191c13787f8d4, type: 2}
   - {fileID: 11400000, guid: ec0706993b2ecef418c055a6dde04e14, type: 2}
   - {fileID: 11400000, guid: a39e3f01bfbab39419433f4e5b21912e, type: 2}
+  - {fileID: 11400000, guid: 86d400785ce946148af435fef7de49e7, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+  - {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
   generatorParts:
   - {fileID: 11400000, guid: 5c8b557e6833e1540b730e02cb6b7965, type: 2}
   - {fileID: 11400000, guid: f20b0511753096341b98da7d10694b2e, type: 2}
