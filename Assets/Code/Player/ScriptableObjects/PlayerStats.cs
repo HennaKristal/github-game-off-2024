@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerStats : ScriptableObject
 {
+    [Header("General")]
+    public int money = 100000;
+
     [Header("Health")]
     public float maxHealth = 1200f;
     public float physicalDefence = 500f;
@@ -26,6 +29,7 @@ public class PlayerStats : ScriptableObject
     public float energyOutput = 1000;
     public float maxEnergy = 100f;
     public float energyRecharge = 2f;
+    public float energyConsumption = 50f;
 
     [Header("Cost")]
     public float repairCost = 10000f;

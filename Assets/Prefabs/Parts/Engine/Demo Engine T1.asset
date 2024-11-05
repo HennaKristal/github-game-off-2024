@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bbf7eed01bf6049970b52bdfde40f0, type: 3}
   m_Name: Demo Engine T1
   m_EditorClassIdentifier: 
+  partName: Demo Engine T1
+  image: {fileID: 0}
   isOwned: 1
   isEquipped: 1
   isPurchasable: 0

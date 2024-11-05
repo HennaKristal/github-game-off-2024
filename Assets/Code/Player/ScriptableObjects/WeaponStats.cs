@@ -3,19 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create New weapon")]
 public class WeaponStats : ScriptableObject
 {
-    public int ownedCount = 0;
-    public bool isEquippedMain = false;
-    public bool isEquippedInnerLeft = false;
-    public bool isEquippedInnerRight = false;
-    public bool isEquippedOuterLeft = false;
-    public bool isEquippedOuterRight = false;
+    public string partName = "";
+    public Sprite image;
+
+    [Header("Ownership")]
+    public bool isOwned = false;
+    public bool isEquipped = false;
     public bool isPurchasable = false;
     public int purchasePrice = 25000;
     public int sellPrice = 10000;
 
-    [Header("Prefab")]
+    [Header("Projectile")]
     public GameObject projectilePrefab;
-    public string weaponName = "";
 
     [Header("Damage")]
     public int minDamage = 35;
@@ -30,7 +29,7 @@ public class WeaponStats : ScriptableObject
     public int totalRounds = 250;
     public int magazineSize = 30;
     public float reloadSpeed = 3f;
-    public float EnegryCost = 0f;
+    public float enegryCost = 0f;
 
     [Header("Heating")]
     public float heating = 0.01f;

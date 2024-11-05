@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create New Plane Part")]
 public class PlaneStats : ScriptableObject
 {
+    public string partName = "";
+    public Sprite image;
+
+    [Header("Ownership")]
     public bool isOwned = false;
     public bool isEquipped = false;
     public bool isPurchasable = false;

@@ -10,30 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa53584aa4332e049ac48d570a55a934, type: 3}
-  m_Name: Demo Gun T3
+  m_Name: Demo Gun T2
   m_EditorClassIdentifier: 
-  ownedCount: 0
-  isEquippedMain: 0
-  isEquippedInnerLeft: 0
-  isEquippedInnerRight: 0
-  isEquippedOuterLeft: 0
-  isEquippedOuterRight: 0
+  partName: Demo Gun T2
+  image: {fileID: 0}
+  isOwned: 0
+  isEquipped: 0
   isPurchasable: 1
-  purchasePrice: 25000
-  sellPrice: 10000
-  projectilePrefab: {fileID: 4327707515120115634, guid: 7a584c40fdf562a459f149951f873d9b, type: 3}
-  weaponName: Demo Rifle
-  minDamage: 20
+  purchasePrice: 10000
+  sellPrice: 5000
+  projectilePrefab: {fileID: 4327707515120115634, guid: cebc18cae55577b4e9562632b3d9f944, type: 3}
+  minDamage: 15
   maxDamage: 25
-  criticalChance: 33
-  criticalDamageMultiplier: 2.2
-  fireRate: 0.13
+  criticalChance: 20
+  criticalDamageMultiplier: 2
+  fireRate: 0.14
   isAuto: 1
-  projectileSpeed: 25
+  projectileSpeed: 23
   totalRounds: 150
   magazineSize: 30
-  reloadSpeed: 3
-  EnegryCost: 0
+  reloadSpeed: 3.2
+  enegryCost: 0
   heating: 0.35
   weight: 500
   energyConsumption: 33

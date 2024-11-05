@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0e5db134a3e0e42981a607e0c92ac9, type: 3}
-  m_Name: Demo Coolder T1
+  m_Name: Demo Cooler T3
   m_EditorClassIdentifier: 
-  isOwned: 1
-  isEquipped: 1
-  isPurchasable: 0
-  purchasePrice: 5000
-  sellPrice: 2000
-  coolingEfficiency: 2
-  overHeatcoolingEfficiency: 3
+  partName: Demo Cooler T3
+  image: {fileID: 0}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 1
+  purchasePrice: 25000
+  sellPrice: 15000
+  coolingEfficiency: 4
+  overHeatcoolingEfficiency: 8
   weight: 1000
   energyConsumption: 33
-  repairCost: 500
+  repairCost: 750

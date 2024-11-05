@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b956672a3207446a6a200243451f4e, type: 3}
   m_Name: Demo Plane T1
   m_EditorClassIdentifier: 
+  partName: Demo Plane T1
+  image: {fileID: 0}
   isOwned: 1
   isEquipped: 1
   isPurchasable: 0

@@ -34,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        weaponNameText.text = weaponStats.weaponName;
+        weaponNameText.text = weaponStats.partName;
 
         currentMagazine = weaponStats.magazineSize;
         magazineText.text = currentMagazine.ToString();
@@ -153,7 +153,7 @@ public class PlayerShooting : MonoBehaviour
         magazineText.text = currentMagazine.ToString();
         totalRoundsText.text = remainingRounds.ToString();
 
-        weaponNameText.text = weaponStats.weaponName;
+        weaponNameText.text = weaponStats.partName;
         weaponNameText.color = new Color(0.78f, 0.78f, 0.78f);
         reloadBar.gameObject.SetActive(false);
 

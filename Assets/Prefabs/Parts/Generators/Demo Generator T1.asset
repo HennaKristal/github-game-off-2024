@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c3092aedba86444be2a97bd207f18c, type: 3}
   m_Name: Demo Generator T1
   m_EditorClassIdentifier: 
+  partName: Demo Generator T1
+  image: {fileID: 0}
   isOwned: 1
   isEquipped: 1
   isPurchasable: 0

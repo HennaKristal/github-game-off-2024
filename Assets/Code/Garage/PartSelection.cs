@@ -1,20 +1,48 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum PartCategory
+{
+    PlaneCores,
+    Engines,
+    Generators,
+    Coolers,
+    MainWeapons,
+    LeftInnerWeapons,
+    LeftOuterWeapons,
+    RightInnerWeapons,
+    RightOuterWeapons
+}
 
 public class PartSelection : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Garage garage;
     [SerializeField] private InputController inputController;
+    [SerializeField] private PlayerStats playerStats;
 
     [Header("Parts")]
-    [SerializeField] private List<PlaneStats> planeParts;
-    [SerializeField] private List<EngineStats> engineParts;
-    [SerializeField] private List<GeneratorStats> generatorParts;
-    [SerializeField] private List<CoolerStats> coolerParts;
-    [SerializeField] private List<WeaponStats> weapons;
+    [SerializeField] private List<PlaneStats> allPlaneParts;
+    [SerializeField] private List<EngineStats> allEngineParts;
+    [SerializeField] private List<GeneratorStats> allGeneratorParts;
+    [SerializeField] private List<CoolerStats> allCoolerParts;
+    [SerializeField] private List<WeaponStats> allMainWeaponsParts;
+    [SerializeField] private List<WeaponStats> allLeftInnerWeaponParts;
+    [SerializeField] private List<WeaponStats> allLeftOuterWeaponParts;
+    [SerializeField] private List<WeaponStats> allRightInnerWeaponParts;
+    [SerializeField] private List<WeaponStats> allRightOuterWeaponParts;
+    private List<PlaneStats> planeParts = new List<PlaneStats>();
+    private List<EngineStats> engineParts = new List<EngineStats>();
+    private List<GeneratorStats> generatorParts = new List<GeneratorStats>();
+    private List<CoolerStats> coolerParts = new List<CoolerStats>();
+    private List<WeaponStats> mainWeaponsParts = new List<WeaponStats>();
+    private List<WeaponStats> leftInnerWeaponParts = new List<WeaponStats>();
+    private List<WeaponStats> leftOuterWeaponParts = new List<WeaponStats>();
+    private List<WeaponStats> rightInnerWeaponParts = new List<WeaponStats>();
+    private List<WeaponStats> rightOuterWeaponParts = new List<WeaponStats>();
 
     [Header("UI Elements")]
     [SerializeField] private GameObject partSelectionWindow;
@@ -22,11 +50,13 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private TextMeshProUGUI partSelectionTitle;
     [SerializeField] private GameObject partParentContainer;
     [SerializeField] private Button exitPartSelectionButton;
+    [SerializeField] private TextMeshProUGUI moneyText;
 
     [Header("Slot Images")]
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
+    private int equippedIndex = 0;
     private int currentPartIndex = 0;
     private List<GameObject> partUIs = new List<GameObject>();
     private Image currentActiveSlotImage;
@@ -34,55 +64,83 @@ public class PartSelection : MonoBehaviour
     private float nextInputTime = 0f;
     private float movementDeadZone = 0.4f;
     private int index = -1;
+    private PartCategory partCategory;
+
+    private void Start()
+    {
+        moneyText.text = "Money: " + playerStats.money + "$";
+    }
 
     private void Update()
     {
-        if (garage.ispartSelectionWindowOpened)
+        if (!garage.ispartSelectionWindowOpened)
         {
-            HandlePartNavigation();
+            return;
+        }
 
-            if (inputController.dodgePressed)
-            {
-                if (currentPartIndex == -1)
-                {
-                    ClosePartSelectionWindow();
-                }
-                else
-                {
-                    // SelectCurrentSlot();
-                }
-            }
+        HandlePartNavigation();
 
-            if (inputController.healPressed)
+        if (inputController.dodgePressed)
+        {
+            if (currentPartIndex == -1)
             {
                 ClosePartSelectionWindow();
             }
+            else if (currentPartIndex != equippedIndex)
+            {
+                EquipPart();
+            }
         }
+
+        if (inputController.healPressed)
+        {
+            ClosePartSelectionWindow();
+        }
+
     }
 
     private void ClosePartSelectionWindow()
     {
         partSelectionWindow.SetActive(false);
+        garage.ispartSelectionWindowOpened = false;
+        index = -1;
 
-        // Clear any existing UI elements in the container to avoid duplicates
+        exitPartSelectionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f);
+
         foreach (Transform child in partParentContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
         partUIs.Clear();
-        index = -1;
+        planeParts.Clear();
+        engineParts.Clear();
+        generatorParts.Clear();
+        coolerParts.Clear();
+        mainWeaponsParts.Clear();
+        leftInnerWeaponParts.Clear();
+        leftOuterWeaponParts.Clear();
+        rightInnerWeaponParts.Clear();
+        rightOuterWeaponParts.Clear();
+    }
 
-        garage.ispartSelectionWindowOpened = false;
+    private void OpenPartSelectionWindow(string title, PartCategory category)
+    {
+        partSelectionWindow.SetActive(true);
+        garage.ispartSelectionWindowOpened = true;
+        partSelectionTitle.text = title;
+        partCategory = category;
     }
 
     private void HandlePartNavigation()
     {
+        // Reset delay if input is released
         if (Mathf.Abs(inputController.Move.x) < movementDeadZone && Mathf.Abs(inputController.Move.y) < movementDeadZone)
         {
             nextInputTime = Time.time;
         }
 
+        // Delay for inputs
         if (Time.time < nextInputTime)
         {
             return;
@@ -90,6 +148,7 @@ public class PartSelection : MonoBehaviour
 
         int previousPartIndex = currentPartIndex;
 
+        // Movement from return button
         if (currentPartIndex == -1)
         {
             if (inputController.Move.y > movementDeadZone)
@@ -97,6 +156,7 @@ public class PartSelection : MonoBehaviour
                 currentPartIndex = partUIs.Count - 1;
             }
         }
+        // Horizontal movement (right)
         else if (inputController.Move.x > movementDeadZone)
         {
             if (currentPartIndex + 1 > partUIs.Count - 1)
@@ -108,14 +168,17 @@ public class PartSelection : MonoBehaviour
                 currentPartIndex = Mathf.Min(currentPartIndex + 1, partUIs.Count - 1);
             }
         }
+        // Horizontal movement (left)
         else if (inputController.Move.x < -movementDeadZone)
         {
             currentPartIndex = Mathf.Max(currentPartIndex - 1, 0);
         }
+        // Vertical movement (up)
         else if (inputController.Move.y > movementDeadZone && currentPartIndex >= 5)
         {
             currentPartIndex -= 5;
         }
+        // Vertical movement (down)
         else if (inputController.Move.y < -movementDeadZone)
         {
             if (currentPartIndex + 5 < partUIs.Count)
@@ -132,6 +195,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
+        // Update slots if something changed
         if (currentPartIndex != previousPartIndex)
         {
             nextInputTime = Time.time + inputCooldown;
@@ -156,36 +220,35 @@ public class PartSelection : MonoBehaviour
             currentActiveSlotImage = partUIs[currentPartIndex].GetComponent<Image>();
             currentActiveSlotImage.sprite = activeSlotImage;
             exitPartSelectionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f);
-
         }
     }
 
 
     public void DisplayPlaneParts()
     {
-        partSelectionWindow.SetActive(true);
-        garage.ispartSelectionWindowOpened = true;
-        partSelectionTitle.text = "Plane Cores";
+        OpenPartSelectionWindow("Plane Cores", PartCategory.PlaneCores);
 
-        foreach (PlaneStats planePart in planeParts)
+        foreach (PlaneStats planePart in allPlaneParts)
         {
             if (!planePart.isPurchasable && !planePart.isOwned)
             {
                 continue;
             }
 
-            index++;
-
             GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            partUIs.Add(partUI);
             TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
 
-            titleText.text = planePart.name;
+            partUIs.Add(partUI);
+            planeParts.Add(planePart);
+            index++;
+
+            titleText.text = planePart.partName;
 
             if (planePart.isEquipped)
             {
                 currentPartIndex = index;
+                equippedIndex = index;
                 currentActiveSlotImage = partUI.GetComponent<Image>();
                 currentActiveSlotImage.sprite = activeSlotImage;
                 priceText.text = "Equipped";
@@ -193,7 +256,7 @@ public class PartSelection : MonoBehaviour
             }
             else if (planePart.isPurchasable)
             {
-                priceText.text = $"${planePart.purchasePrice}";
+                priceText.text = $"{planePart.purchasePrice}$";
                 priceText.color = Color.white;
             }
             else
@@ -205,29 +268,29 @@ public class PartSelection : MonoBehaviour
 
     public void DisplayEngineParts()
     {
-        partSelectionWindow.SetActive(true);
-        garage.ispartSelectionWindowOpened = true;
-        partSelectionTitle.text = "Engines";
+        OpenPartSelectionWindow("Engines", PartCategory.Engines);
 
-        foreach (EngineStats enginePart in engineParts)
+        foreach (EngineStats enginePart in allEngineParts)
         {
             if (!enginePart.isPurchasable && !enginePart.isOwned)
             {
                 continue;
             }
 
-            index++;
-
             GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            partUIs.Add(partUI);
             TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
 
-            titleText.text = enginePart.name;
+            partUIs.Add(partUI);
+            engineParts.Add(enginePart);
+            index++;
+
+            titleText.text = enginePart.partName;
 
             if (enginePart.isEquipped)
             {
                 currentPartIndex = index;
+                equippedIndex = index;
                 currentActiveSlotImage = partUI.GetComponent<Image>();
                 currentActiveSlotImage.sprite = activeSlotImage;
                 priceText.text = "Equipped";
@@ -235,7 +298,7 @@ public class PartSelection : MonoBehaviour
             }
             else if (enginePart.isPurchasable)
             {
-                priceText.text = $"${enginePart.purchasePrice}";
+                priceText.text = $"{enginePart.purchasePrice}$";
                 priceText.color = Color.white;
             }
             else
@@ -247,29 +310,29 @@ public class PartSelection : MonoBehaviour
 
     public void DisplayGeneratorParts()
     {
-        partSelectionWindow.SetActive(true);
-        garage.ispartSelectionWindowOpened = true;
-        partSelectionTitle.text = "Generators";
+        OpenPartSelectionWindow("Generators", PartCategory.Generators);
 
-        foreach (GeneratorStats generatorPart in generatorParts)
+        foreach (GeneratorStats generatorPart in allGeneratorParts)
         {
             if (!generatorPart.isPurchasable && !generatorPart.isOwned)
             {
                 continue;
             }
 
-            index++;
-
             GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            partUIs.Add(partUI);
             TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
 
-            titleText.text = generatorPart.name;
+            partUIs.Add(partUI);
+            generatorParts.Add(generatorPart);
+            index++;
+
+            titleText.text = generatorPart.partName;
 
             if (generatorPart.isEquipped)
             {
                 currentPartIndex = index;
+                equippedIndex = index;
                 currentActiveSlotImage = partUI.GetComponent<Image>();
                 currentActiveSlotImage.sprite = activeSlotImage;
                 priceText.text = "Equipped";
@@ -277,7 +340,7 @@ public class PartSelection : MonoBehaviour
             }
             else if (generatorPart.isPurchasable)
             {
-                priceText.text = $"${generatorPart.purchasePrice}";
+                priceText.text = $"{generatorPart.purchasePrice}$";
                 priceText.color = Color.white;
             }
             else
@@ -289,29 +352,29 @@ public class PartSelection : MonoBehaviour
 
     public void DisplayCoolerParts()
     {
-        partSelectionWindow.SetActive(true);
-        garage.ispartSelectionWindowOpened = true;
-        partSelectionTitle.text = "Coolers";
+        OpenPartSelectionWindow("Coolers", PartCategory.Coolers);
 
-        foreach (CoolerStats coolerPart in coolerParts)
+        foreach (CoolerStats coolerPart in allCoolerParts)
         {
             if (!coolerPart.isPurchasable && !coolerPart.isOwned)
             {
                 continue;
             }
 
-            index++;
-
             GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
-            partUIs.Add(partUI);
             TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
 
-            titleText.text = coolerPart.name;
+            partUIs.Add(partUI);
+            coolerParts.Add(coolerPart);
+            index++;
+
+            titleText.text = coolerPart.partName;
 
             if (coolerPart.isEquipped)
             {
                 currentPartIndex = index;
+                equippedIndex = index;
                 currentActiveSlotImage = partUI.GetComponent<Image>();
                 currentActiveSlotImage.sprite = activeSlotImage;
                 priceText.text = "Equipped";
@@ -319,7 +382,7 @@ public class PartSelection : MonoBehaviour
             }
             else if (coolerPart.isPurchasable)
             {
-                priceText.text = $"${coolerPart.purchasePrice}";
+                priceText.text = $"{coolerPart.purchasePrice}$";
                 priceText.color = Color.white;
             }
             else
@@ -329,27 +392,434 @@ public class PartSelection : MonoBehaviour
         }
     }
 
-
-
-    private void Start()
+    public void DisplayMainWeaponParts()
     {
-        // TODO: on start load prefab or serialized data about every single scriptable object part and load their values
-        // Also set this object to do not destory on load
+        OpenPartSelectionWindow("Main Weapons", PartCategory.MainWeapons);
+
+        foreach (WeaponStats mainWeaponsPart in allMainWeaponsParts)
+        {
+            if (!mainWeaponsPart.isPurchasable && !mainWeaponsPart.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            mainWeaponsParts.Add(mainWeaponsPart);
+            index++;
+
+            titleText.text = mainWeaponsPart.partName;
+
+            if (mainWeaponsPart.isEquipped)
+            {
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (mainWeaponsPart.isPurchasable)
+            {
+                priceText.text = $"{mainWeaponsPart.purchasePrice}$";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
     }
 
-    public void AddItem(string category, string name)
+    public void DisplayLeftInnerWeaponParts()
     {
-        // TODO find the correct part's scrptable object and set it's stats correctly
-        //part.isOwned = true;
-        //part.isPurchasable = true;
+        OpenPartSelectionWindow("Left Inner Weapons", PartCategory.LeftInnerWeapons);
+
+        foreach (WeaponStats leftInnerWeaponPart in allLeftInnerWeaponParts)
+        {
+            if (!leftInnerWeaponPart.isPurchasable && !leftInnerWeaponPart.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            leftInnerWeaponParts.Add(leftInnerWeaponPart);
+            index++;
+
+            titleText.text = leftInnerWeaponPart.partName;
+
+            if (leftInnerWeaponPart.isEquipped)
+            {
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (leftInnerWeaponPart.isPurchasable)
+            {
+                priceText.text = $"{leftInnerWeaponPart.purchasePrice}$";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
     }
 
-    private void EquipPart(string category, string name)
+    public void DisplayLeftOuterWeaponParts()
     {
-        // Get currently equipped item and unequip it or unequip just every item in this category
-        // currentpart.isequipped = false;
+        OpenPartSelectionWindow("Left Outer Weapons", PartCategory.LeftOuterWeapons);
 
-        // TODO: equip the new item
-        // part.isEquipped = true;
+        foreach (WeaponStats leftOuterWeaponPart in allLeftOuterWeaponParts)
+        {
+            if (!leftOuterWeaponPart.isPurchasable && !leftOuterWeaponPart.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            leftOuterWeaponParts.Add(leftOuterWeaponPart);
+            index++;
+
+            titleText.text = leftOuterWeaponPart.partName;
+
+            if (leftOuterWeaponPart.isEquipped)
+            {
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (leftOuterWeaponPart.isPurchasable)
+            {
+                priceText.text = $"{leftOuterWeaponPart.purchasePrice}$";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void DisplayRightInnerWeaponParts()
+    {
+        OpenPartSelectionWindow("Right Inner Weapons", PartCategory.RightInnerWeapons);
+
+        foreach (WeaponStats rightInnerWeaponPart in allRightInnerWeaponParts)
+        {
+            if (!rightInnerWeaponPart.isPurchasable && !rightInnerWeaponPart.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            rightInnerWeaponParts.Add(rightInnerWeaponPart);
+            index++;
+
+            titleText.text = rightInnerWeaponPart.partName;
+
+            if (rightInnerWeaponPart.isEquipped)
+            {
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (rightInnerWeaponPart.isPurchasable)
+            {
+                priceText.text = $"{rightInnerWeaponPart.purchasePrice}$";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void DisplayRightOuterWeaponParts()
+    {
+        OpenPartSelectionWindow("Right Outer Weapons", PartCategory.RightOuterWeapons);
+
+        foreach (WeaponStats rightOuterWeaponPart in allRightOuterWeaponParts)
+        {
+            if (!rightOuterWeaponPart.isPurchasable && !rightOuterWeaponPart.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            rightOuterWeaponParts.Add(rightOuterWeaponPart);
+            index++;
+
+            titleText.text = rightOuterWeaponPart.partName;
+
+            if (rightOuterWeaponPart.isEquipped)
+            {
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else if (rightOuterWeaponPart.isPurchasable)
+            {
+                priceText.text = $"{rightOuterWeaponPart.purchasePrice}$";
+                priceText.color = Color.white;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+    }
+
+    public void UnlockItem(PartCategory category, string name, bool grantItem)
+    {
+        if (category == PartCategory.PlaneCores)
+        {
+            foreach (PlaneStats part in allPlaneParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.Engines)
+        {
+            foreach (EngineStats part in allEngineParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.Generators)
+        {
+            foreach (GeneratorStats part in allGeneratorParts)
+            {
+                if (part.partName == name)
+                {
+                    if (part) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.Coolers)
+        {
+            foreach (CoolerStats part in allCoolerParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.MainWeapons)
+        {
+            foreach (WeaponStats part in allMainWeaponsParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.LeftInnerWeapons)
+        {
+            foreach (WeaponStats part in allLeftInnerWeaponParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.LeftOuterWeapons)
+        {
+            foreach (WeaponStats part in allLeftOuterWeaponParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.RightInnerWeapons)
+        {
+            foreach (WeaponStats part in allRightInnerWeaponParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+        else if (category == PartCategory.RightOuterWeapons)
+        {
+            foreach (WeaponStats part in allRightOuterWeaponParts)
+            {
+                if (part.partName == name)
+                {
+                    if (grantItem) { part.isOwned = true; }
+                    part.isPurchasable = true;
+                    return;
+                }
+            }
+        }
+    }
+
+    private void EquipPart()
+    {
+        string slotText = partUIs[currentPartIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text;
+
+        // Purchase a new part
+        if (slotText != string.Empty && slotText != "Equipped")
+        {
+            if (int.TryParse(Regex.Replace(slotText, @"[^\d]", ""), out int parsedPrice))
+            {
+                if (playerStats.money >= parsedPrice)
+                {
+                    playerStats.money -= parsedPrice;
+                    moneyText.text = "Money: " + playerStats.money + "$";
+                }
+                else
+                {
+                    // TODO: user feedback from insufficient money
+                    return;
+                }
+            }
+            else
+            {
+                // TODO: user feedback from error
+                return;
+            }
+        }
+
+        // Unequip previous part from UI
+        partUIs[equippedIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text = "";
+
+        // Update equipped data and index
+        if (partCategory == PartCategory.PlaneCores)
+        {
+            planeParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            planeParts[equippedIndex].isEquipped = true;
+            planeParts[equippedIndex].isOwned = true;
+            planeParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.Engines)
+        {
+            engineParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            engineParts[equippedIndex].isEquipped = true;
+            engineParts[equippedIndex].isOwned = true;
+            engineParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.Generators)
+        {
+            generatorParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            generatorParts[equippedIndex].isEquipped = true;
+            generatorParts[equippedIndex].isOwned = true;
+            generatorParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.Coolers)
+        {
+            coolerParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            coolerParts[equippedIndex].isEquipped = true;
+            coolerParts[equippedIndex].isOwned = true;
+            coolerParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.MainWeapons)
+        {
+            mainWeaponsParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            mainWeaponsParts[equippedIndex].isEquipped = true;
+            mainWeaponsParts[equippedIndex].isOwned = true;
+            mainWeaponsParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.LeftInnerWeapons)
+        {
+            leftInnerWeaponParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            leftInnerWeaponParts[equippedIndex].isEquipped = true;
+            leftInnerWeaponParts[equippedIndex].isOwned = true;
+            leftInnerWeaponParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.LeftOuterWeapons)
+        {
+            leftOuterWeaponParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            leftOuterWeaponParts[equippedIndex].isEquipped = true;
+            leftOuterWeaponParts[equippedIndex].isOwned = true;
+            leftOuterWeaponParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.RightInnerWeapons)
+        {
+            rightInnerWeaponParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            rightInnerWeaponParts[equippedIndex].isEquipped = true;
+            rightInnerWeaponParts[equippedIndex].isOwned = true;
+            rightInnerWeaponParts[equippedIndex].isPurchasable = false;
+        }
+        else if (partCategory == PartCategory.RightOuterWeapons)
+        {
+            rightOuterWeaponParts[equippedIndex].isEquipped = false;
+            equippedIndex = currentPartIndex;
+            rightOuterWeaponParts[equippedIndex].isEquipped = true;
+            rightOuterWeaponParts[equippedIndex].isOwned = true;
+            rightOuterWeaponParts[equippedIndex].isPurchasable = false;
+        }
+
+        // Equip the new part from UI
+        partUIs[equippedIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text = "Equipped";
+        partUIs[equippedIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().color = Color.green;
     }
 }

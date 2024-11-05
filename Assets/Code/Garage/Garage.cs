@@ -20,13 +20,13 @@ public class Garage : MonoBehaviour
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
+    [HideInInspector] public bool ispartSelectionWindowOpened = false;
     private Image currentActiveSlotImage;
     private int currentIndex = 0;
     private int currentRow = 0;
     private float inputCooldown = 0.25f;
     private float nextInputTime = 0f;
     private float movementDeadZone = 0.4f;
-    public bool ispartSelectionWindowOpened = false;
 
     private void Start()
     {
@@ -35,24 +35,28 @@ public class Garage : MonoBehaviour
 
     private void Update()
     {
-        if (!ispartSelectionWindowOpened)
+        if (ispartSelectionWindowOpened)
         {
-            HandleNavigation();
+            return;
+        }
 
-            if (inputController.dodgePressed)
-            {
-                SelectCurrentSlot();
-            }
+        HandleNavigation();
+
+        if (inputController.dodgePressed)
+        {
+            SelectCurrentSlot();
         }
     }
 
     private void HandleNavigation()
     {
+        // Reset delay if input is released
         if (Mathf.Abs(inputController.Move.x) < movementDeadZone && Mathf.Abs(inputController.Move.y) < movementDeadZone)
         {
             nextInputTime = Time.time;
         }
 
+        // Delay for inputs
         if (Time.time < nextInputTime)
         {
             return;
@@ -61,6 +65,7 @@ public class Garage : MonoBehaviour
         int previousIndex = currentIndex;
         int previousRow = currentRow;
 
+        // Horizontal movement (right)
         if (inputController.Move.x > movementDeadZone)
         {
             if (currentRow == 0 && currentIndex < topRowSlots.Length - 1)
@@ -72,6 +77,7 @@ public class Garage : MonoBehaviour
                 currentIndex++;
             }
         }
+        // Horizontal movement (left)
         else if (inputController.Move.x < -movementDeadZone)
         {
             if (currentRow < 2 && currentIndex > 0)
@@ -79,29 +85,7 @@ public class Garage : MonoBehaviour
                 currentIndex--;
             }
         }
-        else if (inputController.Move.y < -movementDeadZone)
-        {
-            if (currentRow == 0)
-            {
-                currentRow = 1;
-                currentIndex = Mathf.Clamp(currentIndex, 0, middleRowSlots.Length - 1);
-            }
-            else if (currentRow == 1)
-            {
-                currentRow = 2;
-                currentIndex = 0;
-            }
-            else if (currentRow == 2)
-            {
-                currentRow = 3;
-                currentIndex = 0;
-            }
-            else if (currentRow == 3)
-            {
-                currentRow = 4;
-                currentIndex = 0;
-            }
-        }
+        // Vertical movement (up)
         else if (inputController.Move.y > movementDeadZone)
         {
             if (currentRow == 4)
@@ -125,7 +109,32 @@ public class Garage : MonoBehaviour
                 currentIndex = Mathf.Clamp(currentIndex, 0, topRowSlots.Length - 1);
             }
         }
+        // Vertical movement (down)
+        else if (inputController.Move.y < -movementDeadZone)
+        {
+            if (currentRow == 0)
+            {
+                currentRow = 1;
+                currentIndex = Mathf.Clamp(currentIndex, 0, middleRowSlots.Length - 1);
+            }
+            else if (currentRow == 1)
+            {
+                currentRow = 2;
+                currentIndex = 0;
+            }
+            else if (currentRow == 2)
+            {
+                currentRow = 3;
+                currentIndex = 0;
+            }
+            else if (currentRow == 3)
+            {
+                currentRow = 4;
+                currentIndex = 0;
+            }
+        }
 
+        // Update slots if something changed
         if (currentIndex != previousIndex || currentRow != previousRow)
         {
             nextInputTime = Time.time + inputCooldown;
@@ -135,13 +144,16 @@ public class Garage : MonoBehaviour
 
     private void UpdateActiveSlot()
     {
-        // Reset previous slot/button appearance
+        // Reset previous buttons' appearance
+        pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+        nextMissionButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+        exitGameButton.GetComponent<TextMeshProUGUI>().color = Color.white;
+
+        // Reset previous slot's appearance
         if (currentActiveSlotImage != null)
         {
             currentActiveSlotImage.sprite = normalSlotImage;
         }
-
-        ResetButtonColors();
 
         // Set new active slot/button based on row and index
         if (currentRow == 0)
@@ -169,13 +181,6 @@ public class Garage : MonoBehaviour
             currentActiveSlotImage = null;
             exitGameButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
         }
-    }
-
-    private void ResetButtonColors()
-    {
-        pilotSkillsButton.GetComponent<TextMeshProUGUI>().color = Color.white;
-        nextMissionButton.GetComponent<TextMeshProUGUI>().color = Color.white;
-        exitGameButton.GetComponent<TextMeshProUGUI>().color = Color.white;
     }
 
     private void SelectCurrentSlot()
@@ -214,11 +219,11 @@ public class Garage : MonoBehaviour
         {
             switch (currentIndex)
             {
-                case 0: partSelection.DisplayPlaneParts(); break;
-                case 1: partSelection.DisplayPlaneParts(); break;
-                case 2: partSelection.DisplayPlaneParts(); break;
-                case 3: partSelection.DisplayPlaneParts(); break;
-                case 4: partSelection.DisplayPlaneParts(); break;
+                case 0: partSelection.DisplayMainWeaponParts(); break;
+                case 1: partSelection.DisplayLeftInnerWeaponParts(); break;
+                case 2: partSelection.DisplayLeftOuterWeaponParts(); break;
+                case 3: partSelection.DisplayRightInnerWeaponParts(); break;
+                case 4: partSelection.DisplayRightOuterWeaponParts(); break;
             }
         }
     }
