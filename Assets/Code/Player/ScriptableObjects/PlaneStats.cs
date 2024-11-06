@@ -4,7 +4,11 @@ using UnityEngine;
 public class PlaneStats : ScriptableObject
 {
     public string partName = "";
-    public Sprite image;
+    [TextArea(3, 50)] public string description = "";
+    public string manufacturer = "";
+    public Sprite icon;
+    public Sprite sprite;
+    public GameObject playerPrefab;
 
     [Header("Ownership")]
     public bool isOwned = false;
@@ -20,7 +24,7 @@ public class PlaneStats : ScriptableObject
 
     [Header("Heating")]
     public float maxHeatTolerance = 100f;
-    public float defaultHeat = 25f;
+    public float idleHeat = 25f;
 
     [Header("Weight")]
     public float maxCarryWeight = 10000f;

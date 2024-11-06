@@ -5,6 +5,7 @@ public class PlayerStats : ScriptableObject
 {
     [Header("General")]
     public int money = 100000;
+    public GameObject playerPrefab;
 
     [Header("Health")]
     public float maxHealth = 1200f;
@@ -13,16 +14,20 @@ public class PlayerStats : ScriptableObject
 
     [Header("Speed")]
     public float horizontalSpeed = 5f;
+    public float horizontalIdleSpeed = 1f;
+    public float horizontalReverseSpeed = 2.5f;
     public float verticalSpeed = 5f;
 
     [Header("Heating")]
     public float maxHeatTolerance = 100f;
-    public float defaultHeat = 25f;
+    public float idleHeat = 25f;
     public float coolingEfficiency = 2f;
     public float overHeatcoolingEfficiency = 3f;
 
     [Header("Weight")]
+    public float currentCarryWeight = 5000f;
     public float maxCarryWeight = 10000f;
+    public float currentLiftWeight = 5000f;
     public float maxLiftWeight = 15000f;
 
     [Header("Energy")]

@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = playerStats.maxHealth;
         currentEnergy = playerStats.maxEnergy;
-        currentHeat = playerStats.defaultHeat;
+        currentHeat = playerStats.idleHeat;
 
         healthSlider.maxValue = playerStats.maxHealth;
         healthSlider.value = currentHealth;
@@ -76,10 +76,10 @@ public class PlayerController : MonoBehaviour
     {
         float coolingRate = isOverheated ? playerStats.overHeatcoolingEfficiency : playerStats.coolingEfficiency;
 
-        if (currentHeat > playerStats.defaultHeat)
+        if (currentHeat > playerStats.idleHeat)
         {
             currentHeat -= coolingRate * deltaTime;
-            currentHeat = Mathf.Max(currentHeat, playerStats.defaultHeat);
+            currentHeat = Mathf.Max(currentHeat, playerStats.idleHeat);
 
             if (currentHeat < playerStats.maxHeatTolerance)
             {
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHeatUI()
     {
-        if (currentHeat <= playerStats.defaultHeat)
+        if (currentHeat <= playerStats.idleHeat)
         {
             heatText.color = new Color(1f, 1f, 0f);
             heatText.text = Mathf.Floor(currentHeat).ToString() + "ºC";
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float t = (currentHeat - playerStats.defaultHeat) / (playerStats.maxHeatTolerance - playerStats.defaultHeat);
+            float t = (currentHeat - playerStats.idleHeat) / (playerStats.maxHeatTolerance - playerStats.idleHeat);
             heatText.color = Color.Lerp(new Color(1f, 1f, 0f), new Color(1f, 0f, 0f), t);
             heatText.text = Mathf.Floor(currentHeat).ToString() + "ºC";
         }

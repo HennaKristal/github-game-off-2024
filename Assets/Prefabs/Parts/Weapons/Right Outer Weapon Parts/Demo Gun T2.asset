@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Demo Gun T2
   m_EditorClassIdentifier: 
   partName: Demo Gun T2
-  image: {fileID: 0}
+  description: Rusty machine gun. Not the most glorious weapon, but it gets the job
+    done.
+  manufacturer: Gunsmiths
+  icon: {fileID: 21300000, guid: c0b1550b2f385be489a8e748e5ad646b, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
@@ -24,7 +27,7 @@ MonoBehaviour:
   maxDamage: 25
   criticalChance: 20
   criticalDamageMultiplier: 2
-  fireRate: 0.14
+  fireRate: 2
   isAuto: 1
   projectileSpeed: 23
   totalRounds: 150

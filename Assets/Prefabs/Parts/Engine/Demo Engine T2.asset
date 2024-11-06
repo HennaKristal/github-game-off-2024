@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Demo Engine T2
   m_EditorClassIdentifier: 
   partName: Demo Engine T2
-  image: {fileID: 0}
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris
+  manufacturer: Flash'n'crash
+  icon: {fileID: 21300000, guid: 10d42530cb795544ca3ec003f3ab5888, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
   purchasePrice: 10000
   sellPrice: 5000
   horizontalSpeed: 8
+  horizontalIdleSpeed: 2
+  horizontalReverseSpeed: 3
   verticalSpeed: 5
   maxLiftWeight: 15000
   weight: 1000

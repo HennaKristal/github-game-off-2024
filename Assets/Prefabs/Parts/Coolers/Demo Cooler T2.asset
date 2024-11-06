@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Demo Cooler T2
   m_EditorClassIdentifier: 
   partName: Demo Cooler T2
-  image: {fileID: 0}
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris
+  manufacturer: Cool Boys
+  icon: {fileID: 21300000, guid: 1dc7c9a2dd488d34eb660b762a3b825d, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1

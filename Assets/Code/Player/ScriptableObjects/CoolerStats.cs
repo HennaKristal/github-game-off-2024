@@ -4,7 +4,9 @@ using UnityEngine;
 public class CoolerStats : ScriptableObject
 {
     public string partName = "";
-    public Sprite image;
+    [TextArea(3, 50)] public string description = "";
+    public string manufacturer = "";
+    public Sprite icon;
 
     [Header("Ownership")]
     public bool isOwned = false;

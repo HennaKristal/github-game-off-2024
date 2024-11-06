@@ -4,7 +4,9 @@ using UnityEngine;
 public class EngineStats : ScriptableObject
 {
     public string partName = "";
-    public Sprite image;
+    [TextArea(3, 50)] public string description = "";
+    public string manufacturer = "";
+    public Sprite icon;
 
     [Header("Ownership")]
     public bool isOwned = false;
@@ -15,6 +17,8 @@ public class EngineStats : ScriptableObject
 
     [Header("Speed")]
     public float horizontalSpeed = 5f;
+    public float horizontalIdleSpeed = 1f;
+    public float horizontalReverseSpeed = 2.5f;
     public float verticalSpeed = 5f;
 
     [Header("Weight")]

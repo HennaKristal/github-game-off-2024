@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Demo Gun T3
   m_EditorClassIdentifier: 
   partName: Demo Gun T3
-  image: {fileID: 0}
-  isOwned: 0
+  description: Rusty machine gun. Not the most glorious weapon, but it gets the job
+    done.
+  manufacturer: Gunsmiths
+  icon: {fileID: 21300000, guid: 41d5f99211a8b29408f4fdca1620c36c, type: 3}
+  isOwned: 1
   isEquipped: 0
-  isPurchasable: 1
+  isPurchasable: 0
   purchasePrice: 25000
   sellPrice: 10000
   projectilePrefab: {fileID: 4327707515120115634, guid: 7a584c40fdf562a459f149951f873d9b, type: 3}
@@ -24,7 +27,7 @@ MonoBehaviour:
   maxDamage: 25
   criticalChance: 33
   criticalDamageMultiplier: 2.2
-  fireRate: 0.13
+  fireRate: 3
   isAuto: 1
   projectileSpeed: 25
   totalRounds: 150

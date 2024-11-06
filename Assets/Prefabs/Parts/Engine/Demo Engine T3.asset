@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Demo Engine T3
   m_EditorClassIdentifier: 
   partName: Demo Engine T3
-  image: {fileID: 0}
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris
+  manufacturer: Sky Lightning
+  icon: {fileID: 21300000, guid: 184ccff189ce1174499260e9ceaa7883, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
   purchasePrice: 10000
   sellPrice: 5000
   horizontalSpeed: 5
+  horizontalIdleSpeed: 2
+  horizontalReverseSpeed: 4
   verticalSpeed: 8
   maxLiftWeight: 15000
   weight: 1000

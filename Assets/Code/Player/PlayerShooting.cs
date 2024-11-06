@@ -56,7 +56,7 @@ public class PlayerShooting : MonoBehaviour
             else if (Time.time >= nextFireTime && currentMagazine > 0)
             {
                 FireWeapon();
-                nextFireTime = Time.time + weaponStats.fireRate;
+                nextFireTime = Time.time + (1f / weaponStats.fireRate);
                 currentMagazine--;
                 magazineText.text = currentMagazine.ToString();
             }

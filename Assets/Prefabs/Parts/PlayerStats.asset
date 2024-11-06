@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701625b54d7a24a428fbc2a67edb75fe, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  horizontalSpeed: 8
-  verticalSpeed: 5
+  money: 2147483647
+  playerPrefab: {fileID: 0}
   maxHealth: 100
-  armor: 100
+  physicalDefence: 500
+  energyDefence: 350
+  horizontalSpeed: 5
+  horizontalIdleSpeed: 1
+  horizontalReverseSpeed: 2.5
+  verticalSpeed: 5
+  maxHeatTolerance: 100
+  idleHeat: 25
+  coolingEfficiency: 2
+  overHeatcoolingEfficiency: 3
+  currentCarryWeight: 5000
+  maxCarryWeight: 10000
+  currentLiftWeight: 5000
+  maxLiftWeight: 15000
+  energyOutput: 1000
+  maxEnergy: 100
+  energyRecharge: 2
+  energyConsumption: 50
+  repairCost: 10000

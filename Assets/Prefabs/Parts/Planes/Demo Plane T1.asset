@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Demo Plane T1
   m_EditorClassIdentifier: 
   partName: Demo Plane T1
-  image: {fileID: 0}
-  isOwned: 1
-  isEquipped: 1
-  isPurchasable: 0
+  description: Engineered for resilience, the AeroFusion Core-1 is built to withstand
+    the harshest conditions
+  manufacturer: AeroFusion Industries
+  icon: {fileID: 21300000, guid: b820eea0c2074214a9b0f5e12d348c7a, type: 3}
+  sprite: {fileID: 1723911407, guid: cd0bfd2225369da45b568b6d723e09c8, type: 3}
+  playerPrefab: {fileID: 0}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 1
   purchasePrice: 5000
   sellPrice: 2000
   maxHealth: 1200
   physicalDefence: 500
   energyDefence: 350
   maxHeatTolerance: 100
-  defaultHeat: 25
+  idleHeat: 25
   maxCarryWeight: 10000
   weight: 5000
-  energyConsumption: 33
-  repairCost: 10000
+  energyConsumption: 25
+  repairCost: 3000

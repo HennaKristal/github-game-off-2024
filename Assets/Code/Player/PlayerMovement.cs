@@ -24,16 +24,25 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = new Vector2(inputController.Move.x, inputController.Move.y);
 
-        // Normalize the vector for diagonal movement
         if (inputVector.magnitude > 1)
         {
             inputVector = inputVector.normalized;
         }
 
-        rb.linearVelocity = new Vector2(
-            inputVector.x * playerStats.horizontalSpeed,
-            inputVector.y * playerStats.verticalSpeed
-        );
+        float xSpeed = playerStats.horizontalIdleSpeed;
+
+        if (inputVector.x > 0)
+        {
+            xSpeed = playerStats.horizontalSpeed;
+        }
+        else if (inputVector.x < 0)
+        {
+            xSpeed = -playerStats.horizontalReverseSpeed;
+        }
+
+        float ySpeed = inputVector.y * playerStats.verticalSpeed;
+
+        rb.linearVelocity = new Vector2(xSpeed, ySpeed);
 
         animator.SetFloat("Tilt", inputVector.y);
     }

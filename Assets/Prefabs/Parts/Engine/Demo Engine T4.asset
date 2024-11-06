@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Demo Engine T4
   m_EditorClassIdentifier: 
   partName: Demo Engine T4
-  image: {fileID: 0}
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris
+  manufacturer: Black Market
+  icon: {fileID: 21300000, guid: 1c2ecade19504324d9e8d5c6c8cb5416, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
   purchasePrice: 15000
   sellPrice: 8000
   horizontalSpeed: 7
+  horizontalIdleSpeed: 2
+  horizontalReverseSpeed: 4
   verticalSpeed: 7
   maxLiftWeight: 15000
   weight: 1000

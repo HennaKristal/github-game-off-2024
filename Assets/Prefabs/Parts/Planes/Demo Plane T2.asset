@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: Demo Plane T2
   m_EditorClassIdentifier: 
   partName: Demo Plane T2
-  image: {fileID: 0}
-  isOwned: 0
-  isEquipped: 0
-  isPurchasable: 1
+  description: The SkyForge X-Core combines lightweight design with high energy efficiency,
+    maximizing power output while minimizing consumption. Ideal for advanced maneuvers
+    and extended flight operations.
+  manufacturer: SkyForge Systems
+  icon: {fileID: 21300000, guid: 3c4d19c70e5e0ea4fb523a90d2444ab6, type: 3}
+  sprite: {fileID: 21300000, guid: 7528e8335de8e3a4bb69f9cc9cbbfa23, type: 3}
+  playerPrefab: {fileID: 0}
+  isOwned: 1
+  isEquipped: 1
+  isPurchasable: 0
   purchasePrice: 10000
   sellPrice: 5000
-  maxHealth: 1500
-  physicalDefence: 500
-  energyDefence: 350
-  maxHeatTolerance: 100
-  defaultHeat: 25
-  maxCarryWeight: 10000
-  weight: 5000
-  energyConsumption: 33
-  repairCost: 10000
+  maxHealth: 700
+  physicalDefence: 333
+  energyDefence: 222
+  maxHeatTolerance: 65
+  idleHeat: 15
+  maxCarryWeight: 6000
+  weight: 3000
+  energyConsumption: 22
+  repairCost: 2500

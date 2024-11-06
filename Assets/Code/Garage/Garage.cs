@@ -21,6 +21,7 @@ public class Garage : MonoBehaviour
     [SerializeField] private Sprite activeSlotImage;
 
     [HideInInspector] public bool ispartSelectionWindowOpened = false;
+    [HideInInspector] public bool isPlaneMisconfigured = false;
     private Image currentActiveSlotImage;
     private int currentIndex = 0;
     private int currentRow = 0;
@@ -88,17 +89,17 @@ public class Garage : MonoBehaviour
         // Vertical movement (up)
         else if (inputController.Move.y > movementDeadZone)
         {
-            if (currentRow == 4)
+            if (!isPlaneMisconfigured && currentRow == 4)
             {
                 currentRow = 3;
                 currentIndex = 0;
             }
-            else if (currentRow == 3)
+            else if (!isPlaneMisconfigured && currentRow == 3)
             {
                 currentRow = 2;
                 currentIndex = 0;
             }
-            else if (currentRow == 2)
+            else if (!isPlaneMisconfigured && currentRow == 2)
             {
                 currentRow = 1;
                 currentIndex = 2;
@@ -219,9 +220,9 @@ public class Garage : MonoBehaviour
         {
             switch (currentIndex)
             {
-                case 0: partSelection.DisplayMainWeaponParts(); break;
+                case 0: partSelection.DisplayLeftOuterWeaponParts(); break;
                 case 1: partSelection.DisplayLeftInnerWeaponParts(); break;
-                case 2: partSelection.DisplayLeftOuterWeaponParts(); break;
+                case 2: partSelection.DisplayMainWeaponParts(); break;
                 case 3: partSelection.DisplayRightInnerWeaponParts(); break;
                 case 4: partSelection.DisplayRightOuterWeaponParts(); break;
             }
@@ -230,7 +231,10 @@ public class Garage : MonoBehaviour
 
     private void StartNextMission()
     {
-        gameManager.LoadSceneByName("Game");
+        if (!isPlaneMisconfigured)
+        {
+            gameManager.LoadSceneByName("Game");
+        }
     }
 
     private void OpenPilotSkills()

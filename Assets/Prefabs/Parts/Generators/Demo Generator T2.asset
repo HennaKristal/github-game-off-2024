@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Demo Generator T2
   m_EditorClassIdentifier: 
   partName: Demo Generator T2
-  image: {fileID: 0}
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris
+  manufacturer: Black Market
+  icon: {fileID: 21300000, guid: 1c2ecade19504324d9e8d5c6c8cb5416, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
