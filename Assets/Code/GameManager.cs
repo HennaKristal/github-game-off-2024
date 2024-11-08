@@ -1,28 +1,14 @@
-using UnityEditor;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    [SerializeField] private Fading fading;
 
-    private void Awake()
+    public void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        SetTargetFramerate(60);
-    }
-
-    private void SetTargetFramerate(int fps = 60)
-    {
-        Application.targetFrameRate = fps;
+        fading.StartFadeIn(2f);
     }
 
     public void ExitApplication()
@@ -35,8 +21,11 @@ public class GameManager : MonoBehaviour
         Application.OpenURL(url);
     }
 
-    public void LoadSceneByName(string sceneName)
+    public void LoadSceneByName(string sceneName) => StartCoroutine(ChangeScene(sceneName));
+    private IEnumerator ChangeScene(string sceneName)
     {
+        fading.StartFadeOut(2f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneName);
     }
 }

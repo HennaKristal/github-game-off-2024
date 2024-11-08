@@ -20,6 +20,11 @@ public class Garage : MonoBehaviour
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip selectionSound;
+    [SerializeField] private AudioClip pressedSound;
+
     [HideInInspector] public bool ispartSelectionWindowOpened = false;
     [HideInInspector] public bool isPlaneMisconfigured = false;
     private Image currentActiveSlotImage;
@@ -45,7 +50,7 @@ public class Garage : MonoBehaviour
 
         if (inputController.dodgePressed)
         {
-            SelectCurrentSlot();
+            Invoke(nameof(SelectCurrentSlot), 0f);
         }
     }
 
@@ -89,17 +94,17 @@ public class Garage : MonoBehaviour
         // Vertical movement (up)
         else if (inputController.Move.y > movementDeadZone)
         {
-            if (!isPlaneMisconfigured && currentRow == 4)
+            if (currentRow == 4)
             {
                 currentRow = 3;
                 currentIndex = 0;
             }
-            else if (!isPlaneMisconfigured && currentRow == 3)
+            else if (currentRow == 3)
             {
                 currentRow = 2;
                 currentIndex = 0;
             }
-            else if (!isPlaneMisconfigured && currentRow == 2)
+            else if (currentRow == 2)
             {
                 currentRow = 1;
                 currentIndex = 2;
@@ -140,6 +145,7 @@ public class Garage : MonoBehaviour
         {
             nextInputTime = Time.time + inputCooldown;
             UpdateActiveSlot();
+            PlaySelectionSound();
         }
     }
 
@@ -186,6 +192,8 @@ public class Garage : MonoBehaviour
 
     private void SelectCurrentSlot()
     {
+        PlayPressedSound();
+
         if (currentRow == 0 || currentRow == 1)
         {
             OpenPartSelectionUI();
@@ -214,6 +222,8 @@ public class Garage : MonoBehaviour
                 case 1: partSelection.DisplayEngineParts(); break;
                 case 2: partSelection.DisplayGeneratorParts(); break;
                 case 3: partSelection.DisplayCoolerParts(); break;
+                case 4: partSelection.DisplayTokens(); break;
+                case 5: partSelection.DisplayBadges(); break;
             }
         }
         else if (currentRow == 1)
@@ -233,7 +243,11 @@ public class Garage : MonoBehaviour
     {
         if (!isPlaneMisconfigured)
         {
-            gameManager.LoadSceneByName("Game");
+            gameManager.LoadSceneByName("cp0_mission1");
+        }
+        else
+        {
+            // TODO: show error message
         }
     }
 
@@ -245,5 +259,15 @@ public class Garage : MonoBehaviour
     private void QuitGame()
     {
         gameManager.LoadSceneByName("Main Menu");
+    }
+
+    private void PlaySelectionSound()
+    {
+        audioSource.PlayOneShot(selectionSound);
+    }
+
+    private void PlayPressedSound()
+    {
+        audioSource.PlayOneShot(pressedSound);
     }
 }

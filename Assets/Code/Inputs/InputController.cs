@@ -1,25 +1,51 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
 
     public Vector2 Move { get; private set; }
+
     public bool EscapePressed { get; private set; }
+    public bool EscapeReleased { get; private set; }
+    public bool EscapeHeld { get; private set; }
+
     public bool ScreenshotPressed { get; private set; }
+    public bool ScreenshotReleased { get; private set; }
+    public bool ScreenshotHeld { get; private set; }
+
     public bool MainWeaponPressed { get; private set; }
-    public bool LeftSideInnerWeaponPressed { get; private set; }
-    public bool RightSideInnerWeaponPressed { get; private set; }
-    public bool LeftSideOuterWeaponPressed { get; private set; }
-    public bool RightSideOuterWeaponPressed { get; private set; }
-    public bool MainWeaponHold { get; private set; }
-    public bool LeftSideInnerWeaponHold { get; private set; }
-    public bool RightSideInnerWeaponHold { get; private set; }
-    public bool LeftSideOuterWeaponHold { get; private set; }
-    public bool RightSideOuterWeaponHold { get; private set; }
-    public bool reloadHold { get; private set; }
+    public bool MainWeaponReleased { get; private set; }
+    public bool MainWeaponHeld { get; private set; }
+
+    public bool LeftInnerWeaponPressed { get; private set; }
+    public bool LeftInnerWeaponReleased { get; private set; }
+    public bool LeftInnerWeaponHeld { get; private set; }
+
+    public bool LeftOuterWeaponPressed { get; private set; }
+    public bool LeftOuterWeaponReleased { get; private set; }
+    public bool LeftOuterWeaponHeld { get; private set; }
+
+    public bool RightInnerWeaponPressed { get; private set; }
+    public bool RightInnerWeaponReleased { get; private set; }
+    public bool RightInnerWeaponHeld { get; private set; }
+
+    public bool RightOuterWeaponPressed { get; private set; }
+    public bool RightOuterWeaponReleased { get; private set; }
+    public bool RightOuterWeaponHeld { get; private set; }
+
+    public bool reloadPressed { get; private set; }
+    public bool reloadReleased { get; private set; }
+    public bool reloadHeld { get; private set; }
+
     public bool healPressed { get; private set; }
+    public bool healReleased { get; private set; }
+    public bool healHeld { get; private set; }
+
     public bool dodgePressed { get; private set; }
+    public bool dodgeReleased { get; private set; }
+    public bool dodgeHeld { get; private set; }
 
     private PlayerInputActions PlayerInputActions
     {
@@ -44,27 +70,48 @@ public class InputController : MonoBehaviour
         PlayerInputActions.Disable();
     }
 
-    // Process inputs for this frame
     private void Update()
     {
         Move = PlayerInputActions.Gameplay.Move.ReadValue<Vector2>();
-        ScreenshotPressed = PlayerInputActions.Gameplay.Screenshot.WasPressedThisFrame();
+
         EscapePressed = PlayerInputActions.Gameplay.Escape.WasPressedThisFrame();
+        EscapeReleased = PlayerInputActions.Gameplay.Escape.WasReleasedThisFrame();
+        EscapeHeld = PlayerInputActions.Gameplay.Escape.IsPressed();
+
+        ScreenshotPressed = PlayerInputActions.Gameplay.Screenshot.WasPressedThisFrame();
+        ScreenshotReleased = PlayerInputActions.Gameplay.Screenshot.WasReleasedThisFrame();
+        ScreenshotHeld = PlayerInputActions.Gameplay.Screenshot.IsPressed();
 
         MainWeaponPressed = PlayerInputActions.Gameplay.FireMainWeapon.WasPressedThisFrame();
-        LeftSideInnerWeaponPressed = PlayerInputActions.Gameplay.FireLeftSideInnerWeapon.WasPressedThisFrame();
-        RightSideInnerWeaponPressed = PlayerInputActions.Gameplay.FireRightSideInnerWeapon.WasPressedThisFrame();
-        LeftSideOuterWeaponPressed = PlayerInputActions.Gameplay.FireLeftSideOuterWeapon.WasPressedThisFrame();
-        RightSideOuterWeaponPressed = PlayerInputActions.Gameplay.FireRightSideOuterWeapon.WasPressedThisFrame();
+        MainWeaponReleased = PlayerInputActions.Gameplay.FireMainWeapon.WasReleasedThisFrame();
+        MainWeaponHeld = PlayerInputActions.Gameplay.FireMainWeapon.IsPressed();
 
-        MainWeaponHold = PlayerInputActions.Gameplay.FireMainWeapon.IsPressed();
-        LeftSideInnerWeaponHold = PlayerInputActions.Gameplay.FireLeftSideInnerWeapon.IsPressed();
-        RightSideInnerWeaponHold = PlayerInputActions.Gameplay.FireRightSideInnerWeapon.IsPressed();
-        LeftSideOuterWeaponHold = PlayerInputActions.Gameplay.FireLeftSideOuterWeapon.IsPressed();
-        RightSideOuterWeaponHold = PlayerInputActions.Gameplay.FireRightSideOuterWeapon.IsPressed();
+        LeftInnerWeaponPressed = PlayerInputActions.Gameplay.FireLeftInnerWeapon.WasPressedThisFrame();
+        LeftInnerWeaponReleased = PlayerInputActions.Gameplay.FireLeftInnerWeapon.WasReleasedThisFrame();
+        LeftInnerWeaponHeld = PlayerInputActions.Gameplay.FireLeftInnerWeapon.IsPressed();
 
-        reloadHold = PlayerInputActions.Gameplay.Reload.IsPressed();
+        LeftOuterWeaponPressed = PlayerInputActions.Gameplay.FireLeftOuterWeapon.WasPressedThisFrame();
+        LeftOuterWeaponReleased = PlayerInputActions.Gameplay.FireLeftOuterWeapon.WasReleasedThisFrame();
+        LeftOuterWeaponHeld = PlayerInputActions.Gameplay.FireLeftOuterWeapon.IsPressed();
+
+        RightInnerWeaponPressed = PlayerInputActions.Gameplay.FireRightInnerWeapon.WasPressedThisFrame();
+        RightInnerWeaponReleased = PlayerInputActions.Gameplay.FireRightInnerWeapon.WasReleasedThisFrame();
+        RightInnerWeaponHeld = PlayerInputActions.Gameplay.FireRightInnerWeapon.IsPressed();
+
+        RightOuterWeaponPressed = PlayerInputActions.Gameplay.FireRightOuterWeapon.WasPressedThisFrame();
+        RightOuterWeaponReleased = PlayerInputActions.Gameplay.FireRightOuterWeapon.WasReleasedThisFrame();
+        RightOuterWeaponHeld = PlayerInputActions.Gameplay.FireRightOuterWeapon.IsPressed();
+
+        reloadPressed = PlayerInputActions.Gameplay.Reload.WasPressedThisFrame();
+        reloadReleased = PlayerInputActions.Gameplay.Reload.WasReleasedThisFrame();
+        reloadHeld = PlayerInputActions.Gameplay.Reload.IsPressed();
+
         healPressed = PlayerInputActions.Gameplay.Heal.WasPressedThisFrame();
+        healReleased = PlayerInputActions.Gameplay.Heal.WasReleasedThisFrame();
+        healHeld = PlayerInputActions.Gameplay.Heal.IsPressed();
+
         dodgePressed = PlayerInputActions.Gameplay.Dodge.WasPressedThisFrame();
+        dodgeReleased = PlayerInputActions.Gameplay.Dodge.WasReleasedThisFrame();
+        dodgeHeld = PlayerInputActions.Gameplay.Dodge.IsPressed();
     }
 }

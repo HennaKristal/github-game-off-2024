@@ -1,16 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum PartCategory
-{
+public enum PartCategory {
     PlaneCores,
     Engines,
     Generators,
     Coolers,
+    Tokens,
+    Badges,
     MainWeapons,
     LeftInnerWeapons,
     LeftOuterWeapons,
@@ -20,6 +21,7 @@ public enum PartCategory
 
 public class PartSelection : MonoBehaviour
 {
+
     [Header("References")]
     [SerializeField] private Garage garage;
     [SerializeField] private InputController inputController;
@@ -30,6 +32,8 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private List<EngineStats> allEngineParts;
     [SerializeField] private List<GeneratorStats> allGeneratorParts;
     [SerializeField] private List<CoolerStats> allCoolerParts;
+    [SerializeField] private List<TokenStats> allTokens;
+    [SerializeField] private List<BadgeStats> allBadges;
     [SerializeField] private List<WeaponStats> allMainWeaponsParts;
     [SerializeField] private List<WeaponStats> allLeftInnerWeaponParts;
     [SerializeField] private List<WeaponStats> allLeftOuterWeaponParts;
@@ -39,6 +43,8 @@ public class PartSelection : MonoBehaviour
     private List<EngineStats> engineParts = new List<EngineStats>();
     private List<GeneratorStats> generatorParts = new List<GeneratorStats>();
     private List<CoolerStats> coolerParts = new List<CoolerStats>();
+    private List<TokenStats> tokens = new List<TokenStats>();
+    private List<BadgeStats> badges = new List<BadgeStats>();
     private List<WeaponStats> mainWeaponParts = new List<WeaponStats>();
     private List<WeaponStats> leftInnerWeaponParts = new List<WeaponStats>();
     private List<WeaponStats> leftOuterWeaponParts = new List<WeaponStats>();
@@ -80,7 +86,9 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private Image equippedEngineImage;
     [SerializeField] private Image equippedGeneratorImage;
     [SerializeField] private Image equippedCoolerImage;
-    [SerializeField] private Image equippedMainGunImage;
+    [SerializeField] private Image equippedTokenImage;
+    [SerializeField] private Image equippedBadgeImage;
+    [SerializeField] private Image equippedMainWeaponImage;
     [SerializeField] private Image equippedLeftInnerWeaponImage;
     [SerializeField] private Image equippedLeftOuterWeaponImage;
     [SerializeField] private Image equippedRightInnerWeaponImage;
@@ -91,7 +99,9 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private TextMeshProUGUI equippedEngineNameText;
     [SerializeField] private TextMeshProUGUI equippedGeneratorNameText;
     [SerializeField] private TextMeshProUGUI equippedCoolerNameText;
-    [SerializeField] private TextMeshProUGUI equippedMainGunNameText;
+    [SerializeField] private TextMeshProUGUI equippedTokenNameText;
+    [SerializeField] private TextMeshProUGUI equippedBadgeNameText;
+    [SerializeField] private TextMeshProUGUI equippedMainWeaponNameText;
     [SerializeField] private TextMeshProUGUI equippedLeftInnerWeaponNameText;
     [SerializeField] private TextMeshProUGUI equippedLeftOuterWeaponNameText;
     [SerializeField] private TextMeshProUGUI equippedRightInnerWeaponNameText;
@@ -101,15 +111,20 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private Sprite normalSlotImage;
     [SerializeField] private Sprite activeSlotImage;
 
-    private int equippedIndex = -1;
-    private int currentPartIndex = -1;
-    private List<GameObject> partUIs = new List<GameObject>();
-    private Image currentActiveSlotImage;
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip selectionSound;
+    [SerializeField] private AudioClip pressedSound;
+
+    public int equippedIndex = -1;
+    public int currentPartIndex = -1;
+    public List<GameObject> partUIs = new List<GameObject>();
+    public Image currentActiveSlotImage;
     private float inputCooldown = 0.25f;
     private float nextInputTime = 0f;
     private float movementDeadZone = 0.4f;
     private int index = -1;
-    private PartCategory partCategory;
+    public PartCategory partCategory;
 
     private void Start()
     {
@@ -142,8 +157,8 @@ public class PartSelection : MonoBehaviour
                 playerStats.idleHeat = part.idleHeat;
 
                 healthText.text = part.maxHealth.ToString();
-                physicalDefenceText.text = part.physicalDefence.ToString() + "(TODO: calculate %)";
-                energyDefenceText.text = part.energyDefence.ToString() + "(TODO: calculate %)";
+                physicalDefenceText.text = part.physicalDefence.ToString() + " (TODO: calculate %)";
+                energyDefenceText.text = part.energyDefence.ToString() + " (TODO: calculate %)";
                 heatToleranceText.text = part.maxHeatTolerance.ToString() + "ºC";
                 idleHeatText.text = part.idleHeat.ToString() + "ºC";
 
@@ -187,7 +202,7 @@ public class PartSelection : MonoBehaviour
                 playerStats.energyRecharge = part.energyRecharge;
 
                 energyText.text = part.maxEnergy.ToString();
-                energyRechargeText.text = part.energyRecharge.ToString();
+                energyRechargeText.text = part.energyRecharge.ToString() + "/s";
 
                 _energyOutput = part.energyOutput;
                 _energyConsumption += part.energyConsumption;
@@ -215,12 +230,30 @@ public class PartSelection : MonoBehaviour
             }
         }
 
+        foreach (TokenStats token in allTokens)
+        {
+            if (token.isEquipped)
+            {
+                equippedTokenNameText.text = token.partName;
+                equippedTokenImage.sprite = token.icon;
+            }
+        }
+
+        foreach (BadgeStats badge in allBadges)
+        {
+            if (badge.isEquipped)
+            {
+                equippedBadgeNameText.text = badge.partName;
+                equippedBadgeImage.sprite = badge.icon;
+            }
+        }
+
         foreach (WeaponStats part in allMainWeaponsParts)
         {
             if (part.isEquipped)
             {
-                equippedMainGunNameText.text = part.partName;
-                equippedMainGunImage.sprite = part.icon;
+                equippedMainWeaponNameText.text = part.partName;
+                equippedMainWeaponImage.sprite = part.icon;
 
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
@@ -294,36 +327,36 @@ public class PartSelection : MonoBehaviour
         if (_currentCarryWeight > _maxCarryWeight)
         {
             garage.isPlaneMisconfigured = true;
-            carryWeightText.text = _currentCarryWeight.ToString() + "/" + _maxCarryWeight.ToString() + "";
+            carryWeightText.text = _currentCarryWeight.ToString() + "/" + _maxCarryWeight.ToString() + " kg";
         }
         else
         {
-            carryWeightText.text = _currentCarryWeight.ToString() + "/" + _maxCarryWeight.ToString() + "";
+            carryWeightText.text = _currentCarryWeight.ToString() + "/" + _maxCarryWeight.ToString() + " kg";
         }
 
         // Total weight / max total weight
         if (_currentLiftWeight > _maxLiftWeight)
         {
             garage.isPlaneMisconfigured = true;
-            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString() + "(TODO: % reduction in speed)";
+            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString() + " kg (TODO: % reduction in speed)";
         }
         else if (_currentLiftWeight <= _maxLiftWeight * 0.75f)
         {
-            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString() + "(TODO: % reduction in speed)";
+            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString() + " kg (TODO: % reduction in speed)";
         }
         else
         {
-            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString();
+            liftWeightText.text = _currentLiftWeight.ToString() + "/" + _maxLiftWeight.ToString() + " kg";
         }
 
         // Energy Consuption / Energy Output
         if (_energyConsumption > _energyOutput)
         {
-            energyOutputText.text = _energyConsumption.ToString() + "/" + _energyOutput.ToString() + "(100% reduction in energy)";
+            energyOutputText.text = _energyConsumption.ToString() + "/" + _energyOutput.ToString() + " (100% reduction in energy)";
         }
         else if (_energyConsumption <= _energyOutput * 0.75f)
         {
-            energyOutputText.text = _energyConsumption.ToString() + "/" + _energyOutput.ToString() + "(TODO: % reduction in energy)";
+            energyOutputText.text = _energyConsumption.ToString() + "/" + _energyOutput.ToString() + " (TODO: % reduction in energy)";
         }
         else
         {
@@ -344,7 +377,7 @@ public class PartSelection : MonoBehaviour
         {
             if (currentPartIndex == -1)
             {
-                ClosePartSelectionWindow();
+                Invoke(nameof(ClosePartSelectionWindow), 0f);
             }
             else if (currentPartIndex != equippedIndex)
             {
@@ -352,9 +385,9 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        if (inputController.healPressed)
+        if (inputController.healPressed || inputController.EscapePressed)
         {
-            ClosePartSelectionWindow();
+            Invoke(nameof(ClosePartSelectionWindow), 0f);
         }
 
     }
@@ -362,6 +395,7 @@ public class PartSelection : MonoBehaviour
     private void ClosePartSelectionWindow()
     {
         UpdateGarageOverview();
+        PlayPressedSound();
 
         partSelectionWindow.SetActive(false);
         partDetailsWindow.SetActive(false);
@@ -383,6 +417,8 @@ public class PartSelection : MonoBehaviour
         engineParts.Clear();
         generatorParts.Clear();
         coolerParts.Clear();
+        tokens.Clear();
+        badges.Clear();
         mainWeaponParts.Clear();
         leftInnerWeaponParts.Clear();
         leftOuterWeaponParts.Clear();
@@ -447,7 +483,7 @@ public class PartSelection : MonoBehaviour
             {
                 currentPartIndex += 5;
             }
-            else if (Mathf.Floor(currentPartIndex / 5) != Mathf.Floor(partUIs.Count / 5))
+            else if (Mathf.Floor(currentPartIndex / 5) != Mathf.Floor((partUIs.Count - 1) / 5))
             {
                 currentPartIndex = partUIs.Count - 1;
             }
@@ -462,6 +498,7 @@ public class PartSelection : MonoBehaviour
         {
             nextInputTime = Time.time + inputCooldown;
             UpdateActiveSlot();
+            PlaySelectionSound();
         }
     }
 
@@ -476,9 +513,6 @@ public class PartSelection : MonoBehaviour
         if (currentPartIndex == -1)
         {
             exitPartSelectionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
-        }
-        else if (equippedIndex == -1)
-        {
             partDetailName.text = "";
             partDetailManufacturer.text = "";
             partDetailInfo.text = "";
@@ -542,6 +576,18 @@ public class PartSelection : MonoBehaviour
                     + "\n\n<b>Energy Consumption:</b> " + FormatStatDisplay(coolerParts[equippedIndex].energyConsumption, coolerParts[currentPartIndex].energyConsumption, "negative")
                     + "\n\n<b>Repair Cost:</b> " + FormatStatDisplay(coolerParts[equippedIndex].repairCost, coolerParts[currentPartIndex].repairCost, "negative")
                     + "\n\n\n" + coolerParts[currentPartIndex].description;
+            }
+            else if (partCategory == PartCategory.Tokens)
+            {
+                partDetailName.text = tokens[currentPartIndex].partName;
+                partDetailManufacturer.text = tokens[currentPartIndex].manufacturer;
+                partDetailInfo.text = tokens[currentPartIndex].description;
+            }
+            else if (partCategory == PartCategory.Badges)
+            {
+                partDetailName.text = badges[currentPartIndex].partName;
+                partDetailManufacturer.text = badges[currentPartIndex].manufacturer;
+                partDetailInfo.text = badges[currentPartIndex].description;
             }
             else if (partCategory == PartCategory.MainWeapons)
             {
@@ -910,6 +956,102 @@ public class PartSelection : MonoBehaviour
         }
 
         OpenPartSelectionWindow("Coolers", PartCategory.Coolers);
+    }
+
+    public void DisplayTokens()
+    {
+        bool hasAnythingEquipped = false;
+
+        foreach (TokenStats token in allTokens)
+        {
+            if (!token.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            Image icon = partUI.transform.Find("Icon").GetComponent<Image>();
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            tokens.Add(token);
+            index++;
+
+            titleText.text = token.partName;
+            icon.sprite = token.icon;
+
+            if (!hasAnythingEquipped && token.isEquipped)
+            {
+                hasAnythingEquipped = true;
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+
+        if (!hasAnythingEquipped)
+        {
+            currentPartIndex = 0;
+            equippedIndex = -1;
+        }
+
+        OpenPartSelectionWindow("Tokens", PartCategory.Tokens);
+    }
+
+    public void DisplayBadges()
+    {
+        bool hasAnythingEquipped = false;
+
+        foreach (BadgeStats badge in allBadges)
+        {
+            if (!badge.isOwned)
+            {
+                continue;
+            }
+
+            GameObject partUI = Instantiate(partUIPrefab, partParentContainer.transform);
+            Image icon = partUI.transform.Find("Icon").GetComponent<Image>();
+            TextMeshProUGUI titleText = partUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText = partUI.transform.Find("Price").GetComponent<TextMeshProUGUI>();
+
+            partUIs.Add(partUI);
+            badges.Add(badge);
+            index++;
+
+            titleText.text = badge.partName;
+            icon.sprite = badge.icon;
+
+            if (!hasAnythingEquipped && badge.isEquipped)
+            {
+                hasAnythingEquipped = true;
+                currentPartIndex = index;
+                equippedIndex = index;
+                currentActiveSlotImage = partUI.GetComponent<Image>();
+                currentActiveSlotImage.sprite = activeSlotImage;
+                priceText.text = "Equipped";
+                priceText.color = Color.green;
+            }
+            else
+            {
+                priceText.text = "";
+            }
+        }
+
+        if (!hasAnythingEquipped)
+        {
+            currentPartIndex = 0;
+            equippedIndex = -1;
+        }
+
+        OpenPartSelectionWindow("Badges", PartCategory.Badges);
     }
 
     public void DisplayMainWeaponParts()
@@ -1286,6 +1428,8 @@ public class PartSelection : MonoBehaviour
 
     private void EquipPart()
     {
+        PlayPressedSound();
+
         string slotText = partUIs[currentPartIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text;
 
         // Purchase a new part
@@ -1366,6 +1510,26 @@ public class PartSelection : MonoBehaviour
             coolerParts[equippedIndex].isOwned = true;
             coolerParts[equippedIndex].isPurchasable = false;
         }
+        else if (partCategory == PartCategory.Tokens)
+        {
+            if (equippedIndex != -1)
+            {
+                tokens[equippedIndex].isEquipped = false;
+            }
+
+            equippedIndex = currentPartIndex;
+            tokens[equippedIndex].isEquipped = true;
+        }
+        else if (partCategory == PartCategory.Badges)
+        {
+            if (equippedIndex != -1)
+            {
+                badges[equippedIndex].isEquipped = false;
+            }
+
+            equippedIndex = currentPartIndex;
+            badges[equippedIndex].isEquipped = true;
+        }
         else if (partCategory == PartCategory.MainWeapons)
         {
             if (equippedIndex != -1)
@@ -1431,5 +1595,15 @@ public class PartSelection : MonoBehaviour
         partUIs[equippedIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text = "Equipped";
         partUIs[equippedIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().color = Color.green;
         UpdateActiveSlot();
+    }
+
+    private void PlaySelectionSound()
+    {
+        audioSource.PlayOneShot(selectionSound);
+    }
+
+    private void PlayPressedSound()
+    {
+        audioSource.PlayOneShot(pressedSound);
     }
 }

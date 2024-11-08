@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireLeftSideInnerWeapon",
+                    "name": "FireLeftInnerWeapon",
                     "type": "Button",
                     "id": "65e21990-3b2d-472e-8ee9-28ed635fb7ee",
                     "expectedControlType": "",
@@ -51,16 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireRightSideInnerWeapon",
-                    "type": "Button",
-                    "id": "3dc27a48-ec4a-4b38-862b-523c13aa4c8a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FireLeftSideOuterWeapon",
+                    "name": "FireLeftOuterWeapon",
                     "type": "Button",
                     "id": "2f4bfab0-05b5-4352-bfa7-ab62eec153ab",
                     "expectedControlType": "",
@@ -69,7 +60,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireRightSideOuterWeapon",
+                    "name": "FireRightInnerWeapon",
+                    "type": "Button",
+                    "id": "3dc27a48-ec4a-4b38-862b-523c13aa4c8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireRightOuterWeapon",
                     "type": "Button",
                     "id": "cbeb8054-0c68-489c-abb1-bf323be6c704",
                     "expectedControlType": "",
@@ -355,7 +355,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "FireLeftSideInnerWeapon",
+                    "action": "FireLeftInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -366,7 +366,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "FireLeftSideInnerWeapon",
+                    "action": "FireLeftInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -377,7 +377,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "FireRightSideInnerWeapon",
+                    "action": "FireRightInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -388,7 +388,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "FireRightSideInnerWeapon",
+                    "action": "FireRightInnerWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -399,7 +399,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "FireLeftSideOuterWeapon",
+                    "action": "FireLeftOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -410,7 +410,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "FireLeftSideOuterWeapon",
+                    "action": "FireLeftOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -421,7 +421,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "FireRightSideOuterWeapon",
+                    "action": "FireRightOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -432,7 +432,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "FireRightSideOuterWeapon",
+                    "action": "FireRightOuterWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

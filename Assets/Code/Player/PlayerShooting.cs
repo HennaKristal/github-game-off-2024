@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public enum WeaponType
 {
     MainWeapon,
-    LeftSideInner,
-    RightSideInner,
-    LeftSideOuter,
-    RightSideOuter
+    LeftInner,
+    RightInner,
+    LeftOuter,
+    RightOuter
 }
 
 public class PlayerShooting : MonoBehaviour
@@ -49,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (IsFireButtonPressed())
         {
-            if (inputController.reloadHold && remainingRounds > 0)
+            if (inputController.reloadHeld && remainingRounds > 0)
             {
                 StartCoroutine(Reload());
             }
@@ -84,11 +84,11 @@ public class PlayerShooting : MonoBehaviour
         {
             return weaponType switch
             {
-                WeaponType.MainWeapon => inputController.MainWeaponHold,
-                WeaponType.LeftSideInner => inputController.LeftSideInnerWeaponHold,
-                WeaponType.RightSideInner => inputController.RightSideInnerWeaponHold,
-                WeaponType.LeftSideOuter => inputController.LeftSideOuterWeaponHold,
-                WeaponType.RightSideOuter => inputController.RightSideOuterWeaponHold,
+                WeaponType.MainWeapon => inputController.MainWeaponHeld,
+                WeaponType.LeftInner => inputController.LeftInnerWeaponHeld,
+                WeaponType.RightInner => inputController.RightInnerWeaponHeld,
+                WeaponType.LeftOuter => inputController.LeftOuterWeaponHeld,
+                WeaponType.RightOuter => inputController.RightOuterWeaponHeld,
                 _ => false,
             };
         }
@@ -96,11 +96,11 @@ public class PlayerShooting : MonoBehaviour
         {
             return weaponType switch
             {
-                WeaponType.MainWeapon => inputController.MainWeaponHold,
-                WeaponType.LeftSideInner => inputController.LeftSideInnerWeaponHold,
-                WeaponType.RightSideInner => inputController.RightSideInnerWeaponHold,
-                WeaponType.LeftSideOuter => inputController.LeftSideOuterWeaponHold,
-                WeaponType.RightSideOuter => inputController.RightSideOuterWeaponHold,
+                WeaponType.MainWeapon => inputController.MainWeaponHeld,
+                WeaponType.LeftInner => inputController.LeftInnerWeaponHeld,
+                WeaponType.RightInner => inputController.RightInnerWeaponHeld,
+                WeaponType.LeftOuter => inputController.LeftOuterWeaponHeld,
+                WeaponType.RightOuter => inputController.RightOuterWeaponHeld,
                 _ => false,
             };
         }
