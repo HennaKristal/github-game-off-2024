@@ -4,13 +4,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("REFERENCES")]
-    [SerializeField] private InputController inputController;
     [SerializeField] private PlayerStats playerStats;
+    private CameraMovement cameraMovement;
+    private InputController inputController;
     private Rigidbody2D rb;
     private Animator animator;
 
     private void Start()
     {
+        cameraMovement = GameObject.Find("Camera Follow Target").GetComponent<CameraMovement>();
+        inputController = GameManager.Instance.GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -29,18 +32,8 @@ public class PlayerMovement : MonoBehaviour
             inputVector = inputVector.normalized;
         }
 
-        float xSpeed = playerStats.horizontalIdleSpeed;
-
-        if (inputVector.x > 0)
-        {
-            xSpeed = playerStats.horizontalSpeed;
-        }
-        else if (inputVector.x < 0)
-        {
-            xSpeed = -playerStats.horizontalReverseSpeed;
-        }
-
-        float ySpeed = inputVector.y * playerStats.verticalSpeed;
+        float xSpeed = inputVector.x * (playerStats.horizontalSpeed / 100) + cameraMovement.speed;
+        float ySpeed = inputVector.y * (playerStats.verticalSpeed / 100);
 
         rb.linearVelocity = new Vector2(xSpeed, ySpeed);
 

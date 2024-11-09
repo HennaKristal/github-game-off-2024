@@ -17,8 +17,6 @@ public class EngineStats : ScriptableObject
 
     [Header("Speed")]
     public float horizontalSpeed = 5f;
-    public float horizontalIdleSpeed = 1f;
-    public float horizontalReverseSpeed = 2.5f;
     public float verticalSpeed = 5f;
 
     [Header("Weight")]

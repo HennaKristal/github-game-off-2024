@@ -2,13 +2,14 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public enum WeaponType
 {
     MainWeapon,
     LeftInner,
-    RightInner,
     LeftOuter,
+    RightInner,
     RightOuter
 }
 
@@ -16,9 +17,9 @@ public class PlayerShooting : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private InputController inputController;
-    [SerializeField] private WeaponStats weaponStats;
     [SerializeField] private WeaponType weaponType;
+    private InputController inputController;
+    private WeaponStats weaponStats;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI weaponNameText;
@@ -34,6 +35,32 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
+        string parentName = weaponType switch
+        {
+            WeaponType.MainWeapon => "Main Gun Ammo",
+            WeaponType.LeftInner => "Left Inner Weapon Ammo",
+            WeaponType.LeftOuter => "Left Outer Weapon Ammo",
+            WeaponType.RightInner => "Right Inner Weapon Ammo",
+            WeaponType.RightOuter => "Right Outer Weapon Ammo",
+            _ => null
+
+        };
+
+        weaponNameText = GameObject.Find(parentName).transform.Find("Name").GetComponent<TextMeshProUGUI>();
+        magazineText = GameObject.Find(parentName).transform.Find("Magazine").GetComponent<TextMeshProUGUI>();
+        totalRoundsText = GameObject.Find(parentName).transform.Find("Total Rounds").GetComponent<TextMeshProUGUI>();
+        separator = GameObject.Find(parentName).transform.Find("Separator").GetComponent<TextMeshProUGUI>();
+        reloadBar = GameObject.Find(parentName).transform.Find("Reload Bar").GetComponent<Slider>();
+
+        weaponStats = GetWeaponStats();
+
+        if (weaponStats == null)
+        {
+            this.enabled = false;
+        }
+
+        inputController = GameManager.Instance.GetComponent<InputController>();
+
         weaponNameText.text = weaponStats.partName;
 
         currentMagazine = weaponStats.magazineSize;
@@ -41,6 +68,19 @@ public class PlayerShooting : MonoBehaviour
 
         remainingRounds = weaponStats.totalRounds;
         totalRoundsText.text = remainingRounds.ToString();
+    }
+
+    private WeaponStats GetWeaponStats()
+    {
+        switch (weaponType)
+        {
+            case WeaponType.MainWeapon: return GameManager.Instance.allMainWeaponsParts.FirstOrDefault(w => w.isEquipped);
+            case WeaponType.LeftInner: return GameManager.Instance.allLeftInnerWeaponParts.FirstOrDefault(w => w.isEquipped);
+            case WeaponType.LeftOuter: return GameManager.Instance.allLeftOuterWeaponParts.FirstOrDefault(w => w.isEquipped);
+            case WeaponType.RightInner: return GameManager.Instance.allRightInnerWeaponParts.FirstOrDefault(w => w.isEquipped);
+            case WeaponType.RightOuter: return GameManager.Instance.allRightOuterWeaponParts.FirstOrDefault(w => w.isEquipped);
+            default: return null;
+        }
     }
 
     private void Update()

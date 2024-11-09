@@ -19,7 +19,7 @@ MonoBehaviour:
   manufacturer: SkyForge Systems
   icon: {fileID: 21300000, guid: 3c4d19c70e5e0ea4fb523a90d2444ab6, type: 3}
   sprite: {fileID: 21300000, guid: 7528e8335de8e3a4bb69f9cc9cbbfa23, type: 3}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 7876047371446378509, guid: a3d39bfba0b229a4a99d06810725875f, type: 3}
   isOwned: 1
   isEquipped: 1
   isPurchasable: 0

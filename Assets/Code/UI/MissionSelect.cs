@@ -6,15 +6,18 @@ using UnityEngine.UI;
 public class MissionSelect : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private InputController inputController;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameObject missionHolder;
-    [SerializeField] private MissionStats[] missions;
+    [SerializeField] private Sprite[] missionScores;
+    [SerializeField] private Sprite[] missionDifficulties;
+    private InputController inputController;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI missionNameText;
+    [SerializeField] private TextMeshProUGUI missionEmployer;
     [SerializeField] private TextMeshProUGUI missionDescriptionText;
+    [SerializeField] private Image missionDifficultyImage;
+    [SerializeField] private Image missionScoreImage;
     [SerializeField] private TextMeshProUGUI missionRewardText;
     [SerializeField] private TextMeshProUGUI missionAdditionalInfoText;
     [SerializeField] private GameObject replayMissionsButton;
@@ -31,7 +34,6 @@ public class MissionSelect : MonoBehaviour
     private List<Image> missionTargetImages = new List<Image>();
     private List<Transform> missionTargetTransforms = new List<Transform>();
     private bool isDisplayingReplayMission = false;
-    private int totalAvailableMissions = 0;
     private int currentIndex = 0;
     private int currentCategory = 1;
     private int missionActionSelectIndex = 0;
@@ -41,7 +43,9 @@ public class MissionSelect : MonoBehaviour
 
     private void Start()
     {
-        ShowCurrentMissions();
+        inputController = GameManager.Instance.GetInputController();
+
+        ShowStoryMissions();
         UpdateSelectedElement();
     }
 
@@ -60,12 +64,12 @@ public class MissionSelect : MonoBehaviour
                 if (isDisplayingReplayMission)
                 {
                     replayMissionsButton.GetComponent<TextMeshProUGUI>().text = "Replay Missions";
-                    ShowCurrentMissions();
+                    Invoke(nameof(ShowStoryMissions), 0f);
                 }
                 else
                 {
                     replayMissionsButton.GetComponent<TextMeshProUGUI>().text = "Continue Story";
-                    ShowReplayMissions();
+                    Invoke(nameof(ShowReplayMissions), 0f);
                 }
             }
             else if (currentCategory == 3)
@@ -83,11 +87,14 @@ public class MissionSelect : MonoBehaviour
                     RejectMission();
                 }
             }
+
+            PlayPressedSound();
         }
 
         if (inputController.healPressed && currentCategory == 4)
         {
             RejectMission();
+            PlayPressedSound();
         }
     }
 
@@ -112,7 +119,7 @@ public class MissionSelect : MonoBehaviour
         // Horizontal movement (right)
         if (inputController.Move.x > movementDeadZone)
         {
-            if (currentCategory == 1 && currentIndex < totalAvailableMissions - 1)
+            if (currentCategory == 1 && currentIndex < activeMissions.Count - 1)
             {
                 currentIndex++;
             }
@@ -140,7 +147,7 @@ public class MissionSelect : MonoBehaviour
             {
                 currentCategory = 2;
             }
-            else if (currentCategory == 2) 
+            else if (currentCategory == 2)
             {
                 currentCategory = 1;
             }
@@ -190,9 +197,23 @@ public class MissionSelect : MonoBehaviour
             missionTargetTransforms[currentIndex].localScale = new Vector3(1.25f, 1.25f, 1.25f);
 
             missionNameText.text = activeMissions[currentIndex].missionName;
+            missionEmployer.text = activeMissions[currentIndex].employer;
             missionDescriptionText.text = activeMissions[currentIndex].description;
-            missionRewardText.text = "Reward: " + (activeMissions[currentIndex].isCompleted ? activeMissions[currentIndex].replayReward : activeMissions[currentIndex].reward) + "$";
             missionAdditionalInfoText.text = activeMissions[currentIndex].additionalInformation;
+            missionDifficultyImage.sprite = missionDifficulties[activeMissions[currentIndex].difficulty - 1];
+       
+
+            if (activeMissions[currentIndex].isCompleted)
+            {
+                missionScoreImage.gameObject.SetActive(true);
+                missionScoreImage.sprite = missionScores[activeMissions[currentIndex].score];
+                missionRewardText.text = "Reward: " + activeMissions[currentIndex].replayReward + "$";
+            }
+            else
+            {
+                missionScoreImage.gameObject.SetActive(false);
+                missionRewardText.text = "Reward: " + activeMissions[currentIndex].reward + "$";
+            }
         }
         else if (currentCategory == 2)
         {
@@ -206,31 +227,20 @@ public class MissionSelect : MonoBehaviour
         {
             if (missionActionSelectIndex == 0)
             {
-                launchMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f);
-                rejectMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
+                launchMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(0.5f, 0.5f, 0.5f);
+                rejectMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 0f, 0f);
             }
             else
             {
                 launchMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 0f);
-                rejectMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f);
+                rejectMissionButton.GetComponent<TextMeshProUGUI>().color = new Color(0.5f, 0.5f, 0.5f);
             }
         }
-    }
-
-    private void PlaySelectionSound()
-    {
-        audioSource.PlayOneShot(selectionSound);
-    }
-
-    private void PlayPressedSound()
-    {
-        audioSource.PlayOneShot(pressedSound);
     }
 
     private void ClearMissions()
     {
         currentIndex = 0;
-        totalAvailableMissions = 0;
 
         activeMissions.Clear();
         missionTargetImages.Clear();
@@ -242,42 +252,25 @@ public class MissionSelect : MonoBehaviour
         }
     }
 
-    private void ShowCurrentMissions()
+    private void ShowStoryMissions()
     {
-        ClearMissions();
-
-        isDisplayingReplayMission = false;
-
-        foreach (MissionStats mission in missions)
-        {
-            if (playerStats.progressStep == mission.step && !mission.isCompleted)
-            {
-                Transform missionObject = missionHolder.transform.Find(mission.missionName);
-
-                if (missionObject == null)
-                {
-                    Debug.LogWarning($"Mission with name {mission.missionName} not found in missionHolder!");
-                    continue;
-                }
-
-                totalAvailableMissions++;
-                missionObject.gameObject.SetActive(true);
-                activeMissions.Add(mission);
-                missionTargetImages.Add(missionObject.transform.Find("Mission Target Icon").GetComponent<Image>());
-                missionTargetTransforms.Add(missionObject.transform.Find("Mission Target Icon").GetComponent<Transform>());
-            }
-        }
+        ShowMissions(false);
     }
 
     private void ShowReplayMissions()
     {
+        ShowMissions(true);
+    }
+
+    private void ShowMissions(bool showCompleted)
+    {
         ClearMissions();
 
-        isDisplayingReplayMission = true;
+        isDisplayingReplayMission = showCompleted;
 
-        foreach (MissionStats mission in missions)
+        foreach (MissionStats mission in GameManager.Instance.missions)
         {
-            if (mission.isCompleted)
+            if ((showCompleted && mission.isCompleted) || (!showCompleted && playerStats.progressStep == mission.step && !mission.isCompleted))
             {
                 Transform missionObject = missionHolder.transform.Find(mission.missionName);
 
@@ -287,18 +280,12 @@ public class MissionSelect : MonoBehaviour
                     continue;
                 }
 
-                totalAvailableMissions++;
                 missionObject.gameObject.SetActive(true);
                 activeMissions.Add(mission);
-                missionTargetImages.Add(missionObject.transform.Find("Mission Target Icon").GetComponent<Image>());
-                missionTargetTransforms.Add(missionObject.transform.Find("Mission Target Icon").GetComponent<Transform>());
+                missionTargetImages.Add(missionObject.Find("Mission Target Icon").GetComponent<Image>());
+                missionTargetTransforms.Add(missionObject.Find("Mission Target Icon"));
             }
         }
-    }
-
-    private void ReturnToGarage()
-    {
-        gameManager.LoadSceneByName("Garage");
     }
 
     private void SelectMission()
@@ -313,7 +300,9 @@ public class MissionSelect : MonoBehaviour
 
     private void LaunchMission()
     {
-        gameManager.LoadSceneByName(missions[currentIndex].sceneName);
+        playerStats.playingNow = activeMissions[currentIndex].sceneName;
+        GameManager.Instance.LoadSceneByName(activeMissions[currentIndex].sceneName);
+        this.enabled = false;
     }
 
     private void RejectMission()
@@ -321,5 +310,21 @@ public class MissionSelect : MonoBehaviour
         currentCategory = 1;
         launchMissionButton.SetActive(false);
         rejectMissionButton.SetActive(false);
+    }
+
+    private void ReturnToGarage()
+    {
+        GameManager.Instance.LoadSceneByName("Garage");
+        this.enabled = false;
+    }
+
+    private void PlaySelectionSound()
+    {
+        audioSource.PlayOneShot(selectionSound);
+    }
+
+    private void PlayPressedSound()
+    {
+        audioSource.PlayOneShot(pressedSound);
     }
 }

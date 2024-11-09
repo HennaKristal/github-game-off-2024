@@ -14,10 +14,6 @@ public class MainMenuNavigation : MonoBehaviour
 
     private enum MainMenuColumn { Menu, Credits };
 
-    [Header("References")]
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private InputController inputController;
-
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI[] mainButtons;
     [SerializeField] private Credit[] creditButtons;
@@ -27,6 +23,7 @@ public class MainMenuNavigation : MonoBehaviour
     [SerializeField] private AudioClip selectionSound;
     [SerializeField] private AudioClip pressedSound;
 
+    private InputController inputController;
     private int currentIndex = 0;
     private MainMenuColumn currentColumn = MainMenuColumn.Menu;
     private float inputCooldown = 0.25f;
@@ -36,6 +33,8 @@ public class MainMenuNavigation : MonoBehaviour
 
     private void Start()
     {
+        inputController = GameManager.Instance.GetInputController();
+
         isContinueEnabled = PlayerPrefs.HasKey("SaveData");
 
         if (!isContinueEnabled)
@@ -161,7 +160,7 @@ public class MainMenuNavigation : MonoBehaviour
         }
         else
         {
-            gameManager.OpenLink(creditButtons[currentIndex].url);
+            GameManager.Instance.OpenLink(creditButtons[currentIndex].url);
         }
     }
 
@@ -172,7 +171,7 @@ public class MainMenuNavigation : MonoBehaviour
         // TODO: Load all playerprefs and scriptable objects
         // ...
 
-        gameManager.LoadSceneByName("Garage");
+        GameManager.Instance.LoadSceneByName("Garage");
         this.enabled = false;
     }
 
@@ -181,13 +180,13 @@ public class MainMenuNavigation : MonoBehaviour
         // TODO: Clear all scriptable objects and playerprefs
         // ...
 
-        gameManager.LoadSceneByName("cp0_mission1");
+        GameManager.Instance.LoadSceneByName("Tutorial");
         this.enabled = false;
     }
 
     private void ExitGame()
     {
-        gameManager.ExitApplication();
+        GameManager.Instance.ExitApplication();
         this.enabled = false;
     }
 

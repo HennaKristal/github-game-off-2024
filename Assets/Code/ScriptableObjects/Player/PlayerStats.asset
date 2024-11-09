@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   money: 2147483647
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 3199550294526062264, guid: 3a1f0fa984d3e2d418696e8a7aea1c58, type: 3}
   maxHealth: 100
   physicalDefence: 500
   energyDefence: 350
-  horizontalSpeed: 5
-  horizontalIdleSpeed: 1
-  horizontalReverseSpeed: 2.5
-  verticalSpeed: 5
+  horizontalSpeed: 500
+  verticalSpeed: 500
   maxHeatTolerance: 100
   idleHeat: 25
   coolingEfficiency: 2
@@ -35,3 +33,4 @@ MonoBehaviour:
   energyConsumption: 50
   repairCost: 10000
   progressStep: 1
+  playingNow: Tutorial

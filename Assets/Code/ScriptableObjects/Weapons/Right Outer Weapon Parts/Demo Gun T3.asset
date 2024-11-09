@@ -17,9 +17,9 @@ MonoBehaviour:
     done.
   manufacturer: Gunsmiths
   icon: {fileID: 21300000, guid: 41d5f99211a8b29408f4fdca1620c36c, type: 3}
-  isOwned: 1
+  isOwned: 0
   isEquipped: 0
-  isPurchasable: 0
+  isPurchasable: 1
   purchasePrice: 25000
   sellPrice: 10000
   projectilePrefab: {fileID: 4327707515120115634, guid: 7a584c40fdf562a459f149951f873d9b, type: 3}

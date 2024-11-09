@@ -17,11 +17,13 @@ MonoBehaviour:
     Launch a full-scale assault on the airbase that posed such a risk. Dodge heavy
     fire, weave through tight defenses, and unleash your payload to raze their installations.
     The airspace will only be safe once this base is a smoldering ruin."
+  employer: Secret Sanctum
   isCompleted: 0
+  difficulty: 4
+  score: 0
   step: 3
   advenceToStep: 4
   reward: 55000
   replayReward: 22000
-  rewarbonus: 
   additionalInformation: Bonus pay for each airbase destoryed.
-  sceneName: 
+  sceneName: Counterattack

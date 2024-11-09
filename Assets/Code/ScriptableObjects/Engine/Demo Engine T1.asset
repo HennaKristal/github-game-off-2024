@@ -23,10 +23,8 @@ MonoBehaviour:
   isPurchasable: 0
   purchasePrice: 5000
   sellPrice: 2000
-  horizontalSpeed: 5
-  horizontalIdleSpeed: 1
-  horizontalReverseSpeed: 2.5
-  verticalSpeed: 5
+  horizontalSpeed: 500
+  verticalSpeed: 500
   maxLiftWeight: 15000
   weight: 1000
   energyConsumption: 33

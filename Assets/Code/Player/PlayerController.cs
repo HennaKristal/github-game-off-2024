@@ -7,17 +7,11 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerStats playerStats;
 
-    [Header("Health")]
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private TextMeshProUGUI healthText;
-
-    [Header("Energy")]
-    [SerializeField] private Slider energySlider;
-    [SerializeField] private TextMeshProUGUI energyText;
-
-    [Header("Heating")]
-    [SerializeField] private TextMeshProUGUI heatText;
-
+    private Slider healthSlider;
+    private TextMeshProUGUI healthText;
+    private Slider energySlider;
+    private TextMeshProUGUI energyText;
+    private TextMeshProUGUI heatText;
     private float currentHealth;
     private float currentEnergy;
     private float currentHeat;
@@ -25,6 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        healthSlider = GameObject.Find("Health Bar").GetComponent<Slider>();
+        healthText = GameObject.Find("Health Bar Text").GetComponent<TextMeshProUGUI>();
+        energySlider = GameObject.Find("Energy Bar").GetComponent<Slider>();
+        energyText = GameObject.Find("Energy Bar Text").GetComponent<TextMeshProUGUI>();
+        heatText = GameObject.Find("Heat Display").GetComponent<TextMeshProUGUI>();
+
         currentHealth = playerStats.maxHealth;
         currentEnergy = playerStats.maxEnergy;
         currentHeat = playerStats.idleHeat;

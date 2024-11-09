@@ -14,8 +14,6 @@ public class PlayerStats : ScriptableObject
 
     [Header("Speed")]
     public float horizontalSpeed = 5f;
-    public float horizontalIdleSpeed = 1f;
-    public float horizontalReverseSpeed = 2.5f;
     public float verticalSpeed = 5f;
 
     [Header("Heating")]
@@ -41,4 +39,5 @@ public class PlayerStats : ScriptableObject
 
     [Header("Mission Progress")]
     public int progressStep = 0;
+    public string playingNow = "";
 }

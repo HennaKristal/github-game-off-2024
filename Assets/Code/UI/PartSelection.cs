@@ -21,24 +21,12 @@ public enum PartCategory {
 
 public class PartSelection : MonoBehaviour
 {
-
     [Header("References")]
     [SerializeField] private Garage garage;
-    [SerializeField] private InputController inputController;
     [SerializeField] private PlayerStats playerStats;
+    private InputController inputController;
 
     [Header("Parts")]
-    [SerializeField] private List<PlaneStats> allPlaneParts;
-    [SerializeField] private List<EngineStats> allEngineParts;
-    [SerializeField] private List<GeneratorStats> allGeneratorParts;
-    [SerializeField] private List<CoolerStats> allCoolerParts;
-    [SerializeField] private List<TokenStats> allTokens;
-    [SerializeField] private List<BadgeStats> allBadges;
-    [SerializeField] private List<WeaponStats> allMainWeaponsParts;
-    [SerializeField] private List<WeaponStats> allLeftInnerWeaponParts;
-    [SerializeField] private List<WeaponStats> allLeftOuterWeaponParts;
-    [SerializeField] private List<WeaponStats> allRightInnerWeaponParts;
-    [SerializeField] private List<WeaponStats> allRightOuterWeaponParts;
     private List<PlaneStats> planeParts = new List<PlaneStats>();
     private List<EngineStats> engineParts = new List<EngineStats>();
     private List<GeneratorStats> generatorParts = new List<GeneratorStats>();
@@ -128,7 +116,15 @@ public class PartSelection : MonoBehaviour
 
     private void Start()
     {
-        moneyText.text = "Money: " + playerStats.money + "$";
+        inputController = GameManager.Instance.GetInputController();
+
+        moneyText.text = "Money: " + playerStats.money.ToString() + "$";
+
+        if (playerStats.money < 0)
+        {
+            moneyText.color = Color.red;
+        }
+
         UpdateGarageOverview();
     }
 
@@ -142,7 +138,7 @@ public class PartSelection : MonoBehaviour
         float _maxCarryWeight = 0f;
         float _currentCarryWeight = 0f;
 
-        foreach (PlaneStats part in allPlaneParts)
+        foreach (PlaneStats part in GameManager.Instance.allPlaneCoreParts)
         {
             if (part.isEquipped)
             {
@@ -150,6 +146,7 @@ public class PartSelection : MonoBehaviour
                 equippedPlaneCoreImage.sprite = part.icon;
                 planePreviewImage.sprite = part.sprite;
 
+                playerStats.playerPrefab = part.playerPrefab;
                 playerStats.maxHealth = part.maxHealth;
                 playerStats.physicalDefence = part.physicalDefence;
                 playerStats.energyDefence = part.energyDefence;
@@ -169,7 +166,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (EngineStats part in allEngineParts)
+        foreach (EngineStats part in GameManager.Instance.allEngineParts)
         {
             if (part.isEquipped)
             {
@@ -177,8 +174,6 @@ public class PartSelection : MonoBehaviour
                 equippedEngineImage.sprite = part.icon;
 
                 playerStats.horizontalSpeed = part.horizontalSpeed;
-                playerStats.horizontalIdleSpeed = part.horizontalIdleSpeed;
-                playerStats.horizontalReverseSpeed = part.horizontalReverseSpeed;
                 playerStats.verticalSpeed = part.verticalSpeed;
 
                 horizontalSpeedText.text = part.horizontalSpeed.ToString() + " km/h";
@@ -191,7 +186,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (GeneratorStats part in allGeneratorParts)
+        foreach (GeneratorStats part in GameManager.Instance.allGeneratorParts)
         {
             if (part.isEquipped)
             {
@@ -211,7 +206,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (CoolerStats part in allCoolerParts)
+        foreach (CoolerStats part in GameManager.Instance.allCoolerParts)
         {
             if (part.isEquipped)
             {
@@ -230,7 +225,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (TokenStats token in allTokens)
+        foreach (TokenStats token in GameManager.Instance.allTokens)
         {
             if (token.isEquipped)
             {
@@ -239,7 +234,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (BadgeStats badge in allBadges)
+        foreach (BadgeStats badge in GameManager.Instance.allBadges)
         {
             if (badge.isEquipped)
             {
@@ -248,7 +243,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (WeaponStats part in allMainWeaponsParts)
+        foreach (WeaponStats part in GameManager.Instance.allMainWeaponsParts)
         {
             if (part.isEquipped)
             {
@@ -261,7 +256,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (WeaponStats part in allLeftInnerWeaponParts)
+        foreach (WeaponStats part in GameManager.Instance.allLeftInnerWeaponParts)
         {
             if (part.isEquipped)
             {
@@ -274,7 +269,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (WeaponStats part in allLeftOuterWeaponParts)
+        foreach (WeaponStats part in GameManager.Instance.allLeftOuterWeaponParts)
         {
             if (part.isEquipped)
             {
@@ -287,7 +282,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (WeaponStats part in allRightInnerWeaponParts)
+        foreach (WeaponStats part in GameManager.Instance.allRightInnerWeaponParts)
         {
             if (part.isEquipped)
             {
@@ -300,7 +295,7 @@ public class PartSelection : MonoBehaviour
             }
         }
 
-        foreach (WeaponStats part in allRightOuterWeaponParts)
+        foreach (WeaponStats part in GameManager.Instance.allRightOuterWeaponParts)
         {
             if (part.isEquipped)
             {
@@ -754,7 +749,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (PlaneStats planePart in allPlaneParts)
+        foreach (PlaneStats planePart in GameManager.Instance.allPlaneCoreParts)
         {
             if (!planePart.isPurchasable && !planePart.isOwned)
             {
@@ -806,7 +801,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (EngineStats enginePart in allEngineParts)
+        foreach (EngineStats enginePart in GameManager.Instance.allEngineParts)
         {
             if (!enginePart.isPurchasable && !enginePart.isOwned)
             {
@@ -858,7 +853,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (GeneratorStats generatorPart in allGeneratorParts)
+        foreach (GeneratorStats generatorPart in GameManager.Instance.allGeneratorParts)
         {
             if (!generatorPart.isPurchasable && !generatorPart.isOwned)
             {
@@ -910,7 +905,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (CoolerStats coolerPart in allCoolerParts)
+        foreach (CoolerStats coolerPart in GameManager.Instance.allCoolerParts)
         {
             if (!coolerPart.isPurchasable && !coolerPart.isOwned)
             {
@@ -962,7 +957,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (TokenStats token in allTokens)
+        foreach (TokenStats token in GameManager.Instance.allTokens)
         {
             if (!token.isOwned)
             {
@@ -1010,7 +1005,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (BadgeStats badge in allBadges)
+        foreach (BadgeStats badge in GameManager.Instance.allBadges)
         {
             if (!badge.isOwned)
             {
@@ -1058,7 +1053,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (WeaponStats mainWeaponsPart in allMainWeaponsParts)
+        foreach (WeaponStats mainWeaponsPart in GameManager.Instance.allMainWeaponsParts)
         {
             if (!mainWeaponsPart.isPurchasable && !mainWeaponsPart.isOwned)
             {
@@ -1110,7 +1105,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (WeaponStats leftInnerWeaponPart in allLeftInnerWeaponParts)
+        foreach (WeaponStats leftInnerWeaponPart in GameManager.Instance.allLeftInnerWeaponParts)
         {
             if (!leftInnerWeaponPart.isPurchasable && !leftInnerWeaponPart.isOwned)
             {
@@ -1162,7 +1157,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (WeaponStats leftOuterWeaponPart in allLeftOuterWeaponParts)
+        foreach (WeaponStats leftOuterWeaponPart in GameManager.Instance.allLeftOuterWeaponParts)
         {
             if (!leftOuterWeaponPart.isPurchasable && !leftOuterWeaponPart.isOwned)
             {
@@ -1214,7 +1209,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (WeaponStats rightInnerWeaponPart in allRightInnerWeaponParts)
+        foreach (WeaponStats rightInnerWeaponPart in GameManager.Instance.allRightInnerWeaponParts)
         {
             if (!rightInnerWeaponPart.isPurchasable && !rightInnerWeaponPart.isOwned)
             {
@@ -1266,7 +1261,7 @@ public class PartSelection : MonoBehaviour
     {
         bool hasAnythingEquipped = false;
 
-        foreach (WeaponStats rightOuterWeaponPart in allRightOuterWeaponParts)
+        foreach (WeaponStats rightOuterWeaponPart in GameManager.Instance.allRightOuterWeaponParts)
         {
             if (!rightOuterWeaponPart.isPurchasable && !rightOuterWeaponPart.isOwned)
             {
@@ -1318,7 +1313,7 @@ public class PartSelection : MonoBehaviour
     {
         if (category == PartCategory.PlaneCores)
         {
-            foreach (PlaneStats part in allPlaneParts)
+            foreach (PlaneStats part in GameManager.Instance.allPlaneCoreParts)
             {
                 if (part.partName == name)
                 {
@@ -1330,7 +1325,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.Engines)
         {
-            foreach (EngineStats part in allEngineParts)
+            foreach (EngineStats part in GameManager.Instance.allEngineParts)
             {
                 if (part.partName == name)
                 {
@@ -1342,7 +1337,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.Generators)
         {
-            foreach (GeneratorStats part in allGeneratorParts)
+            foreach (GeneratorStats part in GameManager.Instance.allGeneratorParts)
             {
                 if (part.partName == name)
                 {
@@ -1354,7 +1349,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.Coolers)
         {
-            foreach (CoolerStats part in allCoolerParts)
+            foreach (CoolerStats part in GameManager.Instance.allCoolerParts)
             {
                 if (part.partName == name)
                 {
@@ -1366,7 +1361,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.MainWeapons)
         {
-            foreach (WeaponStats part in allMainWeaponsParts)
+            foreach (WeaponStats part in GameManager.Instance.allMainWeaponsParts)
             {
                 if (part.partName == name)
                 {
@@ -1378,7 +1373,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.LeftInnerWeapons)
         {
-            foreach (WeaponStats part in allLeftInnerWeaponParts)
+            foreach (WeaponStats part in GameManager.Instance.allLeftInnerWeaponParts)
             {
                 if (part.partName == name)
                 {
@@ -1390,7 +1385,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.LeftOuterWeapons)
         {
-            foreach (WeaponStats part in allLeftOuterWeaponParts)
+            foreach (WeaponStats part in GameManager.Instance.allLeftOuterWeaponParts)
             {
                 if (part.partName == name)
                 {
@@ -1402,7 +1397,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.RightInnerWeapons)
         {
-            foreach (WeaponStats part in allRightInnerWeaponParts)
+            foreach (WeaponStats part in GameManager.Instance.allRightInnerWeaponParts)
             {
                 if (part.partName == name)
                 {
@@ -1414,7 +1409,7 @@ public class PartSelection : MonoBehaviour
         }
         else if (category == PartCategory.RightOuterWeapons)
         {
-            foreach (WeaponStats part in allRightOuterWeaponParts)
+            foreach (WeaponStats part in GameManager.Instance.allRightOuterWeaponParts)
             {
                 if (part.partName == name)
                 {

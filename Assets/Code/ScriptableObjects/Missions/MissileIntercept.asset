@@ -17,11 +17,13 @@ MonoBehaviour:
     They're launching missiles straight toward your base to send a message. Your
     job? Get airborne and intercept every last one. The lives of everyone at base
     are in your hands, don\u2019t let a single missile through!"
+  employer: Secret Sanctum
   isCompleted: 0
+  difficulty: 2
+  score: 0
   step: 2
   advenceToStep: 3
   reward: 50000
   replayReward: 15000
-  rewarbonus: 
   additionalInformation: penalty for each missile missed.
-  sceneName: 
+  sceneName: MissileIntercept

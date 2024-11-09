@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5595caa1947acd4e9e2da0784e72c3e, type: 3}
-  m_Name: __Delivery2
+  m_Name: EscortAllyGargoShip
   m_EditorClassIdentifier: 
-  missionName: __Delivery2
-  description: TODO
+  missionName: Protect and Escort Ally Gargo Ship
+  description: Polaris Technologies, a group of researchers have asked us to aid
+    them in moving valuables from one of the research islands back to the main  land.
+    They want to hire us to protect them.
+  employer: Polaris Technologies
   isCompleted: 0
+  difficulty: 2
+  score: 0
   step: 1
   advenceToStep: 1
   reward: 10000
   replayReward: 5000
-  rewarbonus: 
+  additionalInformation: 
+  sceneName: EscortAllyGargoShip

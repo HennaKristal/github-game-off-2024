@@ -5,9 +5,12 @@ public class MissionStats : ScriptableObject
 {
     public string missionName = "";
     [TextArea(3, 50)] public string description = "";
+    public string employer = "";
 
     public bool isCompleted = false;
 
+    [Range(1, 10)] public int difficulty = 1;
+    [Range(0, 10)] public int score = 0;
     public int step = 0;
     public int advenceToStep = 0;
 

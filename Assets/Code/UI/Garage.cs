@@ -5,9 +5,8 @@ using UnityEngine.UI;
 public class Garage : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private InputController inputController;
-    [SerializeField] private GameManager gameManager;
     [SerializeField] private PartSelection partSelection;
+    private InputController inputController;
 
     [Header("UI Elements")]
     [SerializeField] private Image[] topRowSlots;
@@ -36,6 +35,7 @@ public class Garage : MonoBehaviour
 
     private void Start()
     {
+        inputController = GameManager.Instance.GetInputController();
         UpdateActiveSlot();
     }
 
@@ -243,7 +243,7 @@ public class Garage : MonoBehaviour
     {
         if (!isPlaneMisconfigured)
         {
-            gameManager.LoadSceneByName("Mission Select");
+            GameManager.Instance.LoadSceneByName("Mission Select");
         }
         else
         {
@@ -258,7 +258,7 @@ public class Garage : MonoBehaviour
 
     private void QuitGame()
     {
-        gameManager.LoadSceneByName("Main Menu");
+        GameManager.Instance.LoadSceneByName("Main Menu");
     }
 
     private void PlaySelectionSound()
