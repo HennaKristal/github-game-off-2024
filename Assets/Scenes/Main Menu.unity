@@ -686,7 +686,7 @@ Camera:
   far clip plane: 5000
   field of view: 90
   orthographic: 0
-  orthographic size: 2.955
+  orthographic size: 2.935
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1861,7 +1861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11764706, g: 0, b: 0.15686275, a: 1}
+  m_Color: {r: 0.12156863, g: 0.14117648, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

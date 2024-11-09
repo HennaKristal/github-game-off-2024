@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5595caa1947acd4e9e2da0784e72c3e, type: 3}
+  m_Name: TimeForUpgrade
+  m_EditorClassIdentifier: 
+  missionName: Time for Upgrade
+  description: "A sleek fighter jet is stashed in a high-security military airbase,
+    ripe for the taking. Your mission is to infiltrate the base, navigate through
+    tight patrols, and secure the jet without triggering an alarm. With this new
+    upgrade, you\u2019ll be one step ahead\u2014if you survive the heist!"
+  isCompleted: 0
+  step: 1
+  advenceToStep: 2
+  reward: 0
+  replayReward: 10000
+  rewarbonus: 
+  additionalInformation: Reward will be paid in the parts looted
+  sceneName: 
