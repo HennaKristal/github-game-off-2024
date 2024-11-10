@@ -45,3 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 3afde534dfceab54292e5df2dda8f485, type: 2}
+  missionData: {fileID: 0}
+  endResultView: {fileID: 0}
+  endResultTitle: {fileID: 0}
+  paymentText: {fileID: 0}
+  bonusText: {fileID: 0}
+  repairText: {fileID: 0}
+  ammoCostText: {fileID: 0}
+  PenaltyText: {fileID: 0}
+  scoreImage: {fileID: 0}
+  scoreStarSprites:
+  - {fileID: 969811357, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: -1594658880, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: -1207825206, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: 1796835942, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: 739024682, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: 1342810610, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: -278687299, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: 1280815791, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: -1182741042, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
+  - {fileID: -1463457188, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}

@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Start Game
+  m_text: 'Start New Game
 
 '
   m_isRightToLeft: 0

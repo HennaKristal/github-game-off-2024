@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d2eca00fceddd4e804fa444a4c4b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 0
 --- !u!1 &2436011772771074355
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ Camera:
   far clip plane: 5000
   field of view: 90
   orthographic: 0
-  orthographic size: 2.755
+  orthographic size: 3.06
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

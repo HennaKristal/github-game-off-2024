@@ -12,11 +12,38 @@ EditorBuildSettings:
     path: Assets/Scenes/Garage.unity
     guid: e722082b0fc18e742a120362ebeb0334
   - enabled: 1
-    path: Assets/Scenes/Chapter_1/Demo.unity
+    path: Assets/Scenes/Chapter_1/__Demo.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Mission Select.unity
     guid: 49e29aea8033090498d21f4051974372
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/Tutorial.unity
+    guid: 35293e8898ad42e4ab85aaab6b895194
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/Confrontation.unity
+    guid: 6780cb4470536ea4b89c30621ee62f8c
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/Counterattack.unity
+    guid: b7a8e181c2d5f3e428006248468d9e31
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/DeliverSupplies.unity
+    guid: 9d677a88d744fe74e8b37145a5ae70ef
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/EscortAllyGargoShip.unity
+    guid: b442c2b4450298b48aa532f5f9e3181c
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/FieldsOfFire.unity
+    guid: d5931f9a4d15921458d36159320922e5
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/MissileIntercept.unity
+    guid: fc1c7c7d54bc5db4fa9cdb09a85ebd8d
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/RevealAncientSecrets.unity
+    guid: 3804fa13efc193b42a0522d3910c61c2
+  - enabled: 1
+    path: Assets/Scenes/Chapter_1/TimeForUpgrade.unity
+    guid: 9626cc99b6b4aac4f9f932a5227d11fd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

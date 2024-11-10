@@ -11,6 +11,6 @@ public class TutorialController : MonoBehaviour
 
     private void FinishMission()
     {
-        missionController.CompleteMission(1);
+        missionController.CompleteMission(6);
     }
 }

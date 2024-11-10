@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701625b54d7a24a428fbc2a67edb75fe, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  money: 2147483647
-  playerPrefab: {fileID: 3199550294526062264, guid: 3a1f0fa984d3e2d418696e8a7aea1c58, type: 3}
-  maxHealth: 100
-  physicalDefence: 500
-  energyDefence: 350
-  horizontalSpeed: 500
-  verticalSpeed: 500
-  maxHeatTolerance: 100
-  idleHeat: 25
+  money: -5000
+  playerPrefab: {fileID: 7876047371446378509, guid: a3d39bfba0b229a4a99d06810725875f, type: 3}
+  maxHealth: 700
+  physicalDefence: 333
+  energyDefence: 222
+  horizontalSpeed: 1200
+  verticalSpeed: 1000
+  maxHeatTolerance: 65
+  idleHeat: 15
   coolingEfficiency: 2
   overHeatcoolingEfficiency: 3
-  currentCarryWeight: 5000
-  maxCarryWeight: 10000
-  currentLiftWeight: 5000
-  maxLiftWeight: 15000
+  currentCarryWeight: 2500
+  maxCarryWeight: 6000
+  currentLiftWeight: 8300
+  maxLiftWeight: 11000
   energyOutput: 1000
   maxEnergy: 100
   energyRecharge: 2
-  energyConsumption: 50
-  repairCost: 10000
-  progressStep: 1
+  energyConsumption: 378
+  repairCost: 5300
+  progressStep: 7
   playingNow: Tutorial
