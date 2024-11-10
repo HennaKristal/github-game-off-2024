@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Demo Cooler T1
   m_EditorClassIdentifier: 
   partName: Demo Cooler T1
+  manufacturer: Cool Boys
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris
-  manufacturer: Cool Boys
   icon: {fileID: 21300000, guid: f03303a4b372c184aa05b128a2b01ef0, type: 3}
   isOwned: 1
   isEquipped: 1
-  isPurchasable: 0
+  isPurchasable: 1
+  isOwnedByDefault: 1
+  isEquippedByDefault: 1
+  isPurchasableByDefault: 1
   purchasePrice: 5000
   sellPrice: 2000
   coolingEfficiency: 2

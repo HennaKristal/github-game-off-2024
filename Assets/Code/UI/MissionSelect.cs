@@ -300,7 +300,7 @@ public class MissionSelect : MonoBehaviour
 
     private void LaunchMission()
     {
-        playerStats.playingNow = activeMissions[currentIndex].sceneName;
+        playerStats.selectedLevel = activeMissions[currentIndex].sceneName;
         GameManager.Instance.LoadSceneByName(activeMissions[currentIndex].sceneName);
         this.enabled = false;
     }

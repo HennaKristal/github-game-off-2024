@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: TimeForUpgrade
   m_EditorClassIdentifier: 
   missionName: Time for Upgrade
+  employer: Secret Sanctum
   description: "A sleek fighter jet is stashed in a high-security military airbase,
     ripe for the taking. Your mission is to infiltrate the base, navigate through
     tight patrols, and secure the jet without triggering an alarm. With this new
     upgrade, you\u2019ll be one step ahead\u2014if you survive the heist!"
-  employer: Secret Sanctum
+  additionalInformation: Reward will be paid in the parts looted
+  sceneName: TimeForUpgrade
   isCompleted: 0
   difficulty: 3
   score: 0
   step: 1
   advenceToStep: 2
+  requireCompletionToAdvence: 1
+  gameOverOnFailure: 0
   reward: 0
   replayReward: 10000
-  additionalInformation: Reward will be paid in the parts looted
-  sceneName: TimeForUpgrade

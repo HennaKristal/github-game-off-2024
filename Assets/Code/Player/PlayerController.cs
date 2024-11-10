@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerStats playerStats;
 
+    private MissionController missionController;
     private Slider healthSlider;
     private TextMeshProUGUI healthText;
     private Slider energySlider;
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        missionController = GameObject.Find("MissionController").GetComponent<MissionController>();
+
         healthSlider = GameObject.Find("Health Bar").GetComponent<Slider>();
         healthText = GameObject.Find("Health Bar Text").GetComponent<TextMeshProUGUI>();
         energySlider = GameObject.Find("Energy Bar").GetComponent<Slider>();
@@ -61,6 +65,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        float healthBeforeDamage = currentHealth;
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(currentHealth, 0);
+
+        missionController.AddRepairCost((healthBeforeDamage - currentHealth) / playerStats.maxHealth * playerStats.repairCost);
+
+        if (currentHealth <= 0)
+        {
+            missionController.FailMission();
+        }
+
+        UpdateHealthUI();
+    }
+
     public void IncreaseHeat(float heatAmount)
     {
         currentHeat += heatAmount;
@@ -92,8 +112,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyOverheatDamage(float deltaTime)
     {
-        currentHealth -= 1f * deltaTime;
-        currentHealth = Mathf.Max(currentHealth, 0);
+        TakeDamage(1f * deltaTime);
     }
 
     private void UpdateHealthUI()

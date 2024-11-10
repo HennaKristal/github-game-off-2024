@@ -243,6 +243,7 @@ public class Garage : MonoBehaviour
     {
         if (!isPlaneMisconfigured)
         {
+            GameManager.Instance.SaveData();
             GameManager.Instance.LoadSceneByName("Mission Select");
         }
         else
@@ -258,6 +259,7 @@ public class Garage : MonoBehaviour
 
     private void QuitGame()
     {
+        GameManager.Instance.SaveData();
         GameManager.Instance.LoadSceneByName("Main Menu");
     }
 

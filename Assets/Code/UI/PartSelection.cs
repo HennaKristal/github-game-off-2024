@@ -163,6 +163,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
+
+                break;
             }
         }
 
@@ -183,6 +185,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
+
+                break;
             }
         }
 
@@ -203,6 +207,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
+
+                break;
             }
         }
 
@@ -222,6 +228,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
+
+                break;
             }
         }
 
@@ -231,6 +239,7 @@ public class PartSelection : MonoBehaviour
             {
                 equippedTokenNameText.text = token.partName;
                 equippedTokenImage.sprite = token.icon;
+                break;
             }
         }
 
@@ -240,6 +249,7 @@ public class PartSelection : MonoBehaviour
             {
                 equippedBadgeNameText.text = badge.partName;
                 equippedBadgeImage.sprite = badge.icon;
+                break;
             }
         }
 
@@ -253,6 +263,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
                 _currentLiftWeight += part.weight;
+
+                break;
             }
         }
 
@@ -266,6 +278,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
                 _currentLiftWeight += part.weight;
+
+                break;
             }
         }
 
@@ -279,6 +293,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
                 _currentLiftWeight += part.weight;
+
+                break;
             }
         }
 
@@ -292,6 +308,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
                 _currentLiftWeight += part.weight;
+
+                break;
             }
         }
 
@@ -305,6 +323,8 @@ public class PartSelection : MonoBehaviour
                 _energyConsumption += part.energyConsumption;
                 _currentCarryWeight += part.weight;
                 _currentLiftWeight += part.weight;
+
+                break;
             }
         }
 

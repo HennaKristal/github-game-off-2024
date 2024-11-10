@@ -18,6 +18,7 @@ public class PlayerShooting : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private WeaponType weaponType;
+    private MissionController missionController;
     private InputController inputController;
     private WeaponStats weaponStats;
 
@@ -45,6 +46,8 @@ public class PlayerShooting : MonoBehaviour
             _ => null
 
         };
+
+        missionController = GameObject.Find("MissionController").GetComponent<MissionController>();
 
         weaponNameText = GameObject.Find(parentName).transform.Find("Name").GetComponent<TextMeshProUGUI>();
         magazineText = GameObject.Find(parentName).transform.Find("Magazine").GetComponent<TextMeshProUGUI>();
@@ -160,9 +163,10 @@ public class PlayerShooting : MonoBehaviour
                 weaponStats.criticalChance,
                 weaponStats.criticalDamageMultiplier
             );
-        }
 
-        playerController.IncreaseHeat(weaponStats.heating);
+            missionController.AddAmmoCost(weaponStats.ammunitionCost);
+            playerController.IncreaseHeat(weaponStats.heating);
+        }
     }
 
     private IEnumerator Reload()

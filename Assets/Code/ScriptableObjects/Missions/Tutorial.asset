@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: Tutorial
   m_EditorClassIdentifier: 
   missionName: Tutorial
+  employer: Secret Sanctum
   description: "Welcome, pilot! This training mission will walk you through the basic
     controls and combat maneuvers. Get ready to soar, evade, and engage targets as
     you learn the skills that will keep you alive in the skies. Let\u2019s make sure
     you\u2019re ready for what\u2019s ahead!"
-  employer: Secret Sanctum
+  additionalInformation: 
+  sceneName: Tutorial
   isCompleted: 0
   difficulty: 1
   score: 0
   step: 0
   advenceToStep: 1
+  requireCompletionToAdvence: 0
+  gameOverOnFailure: 0
   reward: 0
   replayReward: 0
-  additionalInformation: 
-  sceneName: Tutorial

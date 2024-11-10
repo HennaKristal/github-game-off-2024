@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: MissileIntercept
   m_EditorClassIdentifier: 
   missionName: Missile Intercept
+  employer: Secret Sanctum
   description: "You may have stolen their jet, but the military isn't backing down.
     They're launching missiles straight toward your base to send a message. Your
     job? Get airborne and intercept every last one. The lives of everyone at base
     are in your hands, don\u2019t let a single missile through!"
-  employer: Secret Sanctum
+  additionalInformation: penalty for each missile missed.
+  sceneName: MissileIntercept
   isCompleted: 0
   difficulty: 2
   score: 0
   step: 2
   advenceToStep: 3
+  requireCompletionToAdvence: 1
+  gameOverOnFailure: 1
   reward: 50000
   replayReward: 15000
-  additionalInformation: penalty for each missile missed.
-  sceneName: MissileIntercept

@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: Counterattack
   m_EditorClassIdentifier: 
   missionName: Counterattack
+  employer: Secret Sanctum
   description: "With the missile threat neutralized, it\u2019s time to strike back.
     Launch a full-scale assault on the airbase that posed such a risk. Dodge heavy
     fire, weave through tight defenses, and unleash your payload to raze their installations.
     The airspace will only be safe once this base is a smoldering ruin."
-  employer: Secret Sanctum
+  additionalInformation: Bonus pay for each airbase destoryed.
+  sceneName: Counterattack
   isCompleted: 0
   difficulty: 4
   score: 0
   step: 3
   advenceToStep: 4
+  requireCompletionToAdvence: 1
+  gameOverOnFailure: 0
   reward: 55000
   replayReward: 22000
-  additionalInformation: Bonus pay for each airbase destoryed.
-  sceneName: Counterattack

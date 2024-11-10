@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51e9deaa6be9d3468c1ecb50ef99f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: 3afde534dfceab54292e5df2dda8f485, type: 2}
   allPlaneCoreParts:
   - {fileID: 11400000, guid: 204db33230621df4cbfc3d50a2b1b6cf, type: 2}
   - {fileID: 11400000, guid: f8546be581af1f04ab225e0024a57fcc, type: 2}

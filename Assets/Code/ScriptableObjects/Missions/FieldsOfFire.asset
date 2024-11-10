@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: FieldsOfFire
   m_EditorClassIdentifier: 
   missionName: Fields of Fire
+  employer: Secret Sanctum
   description: "The military is getting desperate and has set the nearby forest ablaze
     to hide a hidden underground area. You\u2019ll need to brave the fiery skies,
     flying low and fast to avoid heat spikes. Be careful\u2014without a reliable
     cooling system, the intense heat could destroy your jet!"
-  employer: Secret Sanctum
+  additionalInformation: 
+  sceneName: FieldsOfFire
   isCompleted: 0
   difficulty: 4
   score: 0
   step: 4
   advenceToStep: 5
+  requireCompletionToAdvence: 1
+  gameOverOnFailure: 0
   reward: 65000
   replayReward: 30000
-  additionalInformation: 
-  sceneName: FieldsOfFire

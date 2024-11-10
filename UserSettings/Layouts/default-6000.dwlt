@@ -423,7 +423,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d234feff1243feff0049feff1c93feff4896feff3299feff1a9cfeff049ffeff1ea2feff04a5feffeaa7feff28abfeff8cd0feff76d5feff4ce2feffe6d6ffff44d7ffff6ae2ffff46e6ffffeee6ffff9ee9ffffa6e9ffff48ebffff64f2ffff66f6ffff7ef6ffffe6fafffff4ffffff089d0000cea10000c4a20000e4a20000eca2000048f7000056f70000
+      m_ExpandedIDs: f45effff4c98ffffeaa4ffff44a8ffff9cabffff06afffff6eb2ffff48b5ffff1eb8fffff4baffff4ebeffff24c1ffff8cc4ffff62c7ffff38caffff90cdffff66d0ffff3cd3ffff12d6fffff4d8ffff64e3ffffe6faffff56ae000098b70000f4b90000b6bb0000a6be0000d4bf000002c1000030c200005cc30000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1293,7 +1293,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1303,16 +1303,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jesse\Desktop\github-game-off-2024
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 356}
-    m_SelectedIDs: a09b0000
-    m_LastClickedID: 39840
-    m_ExpandedIDs: 000000008e9b0000909b0000929b0000949b0000969b0000989b00009a9b00009c9b00009e9b0000a09b0000
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: 8e9b0000
+    m_LastClickedID: 39822
+    m_ExpandedIDs: 000000008e9b0000909b0000929b0000949b0000969b0000989b00009a9b00009c9b00009e9b0000a09b0000989c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Confrontation
   m_EditorClassIdentifier: 
   missionName: The Confrontation
+  employer: Secret Sanctum
   description: "Return to the surface to face off against the military leader who\u2019s
     been orchestrating these attacks. This showdown won\u2019t be easy\u2014expect
     advanced maneuvers, relentless attacks, and the fight of your life. Victory here
     will mark the end of Chapter One, but the journey is only beginning\u2026"
-  employer: Secret Sanctum
+  additionalInformation: We want the area cleared, you will be paid extra for every
+    enemy defeated.
+  sceneName: Confrontation
   isCompleted: 0
   difficulty: 5
   score: 0
   step: 6
   advenceToStep: 7
+  requireCompletionToAdvence: 1
+  gameOverOnFailure: 1
   reward: 120000
   replayReward: 50000
-  additionalInformation: We want the area cleared, you will be paid extra for every
-    enemy defeated.
-  sceneName: Confrontation

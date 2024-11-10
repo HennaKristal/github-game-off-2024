@@ -39,5 +39,5 @@ public class PlayerStats : ScriptableObject
 
     [Header("Mission Progress")]
     public int progressStep = 0;
-    public string playingNow = "";
+    public string selectedLevel = "";
 }

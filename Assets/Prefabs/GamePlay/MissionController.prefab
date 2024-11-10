@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7759171198695545639}
   - component: {fileID: 4725303661298644699}
   m_Layer: 0
-  m_Name: Mission Controller
+  m_Name: MissionController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,6 +12,7 @@ public class MissionController : MonoBehaviour
     private Dictionary<string, int> bonuses = new Dictionary<string, int>();
     private Dictionary<string, int> penalties = new Dictionary<string, int>();
     private float ammoCost;
+    private float repairCost;
     private bool missionFinished = false;
 
     [Header("UI")]
@@ -33,7 +34,7 @@ public class MissionController : MonoBehaviour
 
         foreach (MissionStats mission in GameManager.Instance.missions)
         {
-            if (mission.sceneName == playerStats.playingNow)
+            if (mission.sceneName == playerStats.selectedLevel)
             {
                 missionData = mission;
                 break;
@@ -53,6 +54,7 @@ public class MissionController : MonoBehaviour
         {
             if (inputController.dodgePressed)
             {
+                GameManager.Instance.SaveData();
                 GameManager.Instance.LoadSceneByName("Garage");
             }
         }
@@ -66,12 +68,18 @@ public class MissionController : MonoBehaviour
         if (!missionData.isCompleted)
         {
             playerStats.progressStep = missionData.advenceToStep;
-            missionData.isCompleted = true;
+            missionData.score = score;
+        }
+
+        if (missionData.score < score)
+        {
             missionData.score = score;
         }
 
         StartCoroutine(AnimateScoreImages(score));
         ShowMissionResult();
+
+        missionData.isCompleted = true;
     }
 
     private IEnumerator AnimateScoreImages(int score)
@@ -127,8 +135,6 @@ public class MissionController : MonoBehaviour
         bonusText.text = GetBonusesText();
         moneyResult += GetBonuses();
 
-        // TODO: repair cost is maxhealth / currenthealth * playerstats.repaircost
-        float repairCost = 0;
         repairText.text = "-" + Mathf.Round(repairCost).ToString() + "$";
         moneyResult -= Mathf.Round(repairCost);
 
@@ -238,5 +244,10 @@ public class MissionController : MonoBehaviour
     public void AddAmmoCost(float cost)
     {
         ammoCost += cost;
+    }
+
+    public void AddRepairCost(float cost)
+    {
+        repairCost += cost;
     }
 }

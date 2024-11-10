@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Demo Engine T5
   m_EditorClassIdentifier: 
   partName: Demo Engine T5
+  manufacturer: Sky Lightning
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris
-  manufacturer: Sky Lightning
   icon: {fileID: 21300000, guid: 45bfa0887921a1641ace839cc3380078, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 1
   purchasePrice: 25000
   sellPrice: 15000
   horizontalSpeed: 1200

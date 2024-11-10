@@ -35,7 +35,7 @@ public class MainMenuNavigation : MonoBehaviour
     {
         inputController = GameManager.Instance.GetInputController();
 
-        isContinueEnabled = PlayerPrefs.HasKey("SaveData");
+        isContinueEnabled = PlayerPrefs.HasKey("SafeFileFound");
 
         if (!isContinueEnabled)
         {
@@ -168,18 +168,14 @@ public class MainMenuNavigation : MonoBehaviour
     {
         if (!isContinueEnabled) { return; }
 
-        // TODO: Load all playerprefs and scriptable objects
-        // ...
-
+        GameManager.Instance.LoadData();
         GameManager.Instance.LoadSceneByName("Garage");
         this.enabled = false;
     }
 
     private void StartNewGame()
     {
-        // TODO: Clear all scriptable objects and playerprefs
-        // ...
-
+        GameManager.Instance.ResetSaveData();
         GameManager.Instance.LoadSceneByName("Tutorial");
         this.enabled = false;
     }

@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: DeliverSupplies
   m_EditorClassIdentifier: 
   missionName: Deliver Supplies
+  employer: Secret Sanctum
   description: Deliver supplies to our troops stuck on the island. The coach is guarded
     with anti air guns and missile defence systems
-  employer: Secret Sanctum
+  additionalInformation: 
+  sceneName: DeliverSupplies
   isCompleted: 0
   difficulty: 2
   score: 0
   step: 1
   advenceToStep: 1
+  requireCompletionToAdvence: 0
+  gameOverOnFailure: 0
   reward: 10000
   replayReward: 5000
-  additionalInformation: 
-  sceneName: DeliverSupplies

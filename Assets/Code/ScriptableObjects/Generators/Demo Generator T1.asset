@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Demo Generator T1
   m_EditorClassIdentifier: 
   partName: Demo Generator T1
+  manufacturer: Unlimited Energy tm
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris
-  manufacturer: Unlimited Energy tm
   icon: {fileID: 21300000, guid: 10d42530cb795544ca3ec003f3ab5888, type: 3}
   isOwned: 1
   isEquipped: 1
-  isPurchasable: 0
+  isPurchasable: 1
+  isOwnedByDefault: 1
+  isEquippedByDefault: 1
+  isPurchasableByDefault: 1
   purchasePrice: 5000
   sellPrice: 2000
   weight: 1000

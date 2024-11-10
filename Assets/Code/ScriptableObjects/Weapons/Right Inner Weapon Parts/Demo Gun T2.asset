@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Demo Gun T2
   m_EditorClassIdentifier: 
   partName: Demo Gun T2
+  manufacturer: Gunsmiths
   description: Rusty machine gun. Not the most glorious weapon, but it gets the job
     done.
-  manufacturer: Gunsmiths
   icon: {fileID: 21300000, guid: c0b1550b2f385be489a8e748e5ad646b, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 1
   purchasePrice: 10000
   sellPrice: 5000
   projectilePrefab: {fileID: 4327707515120115634, guid: cebc18cae55577b4e9562632b3d9f944, type: 3}

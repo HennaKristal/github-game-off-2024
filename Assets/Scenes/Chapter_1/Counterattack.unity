@@ -29560,7 +29560,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1054573696198283504, guid: 0419a81ad10f21a47bfcf64319730be9, type: 3}
       propertyPath: m_Name
-      value: Damage Number Canvas
+      value: DamageNumberCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3596614725945139478, guid: 0419a81ad10f21a47bfcf64319730be9, type: 3}
       propertyPath: m_Pivot.x
@@ -29814,7 +29814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458409549101055886, guid: 9637da31cee69ae4bacb4aae3ed2ee82, type: 3}
       propertyPath: m_Name
-      value: UI Canvas
+      value: UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29847,7 +29847,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3950724560689491762, guid: 20666c3a3fc327849b9d1ac19a92cc2a, type: 3}
       propertyPath: m_Name
-      value: Mission Controller
+      value: MissionController
       objectReference: {fileID: 0}
     - target: {fileID: 4725303661298644699, guid: 20666c3a3fc327849b9d1ac19a92cc2a, type: 3}
       propertyPath: bonusText
@@ -30033,7 +30033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7982305932036898528, guid: 7cf02d33e0c1901479ba98b668ac6edc, type: 3}
       propertyPath: m_Name
-      value: Starting Location
+      value: StartingLocation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
