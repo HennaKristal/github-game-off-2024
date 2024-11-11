@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Gun T3
   m_EditorClassIdentifier: 
   partName: Demo Gun T3
+  saveName: DemoGunT3
   manufacturer: Gunsmiths
   description: Rusty machine gun. Not the most glorious weapon, but it gets the job
     done.

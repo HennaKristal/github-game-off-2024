@@ -29344,6 +29344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionController: {fileID: 1539300517}
+  badgeReward: {fileID: 11400000, guid: 0690464df6d7bec4db0599a79fd134d4, type: 2}
 --- !u!114 &1881307397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5689800257221244293, guid: 9637da31cee69ae4bacb4aae3ed2ee82, type: 3}
@@ -29697,7 +29698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3388559717859795158, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: orthographic size
-      value: 3.06
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 3541204525300777844, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: m_Name

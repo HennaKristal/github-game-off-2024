@@ -24,7 +24,7 @@ public class Garage : MonoBehaviour
     [SerializeField] private AudioClip selectionSound;
     [SerializeField] private AudioClip pressedSound;
 
-    [HideInInspector] public bool ispartSelectionWindowOpened = false;
+    [HideInInspector] public bool disableNavigation = false;
     [HideInInspector] public bool isPlaneMisconfigured = false;
     private Image currentActiveSlotImage;
     private int currentIndex = 0;
@@ -41,7 +41,7 @@ public class Garage : MonoBehaviour
 
     private void Update()
     {
-        if (ispartSelectionWindowOpened)
+        if (disableNavigation)
         {
             return;
         }

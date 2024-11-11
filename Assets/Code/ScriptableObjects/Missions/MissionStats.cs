@@ -4,10 +4,10 @@ using UnityEngine;
 public class MissionStats : ScriptableObject
 {
     public string missionName = "";
+    public string sceneName = "";
     public string employer = "";
     [TextArea(3, 50)] public string description = "";
     [TextArea(3, 50)] public string additionalInformation = "";
-    public string sceneName = "";
 
     public bool isCompleted = false;
 

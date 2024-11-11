@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: HornetBadge+
   m_EditorClassIdentifier: 
   partName: Hornet Badge+
+  saveName: HornetBadgePlus
   manufacturer: Demo
   description: Increases Movement speed by 25%
   icon: {fileID: 21300000, guid: f03303a4b372c184aa05b128a2b01ef0, type: 3}
-  isOwned: 1
+  isOwned: 0
   isEquipped: 0
-  isOwnedByDefault: 1
+  isOwnedByDefault: 0
   isEquippedByDefault: 0

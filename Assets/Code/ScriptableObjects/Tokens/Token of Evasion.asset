@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Token of Evasion
   m_EditorClassIdentifier: 
   partName: Token of Evasion
+  saveName: TokenOfEvasion
   manufacturer: Demo
   description: 20% chance hits don't deal damage to you
   icon: {fileID: 21300000, guid: e3fb041618bda9b45821ff39fb16976a, type: 3}
-  isOwned: 1
+  isOwned: 0
   isEquipped: 0
-  isOwnedByDefault: 1
+  isOwnedByDefault: 0
   isEquippedByDefault: 0

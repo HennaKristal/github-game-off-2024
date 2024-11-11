@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance ??= FindFirstObjectByType<GameManager>();
+    private List<Tuple<string, string, string>> garageNotifications = new List<Tuple<string, string, string>>();
     private InputController inputController;
     private Fading fading;
 
@@ -72,6 +73,23 @@ public class GameManager : MonoBehaviour
         fading.StartFadeOut(2f);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void AddNewNotification(string title, string sender, string message)
+    {
+        garageNotifications.Add(Tuple.Create(title, sender, message));
+    }
+
+    public Tuple<string, string, string> GetNotification()
+    {
+        if (garageNotifications.Count > 0)
+        {
+            Tuple<string, string, string> notification = garageNotifications[0];
+            garageNotifications.RemoveAt(0);
+            return notification;
+        }
+
+        return null;
     }
 
     public void ResetSaveData()
@@ -312,83 +330,83 @@ public class GameManager : MonoBehaviour
     {
         foreach (PlaneStats part in allPlaneCoreParts)
         {
-            PlayerPrefs.SetInt("PlaneStats-" + SanitizeName(part.name) + "-isOwned", part.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("PlaneStats-" + SanitizeName(part.name) + "-isEquipped", part.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("PlaneStats-" + SanitizeName(part.name) + "-isPurchasable", part.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("PlaneStats-" + part.saveName + "-isOwned", part.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("PlaneStats-" + part.saveName + "-isEquipped", part.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("PlaneStats-" + part.saveName + "-isPurchasable", part.isPurchasable ? 1 : 0);
         }
 
         foreach (EngineStats part in allEngineParts)
         {
-            PlayerPrefs.SetInt("EngineStats-" + SanitizeName(part.name) + "-isOwned", part.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("EngineStats-" + SanitizeName(part.name) + "-isEquipped", part.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("EngineStats-" + SanitizeName(part.name) + "-isPurchasable", part.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("EngineStats-" + part.saveName + "-isOwned", part.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("EngineStats-" + part.saveName + "-isEquipped", part.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("EngineStats-" + part.saveName + "-isPurchasable", part.isPurchasable ? 1 : 0);
         }
 
         foreach (GeneratorStats part in allGeneratorParts)
         {
-            PlayerPrefs.SetInt("GeneratorStats-" + SanitizeName(part.name) + "-isOwned", part.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("GeneratorStats-" + SanitizeName(part.name) + "-isEquipped", part.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("GeneratorStats-" + SanitizeName(part.name) + "-isPurchasable", part.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("GeneratorStats-" + part.saveName + "-isOwned", part.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("GeneratorStats-" + part.saveName + "-isEquipped", part.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("GeneratorStats-" + part.saveName + "-isPurchasable", part.isPurchasable ? 1 : 0);
         }
 
         foreach (CoolerStats part in allCoolerParts)
         {
-            PlayerPrefs.SetInt("CoolerStats-" + SanitizeName(part.name) + "-isOwned", part.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("CoolerStats-" + SanitizeName(part.name) + "-isEquipped", part.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("CoolerStats-" + SanitizeName(part.name) + "-isPurchasable", part.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("CoolerStats-" + part.saveName + "-isOwned", part.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("CoolerStats-" + part.saveName + "-isEquipped", part.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("CoolerStats-" + part.saveName + "-isPurchasable", part.isPurchasable ? 1 : 0);
         }
 
         foreach (TokenStats token in allTokens)
         {
-            PlayerPrefs.SetInt("TokenStats-" + SanitizeName(token.name) + "-isOwned", token.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("TokenStats-" + SanitizeName(token.name) + "-isEquipped", token.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("TokenStats-" + token.saveName + "-isOwned", token.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("TokenStats-" + token.saveName + "-isEquipped", token.isEquipped ? 1 : 0);
         }
 
         foreach (BadgeStats badge in allBadges)
         {
-            PlayerPrefs.SetInt("BadgeStats-" + SanitizeName(badge.name) + "-isOwned", badge.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("BadgeStats-" + SanitizeName(badge.name) + "-isEquipped", badge.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("BadgeStats-" + badge.saveName + "-isOwned", badge.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("BadgeStats-" + badge.saveName + "-isEquipped", badge.isEquipped ? 1 : 0);
         }
 
         foreach (WeaponStats weapon in allMainWeaponsParts)
         {
-            PlayerPrefs.SetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isOwned", weapon.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isEquipped", weapon.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-Main-" + weapon.saveName + "-isOwned", weapon.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-Main-" + weapon.saveName + "-isEquipped", weapon.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-Main-" + weapon.saveName + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
         }
 
         foreach (WeaponStats weapon in allLeftInnerWeaponParts)
         {
-            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isOwned", weapon.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isEquipped", weapon.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isOwned", weapon.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isEquipped", weapon.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
         }
 
         foreach (WeaponStats weapon in allLeftOuterWeaponParts)
         {
-            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isOwned", weapon.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isEquipped", weapon.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isOwned", weapon.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isEquipped", weapon.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
         }
 
         foreach (WeaponStats weapon in allRightInnerWeaponParts)
         {
-            PlayerPrefs.SetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isOwned", weapon.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isEquipped", weapon.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightInner-" + weapon.saveName + "-isOwned", weapon.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightInner-" + weapon.saveName + "-isEquipped", weapon.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightInner-" + weapon.saveName + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
         }
 
         foreach (WeaponStats weapon in allRightOuterWeaponParts)
         {
-            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isOwned", weapon.isOwned ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isEquipped", weapon.isEquipped ? 1 : 0);
-            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isOwned", weapon.isOwned ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isEquipped", weapon.isEquipped ? 1 : 0);
+            PlayerPrefs.SetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isPurchasable", weapon.isPurchasable ? 1 : 0);
         }
 
         foreach (MissionStats mission in missions)
         {
-            PlayerPrefs.SetInt("MissionStats-" + SanitizeName(mission.sceneName) + "-isCompleted", mission.isCompleted ? 1 : 0);
-            PlayerPrefs.SetInt("MissionStats-" + SanitizeName(mission.sceneName) + "-score", mission.score);
+            PlayerPrefs.SetInt("MissionStats-" + mission.sceneName + "-isCompleted", mission.isCompleted ? 1 : 0);
+            PlayerPrefs.SetInt("MissionStats-" + mission.sceneName + "-score", mission.score);
         }
 
         PlayerPrefs.SetInt("PlayerData-money", playerStats.money);
@@ -422,9 +440,9 @@ public class GameManager : MonoBehaviour
     {
         foreach (PlaneStats part in allPlaneCoreParts)
         {
-            part.isOwned = PlayerPrefs.GetInt("PlaneStats-" + SanitizeName(part.name) + "-isOwned", 0) == 1;
-            part.isEquipped = PlayerPrefs.GetInt("PlaneStats-" + SanitizeName(part.name) + "-isEquipped", 0) == 1;
-            part.isPurchasable = PlayerPrefs.GetInt("PlaneStats-" + SanitizeName(part.name) + "-isPurchasable", 0) == 1;
+            part.isOwned = PlayerPrefs.GetInt("PlaneStats-" + part.saveName + "-isOwned", 0) == 1;
+            part.isEquipped = PlayerPrefs.GetInt("PlaneStats-" + part.saveName + "-isEquipped", 0) == 1;
+            part.isPurchasable = PlayerPrefs.GetInt("PlaneStats-" + part.saveName + "-isPurchasable", 0) == 1;
 
             if (part.isEquipped)
             {
@@ -434,76 +452,76 @@ public class GameManager : MonoBehaviour
 
         foreach (EngineStats part in allEngineParts)
         {
-            part.isOwned = PlayerPrefs.GetInt("EngineStats-" + SanitizeName(part.name) + "-isOwned", 0) == 1;
-            part.isEquipped = PlayerPrefs.GetInt("EngineStats-" + SanitizeName(part.name) + "-isEquipped", 0) == 1;
-            part.isPurchasable = PlayerPrefs.GetInt("EngineStats-" + SanitizeName(part.name) + "-isPurchasable", 0) == 1;
+            part.isOwned = PlayerPrefs.GetInt("EngineStats-" + part.saveName + "-isOwned", 0) == 1;
+            part.isEquipped = PlayerPrefs.GetInt("EngineStats-" + part.saveName + "-isEquipped", 0) == 1;
+            part.isPurchasable = PlayerPrefs.GetInt("EngineStats-" + part.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (GeneratorStats part in allGeneratorParts)
         {
-            part.isOwned = PlayerPrefs.GetInt("GeneratorStats-" + SanitizeName(part.name) + "-isOwned", 0) == 1;
-            part.isEquipped = PlayerPrefs.GetInt("GeneratorStats-" + SanitizeName(part.name) + "-isEquipped", 0) == 1;
-            part.isPurchasable = PlayerPrefs.GetInt("GeneratorStats-" + SanitizeName(part.name) + "-isPurchasable", 0) == 1;
+            part.isOwned = PlayerPrefs.GetInt("GeneratorStats-" + part.saveName + "-isOwned", 0) == 1;
+            part.isEquipped = PlayerPrefs.GetInt("GeneratorStats-" + part.saveName + "-isEquipped", 0) == 1;
+            part.isPurchasable = PlayerPrefs.GetInt("GeneratorStats-" + part.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (CoolerStats part in allCoolerParts)
         {
-            part.isOwned = PlayerPrefs.GetInt("CoolerStats-" + SanitizeName(part.name) + "-isOwned", 0) == 1;
-            part.isEquipped = PlayerPrefs.GetInt("CoolerStats-" + SanitizeName(part.name) + "-isEquipped", 0) == 1;
-            part.isPurchasable = PlayerPrefs.GetInt("CoolerStats-" + SanitizeName(part.name) + "-isPurchasable", 0) == 1;
+            part.isOwned = PlayerPrefs.GetInt("CoolerStats-" + part.saveName + "-isOwned", 0) == 1;
+            part.isEquipped = PlayerPrefs.GetInt("CoolerStats-" + part.saveName + "-isEquipped", 0) == 1;
+            part.isPurchasable = PlayerPrefs.GetInt("CoolerStats-" + part.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (TokenStats token in allTokens)
         {
-            token.isOwned = PlayerPrefs.GetInt("TokenStats-" + SanitizeName(token.name) + "-isOwned", 0) == 1;
-            token.isEquipped = PlayerPrefs.GetInt("TokenStats-" + SanitizeName(token.name) + "-isEquipped", 0) == 1;
+            token.isOwned = PlayerPrefs.GetInt("TokenStats-" + token.saveName + "-isOwned", 0) == 1;
+            token.isEquipped = PlayerPrefs.GetInt("TokenStats-" + token.saveName + "-isEquipped", 0) == 1;
         }
 
         foreach (BadgeStats badge in allBadges)
         {
-            badge.isOwned = PlayerPrefs.GetInt("BadgeStats-" + SanitizeName(badge.name) + "-isOwned", 0) == 1;
-            badge.isEquipped = PlayerPrefs.GetInt("BadgeStats-" + SanitizeName(badge.name) + "-isEquipped", 0) == 1;
+            badge.isOwned = PlayerPrefs.GetInt("BadgeStats-" + badge.saveName + "-isOwned", 0) == 1;
+            badge.isEquipped = PlayerPrefs.GetInt("BadgeStats-" + badge.saveName + "-isEquipped", 0) == 1;
         }
 
         foreach (WeaponStats weapon in allMainWeaponsParts)
         {
-            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isOwned", 0) == 1;
-            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isEquipped", 0) == 1;
-            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-Main-" + SanitizeName(weapon.name) + "-isPurchasable", 0) == 1;
+            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-Main-" + weapon.saveName + "-isOwned", 0) == 1;
+            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-Main-" + weapon.saveName + "-isEquipped", 0) == 1;
+            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-Main-" + weapon.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (WeaponStats weapon in allLeftInnerWeaponParts)
         {
-            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isOwned", 0) == 1;
-            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isEquipped", 0) == 1;
-            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + SanitizeName(weapon.name) + "-isPurchasable", 0) == 1;
+            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isOwned", 0) == 1;
+            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isEquipped", 0) == 1;
+            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-LeftInner-" + weapon.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (WeaponStats weapon in allLeftOuterWeaponParts)
         {
-            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isOwned", 0) == 1;
-            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isEquipped", 0) == 1;
-            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + SanitizeName(weapon.name) + "-isPurchasable", 0) == 1;
+            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isOwned", 0) == 1;
+            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isEquipped", 0) == 1;
+            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-LeftOuter-" + weapon.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (WeaponStats weapon in allRightInnerWeaponParts)
         {
-            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isOwned", 0) == 1;
-            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isEquipped", 0) == 1;
-            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-RightInner-" + SanitizeName(weapon.name) + "-isPurchasable", 0) == 1;
+            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-RightInner-" + weapon.saveName + "-isOwned", 0) == 1;
+            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-RightInner-" + weapon.saveName + "-isEquipped", 0) == 1;
+            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-RightInner-" + weapon.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (WeaponStats weapon in allRightOuterWeaponParts)
         {
-            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isOwned", 0) == 1;
-            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isEquipped", 0) == 1;
-            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + SanitizeName(weapon.name) + "-isPurchasable", 0) == 1;
+            weapon.isOwned = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isOwned", 0) == 1;
+            weapon.isEquipped = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isEquipped", 0) == 1;
+            weapon.isPurchasable = PlayerPrefs.GetInt("WeaponStats-RightOuter-" + weapon.saveName + "-isPurchasable", 0) == 1;
         }
 
         foreach (MissionStats mission in missions)
         {
-            mission.isCompleted = PlayerPrefs.GetInt("MissionStats-" + SanitizeName(mission.sceneName) + "-isCompleted", 0) == 1;
-            mission.score = PlayerPrefs.GetInt("MissionStats-" + SanitizeName(mission.sceneName) + "-score", 0);
+            mission.isCompleted = PlayerPrefs.GetInt("MissionStats-" + mission.sceneName + "-isCompleted", 0) == 1;
+            mission.score = PlayerPrefs.GetInt("MissionStats-" + mission.sceneName + "-score", 0);
         }
 
         playerStats.money = PlayerPrefs.GetInt("PlayerData-money", 0);
@@ -527,10 +545,5 @@ public class GameManager : MonoBehaviour
         playerStats.energyRecharge = PlayerPrefs.GetFloat("PlayerData-energyRecharge", 0);
         playerStats.energyConsumption = PlayerPrefs.GetFloat("PlayerData-energyConsumption", 0);
         playerStats.repairCost = PlayerPrefs.GetFloat("PlayerData-repairCost", 0);
-    }
-
-    private string SanitizeName(string name)
-    {
-        return Regex.Replace(name, @"[^a-zA-Z0-9]", "_");
     }
 }

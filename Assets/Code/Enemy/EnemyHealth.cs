@@ -8,6 +8,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int killPenalty = 0;
     private bool isDead = false;
 
+    private void Start()
+    {
+        if (missionController == null)
+        {
+            missionController = GameObject.Find("MissionController").GetComponent<MissionController>();
+        }
+    }
 
     public void TakeDamage(int damageAmount)
     {
@@ -23,14 +30,17 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
 
-        if (killReward > 0)
+        if (missionController != null)
         {
-            missionController.AddBonus(killReward, "Enemy Target Destoryed");
-        }
+            if (killReward > 0)
+            {
+                missionController.AddBonus(killReward, "Enemy Target Destoryed");
+            }
 
-        if (killPenalty > 0)
-        {
-            missionController.AddPenalty(killPenalty, "Ally Killed");
+            if (killPenalty > 0)
+            {
+                missionController.AddPenalty(killPenalty, "Ally Killed");
+            }
         }
 
         Destroy(gameObject);

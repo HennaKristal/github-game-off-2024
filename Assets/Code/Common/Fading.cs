@@ -3,6 +3,7 @@ using UnityEngine;
 public class Fading : MonoBehaviour
 {
     [SerializeField] private Texture2D fadeOutTexture;
+
     private enum FadeDirection { In, Out, None };
     private FadeDirection fadeDirection = FadeDirection.None;
     private float fadeDuration;

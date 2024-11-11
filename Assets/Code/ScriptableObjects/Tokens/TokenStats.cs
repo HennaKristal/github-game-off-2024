@@ -4,6 +4,7 @@ using UnityEngine;
 public class TokenStats : ScriptableObject
 {
     public string partName = "";
+    public string saveName = "";
     public string manufacturer = "";
     [TextArea(3, 50)] public string description = "";
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Plane T2
   m_EditorClassIdentifier: 
   partName: Demo Plane T2
+  saveName: DemoPlaneT2
   manufacturer: SkyForge Systems
   description: The SkyForge X-Core combines lightweight design with high energy efficiency,
     maximizing power output while minimizing consumption. Ideal for advanced maneuvers

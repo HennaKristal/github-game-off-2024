@@ -1,67 +1,64 @@
+using System;
+using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GarageNotification : MonoBehaviour
 {
-    public GameObject notificationPanel;
-    public Text titleText;
-    public Text messageText;
-    public Button nextButton;
+    [SerializeField] private GameObject notificationPanel;
+    [SerializeField] private Garage garage;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI senderText;
+    [SerializeField] private TextMeshProUGUI messageText;
 
-    private Queue<Notification> notifications = new Queue<Notification>();
-    private bool isDisplaying = false;
-
-    // Inner class to store individual notifications
-    private class Notification
-    {
-        public string Title { get; private set; }
-        public string Message { get; private set; }
-
-        public Notification(string title, string message)
-        {
-            Title = title;
-            Message = message;
-        }
-    }
+    private InputController inputController;
+    private Tuple<string, string, string> notification;
+    private bool noMoreMessages = false;
 
     private void Start()
     {
-        // Hide the notification panel initially
-        notificationPanel.SetActive(false);
-        nextButton.onClick.AddListener(DisplayNextNotification);
+        inputController = GameManager.Instance.GetInputController();
+        DisplayNextNotification();
     }
 
-    // Method to add a new notification
-    public void AddNew(string title, string message)
+    private void Update()
     {
-        notifications.Enqueue(new Notification(title, message));
+        if (noMoreMessages)
+        {
+            return;
+        }
 
-        // Show notification panel if it's not already displaying notifications
-        if (!isDisplaying)
+        if (inputController.dodgePressed)
         {
             DisplayNextNotification();
         }
     }
 
-    // Display the next notification in the queue
     private void DisplayNextNotification()
     {
-        if (notifications.Count > 0)
-        {
-            // Get the next notification and display it
-            Notification currentNotification = notifications.Dequeue();
-            titleText.text = currentNotification.Title;
-            messageText.text = currentNotification.Message;
+        notification = GameManager.Instance.GetNotification();
 
+        if (notification != null)
+        {
+            garage.disableNavigation = true;
             notificationPanel.SetActive(true);
-            isDisplaying = true;
+            titleText.text = notification.Item1;
+            senderText.text = "From: " + notification.Item2;
+            messageText.text = notification.Item3;
         }
         else
         {
-            // No more notifications to display, hide the panel
+
             notificationPanel.SetActive(false);
-            isDisplaying = false;
+            Invoke(nameof(returnNavigationControl), 1f);
+            noMoreMessages = true;
         }
+    }
+
+    private void returnNavigationControl()
+    {
+        garage.disableNavigation = false;
+        this.enabled = false;
     }
 }

@@ -33,9 +33,13 @@ public class CursorManager : MonoBehaviour
     private void Update()
     {
         // Skip update if animation is disabled or not necessary
-        if (animationFrameTime <= 0 || cursorFrameCount <= 1) return;
+        if (animationFrameTime <= 0 || cursorFrameCount <= 1)
+        {
+            return;
+        }
 
         cursorFrameTimer -= Time.deltaTime;
+
         if (cursorFrameTimer <= 0f)
         {
             cursorFrameTimer += animationFrameTime;

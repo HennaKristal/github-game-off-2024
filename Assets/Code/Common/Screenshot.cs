@@ -7,6 +7,7 @@ public class Screenshot : MonoBehaviour
     #if !UNITY_WEBGL
     [SerializeField] private string fileExtension = ".png";
     [SerializeField] private int detailMultiplier = 2;
+
     private InputController inputController;
     private string screenshotsFolder;
 

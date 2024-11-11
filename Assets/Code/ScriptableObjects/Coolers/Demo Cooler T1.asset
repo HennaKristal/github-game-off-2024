@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Cooler T1
   m_EditorClassIdentifier: 
   partName: Demo Cooler T1
+  saveName: DemoCoolerT1
   manufacturer: Cool Boys
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

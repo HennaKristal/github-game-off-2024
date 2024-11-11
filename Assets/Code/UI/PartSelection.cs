@@ -104,6 +104,7 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private AudioClip selectionSound;
     [SerializeField] private AudioClip pressedSound;
 
+    private bool disableNavigation = true;
     public int equippedIndex = -1;
     public int currentPartIndex = -1;
     public List<GameObject> partUIs = new List<GameObject>();
@@ -381,7 +382,7 @@ public class PartSelection : MonoBehaviour
 
     private void Update()
     {
-        if (!garage.ispartSelectionWindowOpened)
+        if (disableNavigation)
         {
             return;
         }
@@ -415,7 +416,8 @@ public class PartSelection : MonoBehaviour
         partSelectionWindow.SetActive(false);
         partDetailsWindow.SetActive(false);
         statsWindow.SetActive(true);
-        garage.ispartSelectionWindowOpened = false;
+        garage.disableNavigation = false;
+        disableNavigation = true;
         index = -1;
         equippedIndex = -1;
         currentPartIndex = -1;
@@ -446,7 +448,8 @@ public class PartSelection : MonoBehaviour
         partSelectionWindow.SetActive(true);
         partDetailsWindow.SetActive(true);
         statsWindow.SetActive(false);
-        garage.ispartSelectionWindowOpened = true;
+        garage.disableNavigation = true;
+        disableNavigation = false;
         partSelectionTitle.text = title;
         partCategory = category;
         UpdateActiveSlot();
@@ -801,7 +804,7 @@ public class PartSelection : MonoBehaviour
             else if (planePart.isPurchasable)
             {
                 priceText.text = $"{planePart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -853,7 +856,7 @@ public class PartSelection : MonoBehaviour
             else if (enginePart.isPurchasable)
             {
                 priceText.text = $"{enginePart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -905,7 +908,7 @@ public class PartSelection : MonoBehaviour
             else if (generatorPart.isPurchasable)
             {
                 priceText.text = $"{generatorPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -957,7 +960,7 @@ public class PartSelection : MonoBehaviour
             else if (coolerPart.isPurchasable)
             {
                 priceText.text = $"{coolerPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -1105,7 +1108,7 @@ public class PartSelection : MonoBehaviour
             else if (mainWeaponsPart.isPurchasable)
             {
                 priceText.text = $"{mainWeaponsPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -1157,7 +1160,7 @@ public class PartSelection : MonoBehaviour
             else if (leftInnerWeaponPart.isPurchasable)
             {
                 priceText.text = $"{leftInnerWeaponPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -1209,7 +1212,7 @@ public class PartSelection : MonoBehaviour
             else if (leftOuterWeaponPart.isPurchasable)
             {
                 priceText.text = $"{leftOuterWeaponPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -1261,7 +1264,7 @@ public class PartSelection : MonoBehaviour
             else if (rightInnerWeaponPart.isPurchasable)
             {
                 priceText.text = $"{rightInnerWeaponPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {
@@ -1313,7 +1316,7 @@ public class PartSelection : MonoBehaviour
             else if (rightOuterWeaponPart.isPurchasable)
             {
                 priceText.text = $"{rightOuterWeaponPart.purchasePrice}$";
-                priceText.color = Color.white;
+                priceText.color = new Color32(255, 200, 0, 255);
             }
             else
             {

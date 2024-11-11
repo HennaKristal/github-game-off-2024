@@ -8,12 +8,12 @@ public class MissionController : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
     private InputController inputController;
-    public MissionStats missionData;
+    private MissionStats missionData;
     private Dictionary<string, int> bonuses = new Dictionary<string, int>();
     private Dictionary<string, int> penalties = new Dictionary<string, int>();
-    private float ammoCost;
-    private float repairCost;
     private bool missionFinished = false;
+    private float ammoCost = 0f;
+    private float repairCost = 0f;
 
     [Header("UI")]
     [SerializeField] private GameObject endResultView;
@@ -62,24 +62,27 @@ public class MissionController : MonoBehaviour
 
     public void CompleteMission(int score)
     {
-        missionFinished = true;
         endResultTitle.text = "Mission Completed";
-
-        if (!missionData.isCompleted)
-        {
-            playerStats.progressStep = missionData.advenceToStep;
-            missionData.score = score;
-        }
 
         if (missionData.score < score)
         {
             missionData.score = score;
         }
 
-        StartCoroutine(AnimateScoreImages(score));
-        ShowMissionResult();
+        if (!missionData.isCompleted)
+        {
+            playerStats.progressStep = missionData.advenceToStep;
+            missionData.isCompleted = true;
+        }
 
-        missionData.isCompleted = true;
+        ShowMissionResult();
+        StartCoroutine(AnimateScoreImages(score));
+        Invoke(nameof(SetMissionFinished), 1f);
+    }
+
+    private void SetMissionFinished()
+    {
+        missionFinished = true;
     }
 
     private IEnumerator AnimateScoreImages(int score)
@@ -95,7 +98,6 @@ public class MissionController : MonoBehaviour
 
     public void FailMission()
     {
-        missionFinished = true;
         endResultTitle.text = "Mission Failed";
         scoreImage.gameObject.SetActive(false);
 
@@ -113,6 +115,7 @@ public class MissionController : MonoBehaviour
         }
 
         ShowMissionResult();
+        Invoke(nameof(SetMissionFinished), 1f);
     }
 
     private void ShowMissionResult()
@@ -180,7 +183,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    public float GetBonuses()
+    private float GetBonuses()
     {
         float total = 0;
 
@@ -192,7 +195,7 @@ public class MissionController : MonoBehaviour
         return total;
     }
 
-    public string GetBonusesText()
+    private string GetBonusesText()
     {
         string bonusSummary = "";
 
@@ -217,7 +220,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    public float GetPenalties()
+    private float GetPenalties()
     {
         float total = 0;
 
@@ -229,7 +232,7 @@ public class MissionController : MonoBehaviour
         return total;
     }
 
-    public string GetPenaltiesText()
+    private string GetPenaltiesText()
     {
         string penaltySummary = "";
 

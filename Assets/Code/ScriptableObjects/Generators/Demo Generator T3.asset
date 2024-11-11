@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Generator T3
   m_EditorClassIdentifier: 
   partName: Demo Generator T3
+  saveName: DemoGeneratorT3
   manufacturer: Unlimited Energy tm
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Token of Learning
   m_EditorClassIdentifier: 
   partName: Token of Learning
+  saveName: TokenOfLearning
   manufacturer: Demo
   description: Increases experience gain by 25%
   icon: {fileID: 21300000, guid: e3fb041618bda9b45821ff39fb16976a, type: 3}
-  isOwned: 1
+  isOwned: 0
   isEquipped: 0
-  isOwnedByDefault: 1
+  isOwnedByDefault: 0
   isEquippedByDefault: 0

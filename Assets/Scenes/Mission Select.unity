@@ -2519,16 +2519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 3afde534dfceab54292e5df2dda8f485, type: 2}
   missionHolder: {fileID: 82693396}
-  missions:
-  - {fileID: 11400000, guid: 092c066509c53ec4c9eaa53555510ae4, type: 2}
-  - {fileID: 11400000, guid: 240ec6a33a17b91409f0d18dc31a9394, type: 2}
-  - {fileID: 11400000, guid: aa075ffbd4b0c5c4e8063aa1aa0e635b, type: 2}
-  - {fileID: 11400000, guid: 6ea9ce43477766c49ac0aa77a2375559, type: 2}
-  - {fileID: 11400000, guid: 57a0a89d5dc681045b5bb531953fca37, type: 2}
-  - {fileID: 11400000, guid: e3948a3161fdaee4eb94ee520f430e71, type: 2}
-  - {fileID: 11400000, guid: 9d4e7e63fa4706749800eaf76374905d, type: 2}
-  - {fileID: 11400000, guid: 92920c0995fa9d143a3e8a59f717ec75, type: 2}
-  - {fileID: 11400000, guid: e33196fc1bf71784bb40f327b323aa2f, type: 2}
   missionScores:
   - {fileID: 969811357, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
   - {fileID: -1594658880, guid: 9b00ac6f51751be4badaae7c61073458, type: 3}
@@ -3009,7 +2999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3388559717859795158, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: orthographic size
-      value: 3.06
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 3541204525300777844, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: m_Name

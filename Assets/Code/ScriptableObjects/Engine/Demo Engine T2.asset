@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Engine T2
   m_EditorClassIdentifier: 
   partName: Demo Engine T2
+  saveName: DemoEngineT2
   manufacturer: Flash'n'crash
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

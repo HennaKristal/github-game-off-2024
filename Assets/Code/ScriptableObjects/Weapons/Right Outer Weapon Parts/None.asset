@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: None
   m_EditorClassIdentifier: 
   partName: None
+  saveName: None
   manufacturer: 
   description: Unquip your weapon
   icon: {fileID: 21300000, guid: e3fb041618bda9b45821ff39fb16976a, type: 3}

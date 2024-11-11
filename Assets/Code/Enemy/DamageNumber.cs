@@ -38,16 +38,7 @@ public class DamageNumber : MonoBehaviour
     {
         textMesh = GetComponent<TextMeshProUGUI>();
 
-        // Make sure damage numbers gets added as a child object to damage number canvas
-        if (canvasParent == null)
-        {
-            GameObject canvasObject = GameObject.FindGameObjectWithTag("DamageNumberCanvas");
-
-            if (canvasObject != null)
-            {
-                canvasParent = canvasObject.transform;
-            }
-        }
+        canvasParent ??= GameObject.FindGameObjectWithTag("DamageNumberCanvas")?.transform;
 
         if (canvasParent != null)
         {

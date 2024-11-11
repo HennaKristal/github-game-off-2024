@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "new_universal_tile", menuName = "2D/Tiles/Universal Rule Tile")]
+[CreateAssetMenu(fileName = "NewTile", menuName = "2D/Tiles/Universal Rule Tile")]
 public class UniversalRuleTile : RuleTile
 {
     private const int DefaultEmptyState = 2;

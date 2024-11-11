@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demo Plane T1
   m_EditorClassIdentifier: 
   partName: Demo Plane T1
+  saveName: DemoPlaneT1
   manufacturer: AeroFusion Industries
   description: Engineered for resilience, the AeroFusion Core-1 is built to withstand
     the harshest conditions
