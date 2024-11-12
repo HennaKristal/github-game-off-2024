@@ -103,6 +103,7 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip selectionSound;
     [SerializeField] private AudioClip pressedSound;
+    [SerializeField] private AudioClip EquipSound;
 
     private bool disableNavigation = true;
     public int equippedIndex = -1;
@@ -1446,7 +1447,7 @@ public class PartSelection : MonoBehaviour
 
     private void EquipPart()
     {
-        PlayPressedSound();
+        PlayEquipSound();
 
         string slotText = partUIs[currentPartIndex].transform.Find("Price").GetComponent<TextMeshProUGUI>().text;
 
@@ -1623,5 +1624,10 @@ public class PartSelection : MonoBehaviour
     private void PlayPressedSound()
     {
         audioSource.PlayOneShot(pressedSound);
+    }
+
+    private void PlayEquipSound()
+    {
+        audioSource.PlayOneShot(EquipSound);
     }
 }

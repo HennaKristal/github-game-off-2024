@@ -27,8 +27,8 @@ MonoBehaviour:
   isPurchasableByDefault: 1
   purchasePrice: 5000
   sellPrice: 2000
-  horizontalSpeed: 500
-  verticalSpeed: 500
+  horizontalSpeed: 750
+  verticalSpeed: 750
   maxLiftWeight: 15000
   weight: 1000
   energyConsumption: 33

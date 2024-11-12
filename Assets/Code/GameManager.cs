@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -47,7 +48,12 @@ public class GameManager : MonoBehaviour
         fading = GetComponent<Fading>();
     }
 
-    public void Start()
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         fading.StartFadeIn(2f);
     }

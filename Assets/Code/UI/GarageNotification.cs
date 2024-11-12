@@ -12,6 +12,10 @@ public class GarageNotification : MonoBehaviour
     [SerializeField] private TextMeshProUGUI senderText;
     [SerializeField] private TextMeshProUGUI messageText;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pressedSound;
+
     private InputController inputController;
     private Tuple<string, string, string> notification;
     private bool noMoreMessages = false;
@@ -31,6 +35,7 @@ public class GarageNotification : MonoBehaviour
 
         if (inputController.dodgePressed)
         {
+            PlayPressedSound();
             DisplayNextNotification();
         }
     }
@@ -60,5 +65,10 @@ public class GarageNotification : MonoBehaviour
     {
         garage.disableNavigation = false;
         this.enabled = false;
+    }
+
+    private void PlayPressedSound()
+    {
+        audioSource.PlayOneShot(pressedSound);
     }
 }
