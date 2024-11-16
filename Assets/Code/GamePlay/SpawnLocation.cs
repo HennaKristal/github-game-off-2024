@@ -6,6 +6,6 @@ public class SpawnLocation : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(playerStats.playerPrefab);
+        Instantiate(playerStats.playerPrefab, transform.position, transform.rotation);
     }
 }

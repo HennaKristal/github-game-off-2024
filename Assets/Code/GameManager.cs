@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
         }
 
         playerStats.progressStep = 0;
+        playerStats.polarisBlacklisted = false;
         playerStats.selectedLevel = "Tutorial";
         playerStats.money = 0;
         CalculatePlayerDefaultStats();
@@ -196,6 +197,8 @@ public class GameManager : MonoBehaviour
         float _maxLiftWeight = 0f;
         float _maxCarryWeight = 0f;
         float _currentCarryWeight = 0f;
+        float _coolingEfficiency = 0f;
+        float _overHeatcoolingEfficiency = 0f;
 
         foreach (PlaneStats part in allPlaneCoreParts)
         {
@@ -239,7 +242,12 @@ public class GameManager : MonoBehaviour
             {
                 playerStats.maxEnergy = part.maxEnergy;
                 playerStats.energyRecharge = part.energyRecharge;
+                playerStats.energyRechargeDelay = part.energyRechargeDelay;
+                playerStats.depletedDelay = part.depletedDelay;
+                playerStats.depletedRecharge = part.depletedRecharge;
 
+                _coolingEfficiency -= part.heatGeneration;
+                _overHeatcoolingEfficiency -= part.heatGeneration;
                 _energyOutput = part.energyOutput;
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
@@ -256,6 +264,8 @@ public class GameManager : MonoBehaviour
                 playerStats.coolingEfficiency = part.coolingEfficiency;
                 playerStats.overHeatcoolingEfficiency = part.overHeatcoolingEfficiency;
 
+                _coolingEfficiency += part.coolingEfficiency;
+                _overHeatcoolingEfficiency += part.overHeatcoolingEfficiency;
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
@@ -330,6 +340,8 @@ public class GameManager : MonoBehaviour
         playerStats.energyConsumption = _energyConsumption;
         playerStats.energyOutput = _energyOutput;
         playerStats.repairCost = _repairCost;
+        playerStats.coolingEfficiency = _coolingEfficiency;
+        playerStats.overHeatcoolingEfficiency = _overHeatcoolingEfficiency;
     }
 
     public void SaveData()
@@ -417,6 +429,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("PlayerData-money", playerStats.money);
         PlayerPrefs.SetInt("PlayerData-progressStep", playerStats.progressStep);
+        PlayerPrefs.SetInt("PlayerData-polarisBlacklisted", playerStats.polarisBlacklisted ? 1 : 0);
         PlayerPrefs.SetString("PlayerData-selectedLevel", playerStats.selectedLevel);
         PlayerPrefs.SetFloat("PlayerData-maxHealth", playerStats.maxHealth);
         PlayerPrefs.SetFloat("PlayerData-physicalDefence", playerStats.physicalDefence);
@@ -533,6 +546,7 @@ public class GameManager : MonoBehaviour
         playerStats.money = PlayerPrefs.GetInt("PlayerData-money", 0);
         playerStats.progressStep = PlayerPrefs.GetInt("PlayerData-progressStep", 0);
         playerStats.selectedLevel = PlayerPrefs.GetString("PlayerData-selectedLevel", "");
+        playerStats.polarisBlacklisted = PlayerPrefs.GetInt("PlayerData-polarisBlacklisted", 0) == 1;
         playerStats.maxHealth = PlayerPrefs.GetFloat("PlayerData-maxHealth", 0);
         playerStats.physicalDefence = PlayerPrefs.GetFloat("PlayerData-physicalDefence", 0);
         playerStats.energyDefence = PlayerPrefs.GetFloat("PlayerData-energyDefence", 0);

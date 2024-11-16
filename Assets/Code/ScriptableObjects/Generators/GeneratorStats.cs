@@ -27,7 +27,13 @@ public class GeneratorStats : ScriptableObject
     public float energyOutput = 0f;
     public float maxEnergy = 0f;
     public float energyRecharge = 0f;
+    public float energyRechargeDelay = 1f;
     public float energyConsumption = 0f;
+    public float depletedDelay = 0f;
+    public float depletedRecharge = 0f;
+
+    [Header("Heating")]
+    public float heatGeneration = 0f;
 
     [Header("Cost")]
     public float repairCost = 0f;

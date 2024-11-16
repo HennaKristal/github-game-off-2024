@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3092aedba86444be2a97bd207f18c, type: 3}
+  m_Name: Helios-Nebula
+  m_EditorClassIdentifier: 
+  partName: Helios-Nebula
+  saveName: Helios-Nebula
+  manufacturer: Helios Energy Systems
+  description: "Helios\u2019s signature high-capacity generator, designed for planes
+    that demand extensive energy reserves. It combines a vast maximum energy pool
+    with a solid, consistent regeneration rate, making it ideal for sustained engagements."
+  icon: {fileID: 21300000, guid: 5db31ba993c75ff4dabe636ea2655c39, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 1
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 1
+  purchasePrice: 32000
+  sellPrice: 32000
+  weight: 650
+  energyOutput: 750
+  maxEnergy: 250
+  energyRecharge: 3
+  energyRechargeDelay: 0.1
+  energyConsumption: 32
+  depletedDelay: 2
+  depletedRecharge: 2
+  heatGeneration: 0.8
+  repairCost: 1600

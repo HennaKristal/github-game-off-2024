@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b956672a3207446a6a200243451f4e, type: 3}
+  m_Name: Pheonix
+  m_EditorClassIdentifier: 
+  partName: Pheonix
+  saveName: Pheonix
+  manufacturer: Secret Sanctum
+  description: The Phoenix has risen once more, spreading its wings to soar high
+    again. Though built from salvaged metal scraps, this plane carries something
+    no other aircraft can claim.. faith, honor, and respect.
+  icon: {fileID: 21300000, guid: 2806ca0e4b10c6742bee254b4d84327d, type: 3}
+  sprite: {fileID: -2000205599, guid: 7a9ba5b0c50f3ee45ae9ddef30700bb6, type: 3}
+  playerPrefab: {fileID: 3148919100440933074, guid: 29bc716bda1f56b409cc05798f5ec026, type: 3}
+  isOwned: 1
+  isEquipped: 1
+  isPurchasable: 1
+  isOwnedByDefault: 1
+  isEquippedByDefault: 1
+  isPurchasableByDefault: 1
+  purchasePrice: 0
+  sellPrice: 0
+  maxHealth: 800
+  physicalDefence: 22
+  energyDefence: 20
+  maxHeatTolerance: 90
+  idleHeat: 15
+  maxCarryWeight: 5000
+  weight: 8000
+  energyConsumption: 48
+  repairCost: 1000

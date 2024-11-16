@@ -12,25 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701625b54d7a24a428fbc2a67edb75fe, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  money: 6992
-  playerPrefab: {fileID: 3199550294526062264, guid: 3a1f0fa984d3e2d418696e8a7aea1c58, type: 3}
-  maxHealth: 1200
-  physicalDefence: 500
-  energyDefence: 350
-  horizontalSpeed: 750
-  verticalSpeed: 750
-  maxHeatTolerance: 100
-  idleHeat: 25
-  coolingEfficiency: 2
-  overHeatcoolingEfficiency: 3
+  money: 67994
+  playerPrefab: {fileID: 3148919100440933074, guid: 29bc716bda1f56b409cc05798f5ec026, type: 3}
+  maxHealth: 800
+  physicalDefence: 22
+  energyDefence: 20
+  horizontalSpeed: 500
+  verticalSpeed: 500
+  maxHeatTolerance: 90
+  idleHeat: 15
+  coolingEfficiency: 1.2
+  overHeatcoolingEfficiency: 2.2
   currentCarryWeight: 500
-  maxCarryWeight: 10000
-  currentLiftWeight: 8500
+  maxCarryWeight: 5000
+  currentLiftWeight: 10650
   maxLiftWeight: 15000
-  energyOutput: 1000
-  maxEnergy: 100
-  energyRecharge: 2
-  energyConsumption: 157
-  repairCost: 4100
+  energyOutput: 750
+  maxEnergy: 250
+  energyRecharge: 3
+  energyRechargeDelay: 0.1
+  energyConsumption: 210
+  depletedDelay: 2
+  depletedRecharge: 2
+  repairCost: 3100
   progressStep: 1
-  selectedLevel: EscortAllyGargoShip
+  selectedLevel: Tutorial
+  polarisBlacklisted: 1

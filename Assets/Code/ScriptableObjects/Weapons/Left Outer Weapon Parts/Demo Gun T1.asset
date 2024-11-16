@@ -17,7 +17,7 @@ MonoBehaviour:
   manufacturer: Gunsmiths
   description: Rusty machine gun. Not the most glorious weapon, but it gets the job
     done.
-  icon: {fileID: 21300000, guid: 5a3fccc0ace88b446a38e48e0185694a, type: 3}
+  icon: {fileID: 21300000, guid: 0d2069da2ee9a0540a94579cdd13186f, type: 3}
   isOwned: 0
   isEquipped: 0
   isPurchasable: 1

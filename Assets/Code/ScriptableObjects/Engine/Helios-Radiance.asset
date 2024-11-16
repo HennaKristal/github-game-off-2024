@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bbf7eed01bf6049970b52bdfde40f0, type: 3}
+  m_Name: Helios-Radiance
+  m_EditorClassIdentifier: 
+  partName: Helios-Radiance
+  saveName: Helios-Radiance
+  manufacturer: Helios Energy Systems
+  description: The pinnacle of energy efficiency, the Radiance offers exceptional
+    performance with extremely low energy consumption.
+  icon: {fileID: 21300000, guid: 006adaf7d63faa549bdfd2bc399c18f2, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 42000
+  sellPrice: 42000
+  horizontalSpeed: 680
+  verticalSpeed: 620
+  maxLiftWeight: 11800
+  weight: 550
+  energyConsumption: 18
+  repairCost: 2100

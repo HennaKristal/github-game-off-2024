@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b956672a3207446a6a200243451f4e, type: 3}
+  m_Name: NightShade
+  m_EditorClassIdentifier: 
+  partName: Night Shade
+  saveName: NightShade
+  manufacturer: Polaris Technologies
+  description: This stealth bomber is designed for silence and stealth, with engines
+    optimized for minimal noise. Its unique design allows it to carry a larger payload,
+    accommodating 50% more [Bomb] type ammunition than standard bombers.
+  icon: {fileID: 21300000, guid: 937b2b7cf7d1de4489b1042f4d9159a1, type: 3}
+  sprite: {fileID: -1011724351, guid: 04c6faf203a7a0648bab0aae77a93cd5, type: 3}
+  playerPrefab: {fileID: 5855973363367782623, guid: 1b7529ae3b3ced04f895bdbbd2ad78d9, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 1
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 1
+  purchasePrice: 50000
+  sellPrice: 50000
+  maxHealth: 1200
+  physicalDefence: 32
+  energyDefence: 45
+  maxHeatTolerance: 80
+  idleHeat: 10
+  maxCarryWeight: 12000
+  weight: 11000
+  energyConsumption: 78
+  repairCost: 2500

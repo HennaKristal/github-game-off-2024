@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0e5db134a3e0e42981a607e0c92ac9, type: 3}
+  m_Name: CLR-EDGE-Boreal
+  m_EditorClassIdentifier: 
+  partName: CLR-EDGE-Boreal
+  saveName: CLR-EDGE-Boreal
+  manufacturer: Polaris Technologies
+  description: An advanced cooler designed for high-tier planes, combining lightweight
+    materials with superior cooling efficiency. Its sleek design complements energy-efficient
+    builds.
+  icon: {fileID: 21300000, guid: 26a5596bda0618b4a9d9730413fe1566, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 35000
+  sellPrice: 35000
+  coolingEfficiency: 3
+  overHeatcoolingEfficiency: 6
+  weight: 550
+  energyConsumption: 15
+  repairCost: 1750

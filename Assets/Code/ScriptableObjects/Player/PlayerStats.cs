@@ -32,7 +32,10 @@ public class PlayerStats : ScriptableObject
     public float energyOutput = 1000;
     public float maxEnergy = 100f;
     public float energyRecharge = 2f;
+    public float energyRechargeDelay = 1f;
     public float energyConsumption = 50f;
+    public float depletedDelay = 0f;
+    public float depletedRecharge = 0f;
 
     [Header("Cost")]
     public float repairCost = 10000f;
@@ -40,4 +43,5 @@ public class PlayerStats : ScriptableObject
     [Header("Mission Progress")]
     public int progressStep = 0;
     public string selectedLevel = "";
+    public bool polarisBlacklisted = false;
 }

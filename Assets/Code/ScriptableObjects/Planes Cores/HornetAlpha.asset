@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b956672a3207446a6a200243451f4e, type: 3}
+  m_Name: HornetAlpha
+  m_EditorClassIdentifier: 
+  partName: Hornet Alpha
+  saveName: HornetAlpha
+  manufacturer: Copy-Paste Pirates
+  description: The Hornet Alpha is the result of an efforts by Copy-Paste Pirates
+    to reverse-engineer the military's classified Hornet Series fighter jet. While
+    incomplete and lacking many of the advanced features of the original, this prototype
+    still represents the cutting edge of modern aerial combat technology.
+  icon: {fileID: 21300000, guid: 4128c0aab5604ea46b06ec64d670e8b9, type: 3}
+  sprite: {fileID: 826764175, guid: 9d3dcafb3f26b04419037711c1725ec8, type: 3}
+  playerPrefab: {fileID: 2082832110916893738, guid: a9e2fcb877a57c840ada065600e8a065, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 200000
+  sellPrice: 200000
+  maxHealth: 1500
+  physicalDefence: 42
+  energyDefence: 38
+  maxHeatTolerance: 120
+  idleHeat: 20
+  maxCarryWeight: 10000
+  weight: 10000
+  energyConsumption: 100
+  repairCost: 10000

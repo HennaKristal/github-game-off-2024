@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b956672a3207446a6a200243451f4e, type: 3}
+  m_Name: SilverEagle
+  m_EditorClassIdentifier: 
+  partName: Silver Eagle
+  saveName: SilverEagle
+  manufacturer: Steel Cloud
+  description: The Silver Eagle is a marvel of lightweight engineering, crafted by
+    Steel Cloud to serve as a heavy assault plane with unmatched defensive capabilities.
+  icon: {fileID: 21300000, guid: 3c71a3a397a195c4bb75c93f351dec3a, type: 3}
+  sprite: {fileID: -1014322621, guid: ed3bb6e3e475cdb42a7609c776322e54, type: 3}
+  playerPrefab: {fileID: 3142957254713709555, guid: b869f22ae1dd87045892485bcd41fdc6, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 85000
+  sellPrice: 85000
+  maxHealth: 1750
+  physicalDefence: 65
+  energyDefence: 20
+  maxHeatTolerance: 110
+  idleHeat: 35
+  maxCarryWeight: 9000
+  weight: 12000
+  energyConsumption: 85
+  repairCost: 4250

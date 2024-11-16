@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3092aedba86444be2a97bd207f18c, type: 3}
+  m_Name: GEN-EDGE-Pulsar
+  m_EditorClassIdentifier: 
+  partName: GEN-EDGE-Pulsar
+  saveName: GEN-EDGE-Pulsar
+  manufacturer: Polaris Technologies
+  description: An advanced generator from Polaris Technologies that delivers energy
+    in rhythmic pulses rather than a continuous flow. This design offers explosive
+    bursts of power, making it perfect for planes with modules that benefit from
+    energy surges.
+  icon: {fileID: 21300000, guid: 89238586ef9a2564fbc5fb319cc1a1f9, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 52500
+  sellPrice: 52500
+  weight: 550
+  energyOutput: 550
+  maxEnergy: 180
+  energyRecharge: 50
+  energyRechargeDelay: 2
+  energyConsumption: 25
+  depletedDelay: 2
+  depletedRecharge: 30
+  heatGeneration: 0.25
+  repairCost: 2625

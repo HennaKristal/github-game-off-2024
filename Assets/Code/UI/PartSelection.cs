@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
@@ -23,6 +22,7 @@ public class PartSelection : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Garage garage;
+    [SerializeField] private GarageNotification garageNotification;
     [SerializeField] private PlayerStats playerStats;
     private InputController inputController;
 
@@ -105,7 +105,7 @@ public class PartSelection : MonoBehaviour
     [SerializeField] private AudioClip pressedSound;
     [SerializeField] private AudioClip EquipSound;
 
-    private bool disableNavigation = true;
+    public bool disableNavigation = true;
     public int equippedIndex = -1;
     public int currentPartIndex = -1;
     public List<GameObject> partUIs = new List<GameObject>();
@@ -139,6 +139,8 @@ public class PartSelection : MonoBehaviour
         float _maxLiftWeight = 0f;
         float _maxCarryWeight = 0f;
         float _currentCarryWeight = 0f;
+        float _coolingEfficiency = 0f;
+        float _overHeatcoolingEfficiency = 0f;
 
         foreach (PlaneStats part in GameManager.Instance.allPlaneCoreParts)
         {
@@ -200,11 +202,19 @@ public class PartSelection : MonoBehaviour
                 equippedGeneratorImage.sprite = part.icon;
 
                 playerStats.maxEnergy = part.maxEnergy;
+                playerStats.energyRechargeDelay = part.energyRechargeDelay;
                 playerStats.energyRecharge = part.energyRecharge;
+                playerStats.depletedDelay = part.depletedDelay;
+                playerStats.depletedRecharge = part.depletedRecharge;
 
                 energyText.text = part.maxEnergy.ToString();
                 energyRechargeText.text = part.energyRecharge.ToString() + "/s";
+                // TODO: add depletedDelay to garage UI stats
+                // TODO: add depletedRecharge to garage UI stats
+                // TODO: add energyRechargeDelay to garage UI stats
 
+                _coolingEfficiency -= part.heatGeneration;
+                _overHeatcoolingEfficiency -= part.heatGeneration;
                 _energyOutput = part.energyOutput;
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
@@ -221,12 +231,8 @@ public class PartSelection : MonoBehaviour
                 equippedCoolerNameText.text = part.partName;
                 equippedCoolerImage.sprite = part.icon;
 
-                playerStats.coolingEfficiency = part.coolingEfficiency;
-                playerStats.overHeatcoolingEfficiency = part.overHeatcoolingEfficiency;
-
-                coolingText.text = part.coolingEfficiency.ToString() + " ºC/s";
-                overHeatCoolingText.text = part.overHeatcoolingEfficiency.ToString() + " ºC/s";
-
+                _coolingEfficiency += part.coolingEfficiency;
+                _overHeatcoolingEfficiency += part.overHeatcoolingEfficiency;
                 _energyConsumption += part.energyConsumption;
                 _currentLiftWeight += part.weight;
                 _repairCost += part.repairCost;
@@ -339,6 +345,11 @@ public class PartSelection : MonoBehaviour
         playerStats.energyConsumption = _energyConsumption;
         playerStats.energyOutput = _energyOutput;
         playerStats.repairCost = _repairCost;
+        playerStats.coolingEfficiency = _coolingEfficiency;
+        playerStats.overHeatcoolingEfficiency = _overHeatcoolingEfficiency;
+
+        coolingText.text = _coolingEfficiency.ToString() + " ºC/s";
+        overHeatCoolingText.text = _overHeatcoolingEfficiency.ToString() + " ºC/s";
 
         // Weapon Weight / Max Weapon Weight
         if (_currentCarryWeight > _maxCarryWeight)
@@ -1456,6 +1467,31 @@ public class PartSelection : MonoBehaviour
         {
             if (int.TryParse(Regex.Replace(slotText, @"[^\d]", ""), out int parsedPrice))
             {
+                if (playerStats.polarisBlacklisted)
+                {
+                    if (partCategory == PartCategory.PlaneCores && planeParts[currentPartIndex].manufacturer == "Polaris Technologies"
+                    || (partCategory == PartCategory.Engines && engineParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.Generators && generatorParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.Coolers && coolerParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.Tokens && tokens[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.Badges && badges[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.MainWeapons && mainWeaponParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.LeftInnerWeapons && leftInnerWeaponParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.LeftOuterWeapons && leftOuterWeaponParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.RightInnerWeapons && rightInnerWeaponParts[currentPartIndex].manufacturer == "Polaris Technologies")
+                    || (partCategory == PartCategory.RightOuterWeapons && rightOuterWeaponParts[currentPartIndex].manufacturer == "Polaris Technologies"))
+                    {
+                        GameManager.Instance.AddNewNotification(
+                            "Purchase Denied",
+                            "System",
+                            "Polaris Technologies has denied your access to their parts."
+                        );
+                        garageNotification.DisplayNextNotification();
+
+                        return; 
+                    }
+                }
+
                 if (playerStats.money >= parsedPrice)
                 {
                     playerStats.money -= parsedPrice;
@@ -1463,13 +1499,25 @@ public class PartSelection : MonoBehaviour
                 }
                 else
                 {
-                    // TODO: user feedback from insufficient money
+                    GameManager.Instance.AddNewNotification(
+                        "Transaction Failed",
+                        "System",
+                        "Insufficient Funds, you don’t have enough credits to make this purchase."
+                    );
+                    garageNotification.DisplayNextNotification();
+
                     return;
                 }
             }
             else
             {
-                // TODO: user feedback from error
+                GameManager.Instance.AddNewNotification(
+                    "System Error",
+                    "System",
+                    "Oops! Something went wrong. Please restart the game or contact support if the problem persists. We apologize for the inconvenience."
+                );
+                garageNotification.DisplayNextNotification();
+
                 return;
             }
         }

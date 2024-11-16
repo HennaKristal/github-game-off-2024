@@ -15,7 +15,7 @@ MonoBehaviour:
   partName: None
   saveName: None
   manufacturer: 
-  description: Unequip current badge
+  description: 
   icon: {fileID: 21300000, guid: e3fb041618bda9b45821ff39fb16976a, type: 3}
   isOwned: 1
   isEquipped: 1

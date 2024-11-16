@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0e5db134a3e0e42981a607e0c92ac9, type: 3}
+  m_Name: CM-CRYO-Frost
+  m_EditorClassIdentifier: 
+  partName: CM-CRYO-Frost
+  saveName: CM-CRYO-Frost
+  manufacturer: cool.me
+  description: An advanced cooling system designed for high-efficiency heat management.
+    Utilizing cryogenic flow technology, it maintains optimal temperatures even during
+    peak module usage.
+  icon: {fileID: 21300000, guid: 9aa84ceabbdd4fb43b4f38ef490c475f, type: 3}
+  isOwned: 0
+  isEquipped: 0
+  isPurchasable: 0
+  isOwnedByDefault: 0
+  isEquippedByDefault: 0
+  isPurchasableByDefault: 0
+  purchasePrice: 65000
+  sellPrice: 65000
+  coolingEfficiency: 4
+  overHeatcoolingEfficiency: 6
+  weight: 820
+  energyConsumption: 39
+  repairCost: 3250

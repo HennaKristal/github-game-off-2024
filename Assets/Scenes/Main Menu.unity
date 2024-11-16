@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 2787712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Build version: 7th November 2024 - 22:59'
+  m_text: 'Build version: 16th November 2024 - 23:45'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 571260c8165c7a34e80414b203dc8b91, type: 2}
   m_sharedMaterial: {fileID: 1880609878249667154, guid: 571260c8165c7a34e80414b203dc8b91, type: 2}
@@ -602,93 +602,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34078389}
   m_CullTransparentMesh: 1
---- !u!1 &144876786
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 144876788}
-  - component: {fileID: 144876787}
-  m_Layer: 0
-  m_Name: skybox1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!212 &144876787
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144876786}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: efeb3ee77980e6044a3a8f80e31c0870, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b02733d14ea9ebe4e94ad82a6849cd96, type: 3}
-  m_Color: {r: 0.627451, g: 0.627451, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 12.75, y: 5.875}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &144876788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144876786}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565652267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,7 +1447,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039323716814978748, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: orthographic size
-      value: 3.08
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 4823308732568080090, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1638,6 +1551,258 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allBadges.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allTokens.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allBadges.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f737462b143ea34eb1556a636662d52, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allTokens.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c004a8f488c39e34da17858e5483917d, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allCoolerParts.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allEngineParts.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: efb16178060d3cf409915e43cebc3a72, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cb57fb6b865784e44bca36f6cb014163, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ed02f225dab0d94fa153cb5e680173b, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56cb15a2c148aee4f8403f1453db5060, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 87b0ac6c81d8e534b81dc74da5f8c08e, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ea7399c082c08c4d896dbb81c30a631, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allCoolerParts.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0389ae70ca8710b47b3e25839cf2288a, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ec0706993b2ecef418c055a6dde04e14, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c6f7791941e90794db5191c13787f8d4, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 54d9a2f3d9dc1ce4f98e2cc344edefed, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b636df3a44f837040ba6152ae04410e0, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e6967621e738a24ab43b49a83358152, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 11d6934402934d44fbb0c6f0b39520df, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0257030376805c34fa394c1afdd74a6d, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a39e3f01bfbab39419433f4e5b21912e, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allEngineParts.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 86d400785ce946148af435fef7de49e7, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allGeneratorParts.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allPlaneCoreParts.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allMainWeaponsParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b1864a8af7cb6bf439714b6d1227a472, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 01325a03de5baaa41abfea0cef6240ff, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f20b0511753096341b98da7d10694b2e, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 554aebfa9ad49bd4eaeec64983801bc3, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 65b5dd0bf9696d5469e402ca3c8f0baa, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 83c111578acf4ec4a9c162263055292a, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allGeneratorParts.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c8b557e6833e1540b730e02cb6b7965, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c7f520f8a9502d44993c2e9abc570b89, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2892668efdc5eaf44a0a935180fca3f3, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d3c6b45016c39c74b800ed09b87216c5, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 75ae41ecda94f8a43810b15a535e0033, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 83253cffee883474c968782a8dec05b2, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d45c2736fcce6d14a833ff9478fdcfc4, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allPlaneCoreParts.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f930acef04befc64bb1e196d824053d0, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allMainWeaponsParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 11e5cad74ef0d1f43b75afc99142bdb6, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allMainWeaponsParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9580b934f81fdc94b9c060baf0d52b7c, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allMainWeaponsParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e975ecfd637f7794fbaab892e05bcc0b, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allMainWeaponsParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a95ced5eed79a264e8ba75977c64ac61, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allLeftInnerWeaponParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allLeftOuterWeaponParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allRightInnerWeaponParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: allRightOuterWeaponParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftInnerWeaponParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cb28d5626bf96d946be566d3f2910127, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftInnerWeaponParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 07779d09d3151d144b97300a188ba039, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftInnerWeaponParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dab38f045f45fc54983b1c143c232447, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftInnerWeaponParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6501097b7690cfb47bbe10bdcd0ba3c0, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftOuterWeaponParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 595d530cf6ad4d24396cb06a6737b741, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftOuterWeaponParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7345fb30b94232a4b8c4f5c3f1352e82, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftOuterWeaponParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a01e0c8cb73bb84e9975d0c7a1e6c07, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allLeftOuterWeaponParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 59035a72793325945989bab2633cef08, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightInnerWeaponParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c29aab7bc44f3d942bf7039330c26c30, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightInnerWeaponParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3892c6f94fb0aff49a3e7403f8eb945c, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightInnerWeaponParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ad78e371fb0c766418430f75c55a4365, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightInnerWeaponParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 97d3c04eae1e60c45ab17a1fcf5bb0b5, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightOuterWeaponParts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7eed67012cbc8c64f949b80b0270f9ff, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightOuterWeaponParts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 61fd37ada41309d47a13b2dffca3c1b2, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightOuterWeaponParts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e345811a257ed1c49a3681ae021de492, type: 2}
+    - target: {fileID: 4117090568694641603, guid: 794f1cf722ca85648889764811a549f8, type: 3}
+      propertyPath: 'allRightOuterWeaponParts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4270f3ab1aaf59944b4a361fd50ba029, type: 2}
     - target: {fileID: 7194697020807982911, guid: 794f1cf722ca85648889764811a549f8, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -2628,7 +2793,7 @@ GameObject:
   - component: {fileID: 1977603894}
   - component: {fileID: 1977603893}
   m_Layer: 0
-  m_Name: Skybox2
+  m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2897,6 +3062,5 @@ SceneRoots:
   - {fileID: 913715267}
   - {fileID: 1616844570}
   - {fileID: 690536341}
-  - {fileID: 144876788}
   - {fileID: 1977603894}
   - {fileID: 2787714}

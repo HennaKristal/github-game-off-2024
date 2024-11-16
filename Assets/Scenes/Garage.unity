@@ -5897,7 +5897,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 800, y: -580}
-  m_SizeDelta: {x: 220, y: 150}
+  m_SizeDelta: {x: 349.45, y: 409.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128892620
 MonoBehaviour:
@@ -5919,7 +5919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1723911407, guid: cd0bfd2225369da45b568b6d723e09c8, type: 3}
+  m_Sprite: {fileID: -2000205599, guid: 7a9ba5b0c50f3ee45ae9ddef30700bb6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6140,6 +6140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   garage: {fileID: 1172276170}
+  garageNotification: {fileID: 1172276171}
   playerStats: {fileID: 11400000, guid: 3afde534dfceab54292e5df2dda8f485, type: 2}
   partSelectionWindow: {fileID: 1453455166}
   statsWindow: {fileID: 1682943503}
@@ -6195,6 +6196,7 @@ MonoBehaviour:
   selectionSound: {fileID: 8300000, guid: 73aa0bb83556b4a458169b91feefaff8, type: 3}
   pressedSound: {fileID: 8300000, guid: 73aa0bb83556b4a458169b91feefaff8, type: 3}
   EquipSound: {fileID: 8300000, guid: f674df3d76a3a044687776d6ce0dce57, type: 3}
+  disableNavigation: 1
   equippedIndex: -1
   currentPartIndex: -1
   partUIs: []
@@ -6250,6 +6252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPanel: {fileID: 1321275536}
   garage: {fileID: 1172276170}
+  partSelection: {fileID: 1172276169}
   titleText: {fileID: 1893680428}
   senderText: {fileID: 386509881}
   messageText: {fileID: 1441973364}
@@ -9009,10 +9012,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 249720852}
-  - {fileID: 1321275537}
   - {fileID: 1453455167}
   - {fileID: 1682943504}
   - {fileID: 1394564440}
+  - {fileID: 1321275537}
   - {fileID: 1260661153}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11248,7 +11251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039323716814978748, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: orthographic size
-      value: 3.08
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 4823308732568080090, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: m_LocalPosition.x

@@ -23,11 +23,11 @@ public class PlayerShooting : MonoBehaviour
     private WeaponStats weaponStats;
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI weaponNameText;
-    [SerializeField] private TextMeshProUGUI magazineText;
-    [SerializeField] private TextMeshProUGUI totalRoundsText;
-    [SerializeField] private TextMeshProUGUI separator;
-    [SerializeField] private Slider reloadBar;
+    private TextMeshProUGUI weaponNameText;
+    private TextMeshProUGUI magazineText;
+    private TextMeshProUGUI totalRoundsText;
+    private TextMeshProUGUI separator;
+    private Slider reloadBar;
 
     private float nextFireTime = 0f;
     private int currentMagazine;
