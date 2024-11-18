@@ -8,9 +8,10 @@ public class PlayerStats : ScriptableObject
     public GameObject playerPrefab;
 
     [Header("Health")]
-    public float maxHealth = 1200f;
-    public float physicalDefence = 500f;
-    public float energyDefence = 350f;
+    public float maxHealth = 1000;
+    public float physicalDefence = 50;
+    public float energyDefence = 50;
+    public float collisionDamage = 100;
 
     [Header("Speed")]
     public float horizontalSpeed = 5f;

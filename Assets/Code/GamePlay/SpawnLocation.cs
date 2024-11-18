@@ -4,7 +4,7 @@ public class SpawnLocation : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
 
-    private void Start()
+    private void Awake()
     {
         Instantiate(playerStats.playerPrefab, transform.position, transform.rotation);
     }

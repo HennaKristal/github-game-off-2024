@@ -434,6 +434,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerData-maxHealth", playerStats.maxHealth);
         PlayerPrefs.SetFloat("PlayerData-physicalDefence", playerStats.physicalDefence);
         PlayerPrefs.SetFloat("PlayerData-energyDefence", playerStats.energyDefence);
+        PlayerPrefs.SetFloat("PlayerData-collisionDamage", playerStats.collisionDamage);
         PlayerPrefs.SetFloat("PlayerData-horizontalSpeed", playerStats.horizontalSpeed);
         PlayerPrefs.SetFloat("PlayerData-verticalSpeed", playerStats.verticalSpeed);
         PlayerPrefs.SetFloat("PlayerData-maxHeatTolerance", playerStats.maxHeatTolerance);
@@ -547,9 +548,10 @@ public class GameManager : MonoBehaviour
         playerStats.progressStep = PlayerPrefs.GetInt("PlayerData-progressStep", 0);
         playerStats.selectedLevel = PlayerPrefs.GetString("PlayerData-selectedLevel", "");
         playerStats.polarisBlacklisted = PlayerPrefs.GetInt("PlayerData-polarisBlacklisted", 0) == 1;
-        playerStats.maxHealth = PlayerPrefs.GetFloat("PlayerData-maxHealth", 0);
+        playerStats.maxHealth = PlayerPrefs.GetFloat("PlayerData-maxHealth", 100);
         playerStats.physicalDefence = PlayerPrefs.GetFloat("PlayerData-physicalDefence", 0);
         playerStats.energyDefence = PlayerPrefs.GetFloat("PlayerData-energyDefence", 0);
+        playerStats.collisionDamage = PlayerPrefs.GetFloat("PlayerData-collisionDamage", 100);
         playerStats.horizontalSpeed = PlayerPrefs.GetFloat("PlayerData-horizontalSpeed", 0);
         playerStats.verticalSpeed = PlayerPrefs.GetFloat("PlayerData-verticalSpeed", 0);
         playerStats.maxHeatTolerance = PlayerPrefs.GetFloat("PlayerData-maxHeatTolerance", 0);

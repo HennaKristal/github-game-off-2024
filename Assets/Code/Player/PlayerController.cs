@@ -145,4 +145,22 @@ public class PlayerController : MonoBehaviour
             heatText.text = Mathf.Floor(currentHeat).ToString() + "ºC";
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(playerStats.collisionDamage);
+                TakeDamage(enemyHealth.GetCollisionDamage());
+            }
+        }
+        else
+        {
+            // Ground collision
+            TakeDamage(100f);
+        }
+    }
 }

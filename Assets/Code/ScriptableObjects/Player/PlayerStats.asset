@@ -12,29 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701625b54d7a24a428fbc2a67edb75fe, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  money: 67994
-  playerPrefab: {fileID: 3148919100440933074, guid: 29bc716bda1f56b409cc05798f5ec026, type: 3}
-  maxHealth: 800
-  physicalDefence: 22
-  energyDefence: 20
+  money: 2720
+  playerPrefab: {fileID: 7298919805539136456, guid: 123d496e1f6bf49488c5511d22bffe16, type: 3}
+  maxHealth: 900
+  physicalDefence: 25
+  energyDefence: 39
+  collisionDamage: 100
   horizontalSpeed: 500
   verticalSpeed: 500
-  maxHeatTolerance: 90
-  idleHeat: 15
-  coolingEfficiency: 1.2
-  overHeatcoolingEfficiency: 2.2
+  maxHeatTolerance: 80
+  idleHeat: 8
+  coolingEfficiency: 1
+  overHeatcoolingEfficiency: 2
   currentCarryWeight: 500
-  maxCarryWeight: 5000
-  currentLiftWeight: 10650
+  maxCarryWeight: 6000
+  currentLiftWeight: 9550
   maxLiftWeight: 15000
-  energyOutput: 750
-  maxEnergy: 250
-  energyRecharge: 3
+  energyOutput: 300
+  maxEnergy: 50
+  energyRecharge: 2
   energyRechargeDelay: 0.1
-  energyConsumption: 210
-  depletedDelay: 2
-  depletedRecharge: 2
-  repairCost: 3100
+  energyConsumption: 212
+  depletedDelay: 3
+  depletedRecharge: 1.5
+  repairCost: 3950
   progressStep: 1
   selectedLevel: Tutorial
-  polarisBlacklisted: 1
+  polarisBlacklisted: 0

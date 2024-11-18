@@ -1035,7 +1035,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 800, y: -100}
-  m_SizeDelta: {x: 500, y: 25}
+  m_SizeDelta: {x: 800, y: 25}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &185126897
 MonoBehaviour:
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Garage
+  m_text: Hangar Workshop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 571260c8165c7a34e80414b203dc8b91, type: 2}
   m_sharedMaterial: {fileID: 1880609878249667154, guid: 571260c8165c7a34e80414b203dc8b91, type: 2}
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 249720854}
   - component: {fileID: 249720853}
   m_Layer: 5
-  m_Name: Garage Screen
+  m_Name: Hangar Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11251,7 +11251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039323716814978748, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: orthographic size
-      value: 1.52
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 4823308732568080090, guid: 853f67411265d3c409ece9270b9794c1, type: 3}
       propertyPath: m_LocalPosition.x
